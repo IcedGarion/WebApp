@@ -28,7 +28,7 @@ public class RegisterAction extends Action
         try
         {
             Class.forName("org.postgresql.Driver");
-            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/ubuntu", "ubuntu", "ubuntu");
+            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/contabilita", "ubuntu", "ubuntu");
         }
         catch (Exception e)
         {
@@ -43,7 +43,7 @@ public class RegisterAction extends Action
         {
             st = connection.createStatement();
             query = bean.getQuery();
-            st.execute(query);
+            st.executeUpdate(query);
         }
         catch(Exception e)
         {

@@ -9,8 +9,8 @@
         <element id="directory" name="lib">
           <element id="file-copy" path="$USER_HOME$/tomcat/lib/jstl-1.2.jar" />
           <element id="file-copy" path="$USER_HOME$/tomcat/lib/postgresql-42.0.0.jar" />
-          <element id="library" level="project" name="lib1" />
           <element id="library" level="project" name="lib" />
+          <element id="library" level="project" name="lib1" />
         </element>
       </element>
       <element id="javaee-facet-resources" facet="WebApp/web/Web" />

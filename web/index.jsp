@@ -7,14 +7,16 @@
   </head>
   <body>
   <div>
-      <sql:setDataSource driver = "org.postgresql.Driver" url = "jdbc:postgresql://localhost:5432/contabilita" user = "ubuntu" password = "ubuntu" /> <!-- serve: scarica driver JAR postgres, fai un db con user pass ubuntu -->
-      <sql:query var = "result" sql = "select * from Farmacie" />
-      <h1>CONTENUTO DB:</h1>
-      <UL>
+      <sql:setDataSource
+              var = "dataSource"
+              driver = "org.postgresql.Driver"
+              url = "jdbc:postgresql://localhost:5432/contabilita"
+              user = "ubuntu" password = "ubuntu" /> <!-- serve: scarica driver JAR postgres, fai un db con user pass ubuntu -->
+      <sql:query var = "result" dataSource="dataSource">select * from operatori; </sql:query>
+      <h1>CONTENUTO DB1:</h1>
           <c:forEach var = "row" items = "${result.rows}">
-              <LI>${row.name}</LI>
+              <c:out value="${row.cognome}" />
           </c:forEach>
-      </UL>
   </div>
   <br>
       <h1>FORM</h1>
