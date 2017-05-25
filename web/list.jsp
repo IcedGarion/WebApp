@@ -8,11 +8,10 @@
   <body>
   <div>
       <sql:setDataSource
-              var = "dataSource"
               driver = "org.postgresql.Driver"
               url = "jdbc:postgresql://localhost:5432/contabilita"
               user = "ubuntu" password = "ubuntu" /> <!-- serve: scarica driver JAR postgres, fai un db con user pass ubuntu -->
-      <sql:query var = "result" dataSource="dataSource">select * from operatori; </sql:query>
+      <sql:query var = "result" sql="select * from operatori" />
       <h1>CONTENUTO DB1:</h1>
           <c:forEach var = "row" items = "${result.rows}">
               <c:out value="${row.cognome}" />
