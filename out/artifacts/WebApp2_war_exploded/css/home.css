@@ -1,0 +1,24 @@
+#container
+{
+
+}
+#header
+{
+    height: 20%;
+    background-color: #a7ff9c;
+}
+#descrizione
+{
+    position: absolute;
+    left: 0px;
+    background-color: #919191;
+}
+#login
+{
+    position: absolute;
+    right: 50%;
+}
+#footer
+{
+
+}

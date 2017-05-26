@@ -60,14 +60,14 @@ public class RegisterAction extends Action
                 tableName = "operatori";
             }
 
-            resultSet = st.executeQuery("SELECT * FROM " + tableName + "WHERE name LIKE " + username
-             + "AND password LIKE " + password);
+            resultSet = st.executeQuery("SELECT * FROM " + tableName + " WHERE username = '" + username
+             + "' AND pass = '" + password + "'");
 
 
             while(resultSet.next())
             {
                 String dbUsername = resultSet.getString("username");
-                String db_pass = resultSet.getString("password");
+                String db_pass = resultSet.getString("pass");
 
                 if(dbUsername.equals(username) && (db_pass.equals(password)))
                 {

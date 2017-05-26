@@ -1,3 +1,11 @@
+create table Regione
+(
+	username varchar not null primary key,
+	pass varchar not null,
+	cfTitolareFarmacia char(16) not null,
+	nomeFarmacia varchar not null
+);
+
 create table Pazienti
 (
 	cf char(16) primary key not null,
@@ -11,6 +19,8 @@ create table Operatori
 (
 	cf char(16) primary key not null,
 	ruolo char(2) not null,
+	username varchar not null,
+	pass varchar not null,
 	nome varchar not null,
 	cognome varchar not null,
 	dataNascita date,
@@ -75,4 +85,6 @@ add foreign key (codProdotto) references Prodotti (codProdotto);
 alter table Ricette
 add foreign key (codAcquisto, cfOperatore) references Acquisti(codAcquisto, cfOperatore);
 
+alter table Regione
+add foreign key (cfTitolareFarmacia, nomeFarmacia) references Farmacie(cfTitolare, nome);
 

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HOME</title>
+    <link rel="stylesheet" type="text/css" href="css/home.css">
+</head>
+<body>
+<div id="container">
+    <div id="header">
+         <h1>Contabilità</h1>
+    </div> <!-- header-->
+    <div id="login">
+        <h2>Log in</h2>
+        <form action = "login.do" method = "post">
+            <input type = "text" name = "username">Username<br>
+            <input type = "password" name = "passwd">Password<br>
+            <input type = "radio" name = "role" value = "reg" checked = "checked">REGIONE<br>
+            <input type = "radio" name = "role" value = "pers">OPERATORE<br>
+            <input type = "submit" value = "Log in">
+        </form>
+
+    </div> <!--login-->
+    <div id="descrizione">
+        <h4>REGIONE : Username = codice regione <br>PERSONALE FARMACIA : Username = il tuo username definito in fase di registrazione </h4>
+    </div>
+    <div id= "footer">
+        <h6>ci pensiamo poi</h6>
+    </div> <!--footer-->
+</div> <!-- container-->
+</body>
+</html>
