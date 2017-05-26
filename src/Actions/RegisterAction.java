@@ -1,6 +1,6 @@
 package Actions;
 
-import Beans.QueryBean;
+import Beans.LoginBean;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.Statement;
 
 /**
@@ -20,10 +21,12 @@ public class RegisterAction extends Action
     @Override
     public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception
     {
-        QueryBean bean = (QueryBean) form;
+        LoginBean bean = (LoginBean) form;
         Connection connection = null;
         Statement st = null;
-        String query = "";
+        ResultSet resultSet;
+        String username = "", password = "", role = "";
+        boolean loginOk = false;
 
         try
         {
@@ -36,14 +39,41 @@ public class RegisterAction extends Action
             e.printStackTrace();
             request.setAttribute("exitCode", "Errore Connessione al DB");
             connection.close();
+
             return mapping.findForward("ERROR");
         }
 
         try
         {
             st = connection.createStatement();
-            query = bean.getQuery();
-            st.executeUpdate(query);
+            username = bean.getUsername();
+            password = bean.getPasswd();
+            role = bean.getRole();
+            String tableName;
+
+            if(role.equals("reg"))
+            {
+                tableName = "regione";
+            }
+            else
+            {
+                tableName = "operatori";
+            }
+
+            resultSet = st.executeQuery("SELECT * FROM " + tableName + "WHERE name LIKE " + username
+             + "AND password LIKE " + password);
+
+
+            while(resultSet.next())
+            {
+                String dbUsername = resultSet.getString("username");
+                String db_pass = resultSet.getString("password");
+
+                if(dbUsername.equals(username) && (db_pass.equals(password)))
+                {
+                    loginOk = true;
+                }
+            }
         }
         catch(Exception e)
         {
@@ -51,11 +81,21 @@ public class RegisterAction extends Action
             e.printStackTrace();
             request.setAttribute("exitCode", "Query sql non valida");
             connection.close();
+
             return mapping.findForward("ERROR");
         }
 
-        request.setAttribute("exitCode", "Query eseguita");
-        connection.close();
-        return mapping.findForward("Ok");
+        if(loginOk)
+        {
+            request.setAttribute("role", role);
+            connection.close();
+            return mapping.findForward("LOGIN_OK");
+        }
+        else
+        {
+            request.setAttribute("exitCode", "Username o Password non corretti");
+            connection.close();
+            return mapping.findForward("ERROR");
+        }
     }
 }

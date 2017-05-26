@@ -5,6 +5,6 @@
 </head>
 <body>
 <h1><%= request.getAttribute("exitCode")%></h1>
-<a href = "/index.jsp">Torna alla home</a>
+<a href = "/index.html">Torna alla home</a>
 </body>
 </html>

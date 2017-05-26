@@ -38,8 +38,8 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" scope="PROVIDED" name="Tomcat 8.5.13" level="application_server_libraries" />
-    <orderEntry type="module-library">
+    <orderEntry type="library" exported="" scope="PROVIDED" name="Tomcat 8.5.13" level="application_server_libraries" />
+    <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
           <root url="jar://$USER_HOME$/tomcat/lib/jstl-1.2.jar!/" />
@@ -48,7 +48,7 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="module-library">
+    <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
           <root url="jar://$USER_HOME$/tomcat/lib/postgresql-42.0.0.jar!/" />
@@ -57,7 +57,7 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="lib" level="project" />
-    <orderEntry type="library" name="lib1" level="project" />
+    <orderEntry type="library" exported="" name="lib" level="project" />
+    <orderEntry type="library" exported="" name="lib1" level="project" />
   </component>
 </module>

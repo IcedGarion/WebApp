@@ -6,12 +6,12 @@
 
 <struts-config>
     <form-beans>
-        <form-bean name="RegisterBean" type="Beans.QueryBean"></form-bean>
+        <form-bean name="RegisterBean" type="Beans.LoginBean" />
     </form-beans>
     <action-mappings>
-        <action path="/register" type = "Actions.RegisterAction" name="RegisterBean" scope = "request" >
-            <forward name="Ok" path="/list.jsp" ></forward>
-            <forward name="ERROR" path="/WEB-INF/result.jsp"></forward>
+        <action path="/login" type = "Actions.RegisterAction" name="RegisterBean" scope = "request" >
+            <forward name="LOGIN_OK" path="/jsp/privateHome.jsp" />
+            <forward name="ERROR" path="/WEB-INF/error.jsp" />
         </action>
     </action-mappings>
 </struts-config>
