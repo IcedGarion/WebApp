@@ -72,6 +72,9 @@ public class RegisterAction extends Action
                 if(dbUsername.equals(username) && (db_pass.equals(password)))
                 {
                     loginOk = true;
+
+                    if(! role.equals("reg"))
+                        role = resultSet.getString("ruolo");
                 }
             }
         }
