@@ -11,7 +11,7 @@
 <head>
     <title>AREA PRIVATA</title>
 
-    <% String role = (String) request.getAttribute("role"); %>
+    <% String role = (String) request.getSession().getAttribute("role"); %>
 </head>
 <body>
 <div id="container">
@@ -41,32 +41,41 @@
             if (role.equals("reg"))
             { %>
                 <ul>
-                    <li><a href="registerPharmacy.jsp">Registra una nuova Farmacia</a></li>
-                    <li><a href="listPharmacy.jsp">Elenco Farmacie</a></li>
-                    <li><a href="analysis.jsp">Analisi Vendite</a></li>
+                    <li><a href="jsp/registerPharmacy.jsp">Registra una nuova Farmacia</a></li>
+                    <li><a href="jsp/listPharmacy.jsp">Elenco Farmacie</a></li>
+                    <li><a href="jsp/analysis.jsp">Analisi Vendite</a></li>
                 </ul>
             <% }
             else if(role.toUpperCase().equals("TF"))
             { %>
                 <ul>
-                    <li><a href="registerPersonnel.jsp">Registra Personale Collaboratore</a></li>
-                    <li><a href="listPersonnel.jsp">Elenco Personale Farmacia</a></li>
-                    <li><a href="purchase.jsp">Inserisci nuovo acquisto</a></li>
-                    <li><a href="warehouse.jsp">Magazzino</a></li>
-                    <li><a href="analysis.jsp">Analisi Vendite</a></li>
+                    <li><a href="jsp/registerPersonnel.jsp">Registra Personale Collaboratore</a></li>
+                    <li><a href="jsp/listPersonnel.jsp">Elenco Personale Farmacia</a></li>
+                    <li><a href="jsp/purchase.jsp">Inserisci nuovo acquisto</a></li>
+                    <li><a href="jsp/warehouse.jsp">Magazzino</a></li>
+                    <li><a href="jsp/analysis.jsp">Analisi Vendite</a></li>
                 </ul>
             <% }
             else if(role.toUpperCase().equals("DF") || role.toUpperCase().equals("OB"))
             { %>
                 <ul>
-                    <li><a href="purchase.jsp">Inserisci nuovo acquisto</a></li>
+                    <li><a href="jsp/purchase.jsp">Inserisci nuovo acquisto</a></li>
                 </ul>
             <% }
         %>
     </div> <!-- body -->
 
+    <div id="left">
+        <ul>
+            <li><a href="jsp/privateHome.jsp">HOME</a></li>
+            <li><a href="jsp/account.jsp">ACCOUNT</a></li>
+            <li><a href="jsp/mail.jsp">POSTA</a></li>
+            <li><a href="jsp/logout.jsp">LOGOUT</a></li>
+        </ul>
+    </div> <!-- left -->
+
     <div id= "footer">
-        <h6>ci pensiamo poi</h6>
+        <h6>footer</h6>
     </div> <!--footer-->
 </div>
 </body>

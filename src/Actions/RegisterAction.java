@@ -8,6 +8,7 @@ import org.apache.struts.action.ActionMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -22,6 +23,7 @@ public class RegisterAction extends Action
     public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception
     {
         LoginBean bean = (LoginBean) form;
+        HttpSession session;
         Connection connection = null;
         Statement st = null;
         ResultSet resultSet;
@@ -90,7 +92,8 @@ public class RegisterAction extends Action
 
         if(loginOk)
         {
-            request.setAttribute("role", role);
+            //salva il bean di login in session
+            request.getSession().setAttribute("role", role);
             connection.close();
             return mapping.findForward("LOGIN_OK");
         }
