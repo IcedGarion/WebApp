@@ -1,15 +1,26 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: nb
-  Date: 26/05/17
-  Time: 16.34
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="util.loginCheck" %>
+<%@ page import="Beans.LoginBean" %>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>AREA PRIVATA</title>
+
+    <!-- in ogni pagina controlla prima che si è loggati -->
+    <%
+        if(! (loginCheck.check((LoginBean) session.getAttribute("RegisterBean"), request).equals("LOGIN_OK")))
+        {
+            request.setAttribute("exitCode", "Login non effettuata");
+    %>
+
+            <!-- redirect verso pagina di errore -->
+            <script type="text/javascript">
+                window.location.replace('error.jsp');
+            </script>
+    <%
+        }
+    %>
 
     <% String role = (String) request.getSession().getAttribute("role"); %>
 </head>

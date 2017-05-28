@@ -11,7 +11,7 @@
     <action-mappings>
         <action path="/login" type = "Actions.RegisterAction" name="RegisterBean" scope = "session" >
             <forward name="LOGIN_OK" path="/jsp/privateHome.jsp" />
-            <forward name="ERROR" path="/WEB-INF/error.jsp" />
+            <forward name="ERROR" path="/jsp/error.jsp" />
         </action>
     </action-mappings>
 </struts-config>
