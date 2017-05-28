@@ -1,4 +1,5 @@
-<%--
+<%@ page import="util.loginCheck" %>
+<%@ page import="Beans.LoginBean" %><%--
   Created by IntelliJ IDEA.
   User: ubuntu
   Date: 28/05/17
@@ -11,6 +12,16 @@
     <title>ACCOUNT</title>
 </head>
 <body>
+    <% if(! (loginCheck.check((LoginBean) session.getAttribute("RegisterBean"), request).equals("LOGIN_OK")))
+    {
+            /*
+            request.setAttribute("exitCode", "Errore: login errata");
+            redirect to error.jsp
+            */
+            %>
+            <h1>ERRORE LOGIN</h1>
+    <% } %>
+
     <div id="container">
         <div id="header">
         </div> <!-- header -->
