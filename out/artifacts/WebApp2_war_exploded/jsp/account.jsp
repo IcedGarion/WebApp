@@ -8,7 +8,7 @@
 
     <!-- in ogni pagina controlla prima che si è loggati -->
     <%
-        if(! (loginCheck.check((LoginBean) session.getAttribute("RegisterBean"), request).equals("LOGIN_OK")))
+        if(! (loginCheck.check((LoginBean) session.getAttribute("RegisterBean"), request, null).equals("LOGIN_OK")))
         {
             request.setAttribute("exitCode", "Login non effettuata");
     %>

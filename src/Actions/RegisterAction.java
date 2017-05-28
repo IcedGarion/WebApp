@@ -24,7 +24,7 @@ public class RegisterAction extends Action
     public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception
     {
         //legge il bean del form login, imposta ruolo in session; ritorna stringa di errore/login_ok
-        String result = loginCheck.check(((LoginBean) form), request);
+        String result = loginCheck.check(((LoginBean) form), request, null);
 
         //se ritorna login_ok continuerà con la pag. richesta
         if(result.equals("LOGIN_OK"))

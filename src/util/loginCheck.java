@@ -12,7 +12,8 @@ import java.sql.*;
 public class loginCheck
 {
     //legge il bean del form login, imposta ruolo in session; ritorna stringa di errore/login_ok
-    public static String check(LoginBean form, HttpServletRequest request) throws SQLException
+    //controlla anche se i ruoli corrispondono
+    public static String check(LoginBean form, HttpServletRequest request, String roleCheck) throws SQLException
     {
         LoginBean bean = (LoginBean) form;
         HttpSession session;
@@ -82,10 +83,38 @@ public class loginCheck
 
         if(loginOk)
         {
-            //salva il bean di login in session
-            request.getSession().setAttribute("role", role);
-            connection.close();
-            return "LOGIN_OK";
+            if(roleCheck != null)
+            {
+                //controlla se ruolo è "pers" (tf, df, ob) (nel login bean)
+                if(roleCheck.toLowerCase().equals("pers") && (role.toLowerCase().equals("tf") || role.toLowerCase().equals("df") || role.toLowerCase().equals("ob")))
+                {
+                    //salva il bean di login in session
+                    request.getSession().setAttribute("role", role);
+                    connection.close();
+                    return "LOGIN_OK";
+                }
+                //se non è pers, sarà reg : controlla se nel login bean c'è reg
+                else if(roleCheck.toLowerCase().equals(role.toLowerCase()))
+                {
+                    //salva il bean di login in session
+                    request.getSession().setAttribute("role", role);
+                    connection.close();
+                    return "LOGIN_OK";
+                }
+                else
+                {
+                    request.setAttribute("exitCode", "Area riservata a " + roleCheck);
+                    return "ERROR";
+                }
+            }
+            //se roleCHeck è null, non controlla il ruolo
+            else
+            {
+                //salva il bean di login in session
+                request.getSession().setAttribute("role", role);
+                connection.close();
+                return "LOGIN_OK";
+            }
         }
         else
         {
