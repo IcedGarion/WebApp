@@ -24,8 +24,32 @@
 <body>
 <div id="container">
     <div id="header">
+        <h2>REGISTRA NUOVA FARMACIA</h2>
     </div> <!-- header -->
     <div id="body">
+
+
+        <!-- validazione input (tipo pass = pass) -->
+
+        <h4>Dati Titolare Farmacia: </h4>
+        <form action="/Progetto/registerPharmacy.do" method="post">
+            <input type="text" name="cf">Codice Fiscale<br>
+            <input type="text" name="username">Username Titolare<br>
+            <input type="password" name="password">Password<br>
+            <input type="password" name="passwordConfirm">Conferma Password<br>
+            <input type="text" name="nome">Nome Titolare<br>
+            <input type="text" name="cognome">Cognome Titolare<br>
+            <input type="text" name="datanascita">Data Nascita (gg-mm-aaaa)<br>
+            <input type="text" name="codRegionale">Codice Regionale<br>
+            <br><br>
+            <h4>Dati Farmacia</h4>
+            <input type="text" name="usernameF">Username Farmacia<br>
+            <input type="password" name="passwordF">Password<br>
+            <input type="password" name="passwordConfirmF">Conferma Password<br>
+            <input type="text" name="nomeF">Nome Farmacia<br>
+
+            <input type="submit" value="REGISTRA">
+        </form>
     </div> <!-- body -->
     <div id="left">
         <ul>

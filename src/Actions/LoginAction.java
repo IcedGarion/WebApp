@@ -18,7 +18,7 @@ import java.sql.Statement;
 /**
  * Created by ubuntu on 12/05/17.
  */
-public class RegisterAction extends Action
+public class LoginAction extends Action
 {
     @Override
     public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception
