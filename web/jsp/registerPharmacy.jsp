@@ -20,6 +20,33 @@
     <%
         }
     %>
+
+    <script type="text/javascript">
+    function continueornot()
+    {
+        var cf = document.forms["form"]["cf"].value;
+        var pass1 = document.forms["form"]["password"].value;
+        var pass2 = document.forms["form"]["passwordConfirm"].value;
+        var data = document.forms["form"]["dataNascita"].value;
+        var tel = document.forms["form"]["telefono"].value;
+
+        if (cf.length != 16)
+        {
+            alert("Codice Fiscale non valido!");
+            //document.getElementById("cf").style.backgroundColor = "red";
+            return false;
+        }
+        if(! (pass1 == pass2))
+        {
+            alert("Le password non corrispondono");
+            //document.getElementById("password").style.backgroundColor = "red";
+            //document.getElementById("passwordConfirm").style.backgroundColor = "red";
+            return false;
+        }
+
+        return true;
+    }
+    </script>
 </head>
 <body>
 <div id="container">
@@ -32,18 +59,18 @@
         <!-- validazione input (tipo pass = pass) -->
 
         <h4>Dati Titolare Farmacia: </h4>
-        <form action="/Progetto/registerPharmacy.do" method="post">
-            <input type="text" name="cf">Codice Fiscale<br>
-            <input type="text" name="username">Username Titolare<br>
-            <input type="password" name="password">Password<br>
-            <input type="password" name="passwordConfirm">Conferma Password<br>
-            <input type="text" name="nome">Nome Titolare<br>
-            <input type="text" name="cognome">Cognome Titolare<br>
+        <form action="/Progetto/registerPharmacy.do" method="post" name="form" onsubmit="return continueornot()">
+            <input type="text" name="nome" required>Nome Titolare<br>
+            <input type="text" name="cognome" required>Cognome Titolare<br>
+            <input type="text" name="cf" required>Codice Fiscale<br>
+            <input type="text" name="username" required>Username Titolare<br>
+            <input type="password" name="password" required>Password<br>
+            <input type="password" name="passwordConfirm" required>Conferma Password<br>
             <input type="text" name="dataNascita">Data Nascita (gg-mm-aaaa)<br>
-            <input type="text" name="codRegionale">Codice Regionale<br>
+            <input type="text" name="codRegionale" required>Codice Regionale<br>
             <br>
             <h4>Dati Farmacia</h4>
-            <input type="text" name="nomeF">Nome Farmacia<br>
+            <input type="text" name="nomeF" required>Nome Farmacia<br>
             <input type="text" name="indirizzo">Indirizzo<br>
             <input type="text" name="telefono">Numero di Telefono<br>
 
