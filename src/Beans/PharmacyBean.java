@@ -17,28 +17,28 @@ public class PharmacyBean extends ActionForm
     private String cognome;
     private String dataNascita;
     private String codRegionale;
-    private String usernameF;
-    private String passwordF;
     private String nomeF;
+    private String indirizzo;
+    private String telefono;
 
 
     public PharmacyBean()
     {}
 
-    public String getUsernameF() {
-        return usernameF;
+    public String getIndirizzo() {
+        return indirizzo;
     }
 
-    public void setUsernameF(String usernameF) {
-        this.usernameF = usernameF;
+    public void setIndirizzo(String indirizzo) {
+        this.indirizzo = indirizzo;
     }
 
-    public String getPasswordF() {
-        return passwordF;
+    public String getTelefono() {
+        return telefono;
     }
 
-    public void setPasswordF(String passwordF) {
-        this.passwordF = passwordF;
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
 
     public String getNomeF() {

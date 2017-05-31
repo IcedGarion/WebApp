@@ -28,13 +28,16 @@ public class RegisterPharmacy extends Action
         Connection connection = null;
         Statement st = null;
         ResultSet resultSet;
-        String username = "", password = "", role = "", cf = "", nome = "", cognome = "", codReg = "", usernameF, passF, nomeF, dataNascita;
-        boolean loginOk = false;
+        String username = "", password = "", role = "", cf = "", nome = "", cognome = "", codReg = "";
+        String indirizzo = "", telefono = "", nomeF = "", dataNascita = "";
 
-        try {
+        try
+        {
             Class.forName("org.postgresql.Driver");
             connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/contabilita", "ubuntu", "ubuntu");
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             System.out.println("Errore connessione al DB");
             e.printStackTrace();
             connection.close();
@@ -53,19 +56,19 @@ public class RegisterPharmacy extends Action
             cognome = bean.getCognome();
             codReg = bean.getCodRegionale();
             dataNascita = bean.getDataNascita();
-            usernameF = bean.getUsernameF();
-            passF = bean.getPasswordF();
             nomeF = bean.getNomeF();
+            indirizzo = bean.getIndirizzo();
+            telefono = bean.getTelefono();
 
             //inserice il nuovo titolare
             String query = "INSERT INTO Operatori (cf, ruolo, nome, cognome, dataNascita, codRegionale, username, pass) values ("
                     + "'" + cf + "', " + "'" + role + "', " + "'" + nome + "', " + "'" + cognome + "', " + "'" + dataNascita + "', "
-                    + "'" + codReg + "', " + username + "', " + "'" + password + "')";
+                    + "'" + codReg + "', " + "'" + username + "', " + "'" + password + "')";
             st.executeUpdate(query);
 
             //inserisce farmacia collegata con cf
-            query = "INSERT INTO regione(username, pass, cftitolarefarmacia, nomefarmacia) VALUES ("
-                    + "'" + usernameF + "', " + "'" + passF + "', " + "'" + cf + "', " + "'" + nomeF + "')";
+            query = "INSERT INTO Farmacie (cftitolare, nome, indirizzo, telefono) VALUES ("
+                    + "'" + cf + "', " + "'" + nomeF + "', " + "'" + indirizzo + "', " + "'" + telefono + "')";
             st.executeUpdate(query);
 
 

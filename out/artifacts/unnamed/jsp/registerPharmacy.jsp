@@ -39,14 +39,13 @@
             <input type="password" name="passwordConfirm">Conferma Password<br>
             <input type="text" name="nome">Nome Titolare<br>
             <input type="text" name="cognome">Cognome Titolare<br>
-            <input type="text" name="datanascita">Data Nascita (gg-mm-aaaa)<br>
+            <input type="text" name="dataNascita">Data Nascita (gg-mm-aaaa)<br>
             <input type="text" name="codRegionale">Codice Regionale<br>
-            <br><br>
+            <br>
             <h4>Dati Farmacia</h4>
-            <input type="text" name="usernameF">Username Farmacia<br>
-            <input type="password" name="passwordF">Password<br>
-            <input type="password" name="passwordConfirmF">Conferma Password<br>
             <input type="text" name="nomeF">Nome Farmacia<br>
+            <input type="text" name="indirizzo">Indirizzp<br>
+            <input type="text" name="telefono">Numero di Telefono<br>
 
             <input type="submit" value="REGISTRA">
         </form>
