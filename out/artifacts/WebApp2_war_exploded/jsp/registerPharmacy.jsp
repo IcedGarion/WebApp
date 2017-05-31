@@ -22,6 +22,22 @@
     %>
 
     <script type="text/javascript">
+    function blankFields()
+    {
+        document.getElementById("cf").style.backgroundColor = "white";
+        document.getElementById("nome").style.backgroundColor = "white";
+        document.getElementById("cognome").style.backgroundColor = "white";
+        document.getElementById("username").style.backgroundColor = "white";
+        document.getElementById("password").style.backgroundColor = "white";
+        document.getElementById("passwordConfirm").style.backgroundColor = "white";
+        document.getElementById("dataNascita").style.backgroundColor = "white";
+        document.getElementById("codRegionale").style.backgroundColor = "white";
+        document.getElementById("dataNascita").style.backgroundColor = "white";
+        document.getElementById("nomeF").style.backgroundColor = "white";
+        document.getElementById("indirizzo").style.backgroundColor = "white";
+        document.getElementById("telefono").style.backgroundColor = "white";
+    }
+
     function continueornot()
     {
         var cf = document.forms["form"]["cf"].value;
@@ -32,15 +48,17 @@
 
         if (cf.length != 16)
         {
+            blankFields();
             alert("Codice Fiscale non valido!");
-            //document.getElementById("cf").style.backgroundColor = "red";
+            document.getElementById("cf").style.backgroundColor = "red";
             return false;
         }
         if(! (pass1 == pass2))
         {
+            blankFields();
             alert("Le password non corrispondono");
-            //document.getElementById("password").style.backgroundColor = "red";
-            //document.getElementById("passwordConfirm").style.backgroundColor = "red";
+            document.getElementById("password").style.backgroundColor = "red";
+            document.getElementById("passwordConfirm").style.backgroundColor = "red";
             return false;
         }
 
@@ -60,19 +78,19 @@
 
         <h4>Dati Titolare Farmacia: </h4>
         <form action="/Progetto/registerPharmacy.do" method="post" name="form" onsubmit="return continueornot()">
-            <input type="text" name="nome" required>Nome Titolare<br>
-            <input type="text" name="cognome" required>Cognome Titolare<br>
-            <input type="text" name="cf" required>Codice Fiscale<br>
-            <input type="text" name="username" required>Username Titolare<br>
-            <input type="password" name="password" required>Password<br>
-            <input type="password" name="passwordConfirm" required>Conferma Password<br>
-            <input type="text" name="dataNascita">Data Nascita (gg-mm-aaaa)<br>
-            <input type="text" name="codRegionale" required>Codice Regionale<br>
+            <input type="text" name="nome" id="nome" required>Nome Titolare<br>
+            <input type="text" name="cognome" id="cognome" required>Cognome Titolare<br>
+            <input type="text" name="cf" id="cf" required>Codice Fiscale<br>
+            <input type="text" name="username" id="username" required>Username Titolare<br>
+            <input type="password" name="password" id="password" required>Password<br>
+            <input type="password" name="passwordConfirm" id="passwordConfirm" required>Conferma Password<br>
+            <input type="text" name="dataNascita" id="dataNascita">Data Nascita (gg-mm-aaaa)<br>
+            <input type="text" name="codRegionale" id="codRegionale" required>Codice Regionale<br>
             <br>
             <h4>Dati Farmacia</h4>
-            <input type="text" name="nomeF" required>Nome Farmacia<br>
-            <input type="text" name="indirizzo">Indirizzo<br>
-            <input type="text" name="telefono">Numero di Telefono<br>
+            <input type="text" name="nomeF" id="nomeF" required>Nome Farmacia<br>
+            <input type="text" name="indirizzo" id="indirizzo">Indirizzo<br>
+            <input type="text" name="telefono" id="telefono">Numero di Telefono<br>
 
             <input type="submit" value="REGISTRA">
         </form>
