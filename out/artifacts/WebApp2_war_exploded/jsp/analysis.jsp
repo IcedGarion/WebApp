@@ -8,6 +8,8 @@
 
     <!-- in ogni pagina controlla prima che si è loggati -->
     <%
+        String role = "";
+
         if(! (loginCheck.check((LoginBean) session.getAttribute("RegisterBean"), request, null).equals("LOGIN_OK")))
         {
             request.setAttribute("exitCode", "Login non effettuata");
@@ -19,6 +21,8 @@
             </script>
     <%
         }
+        else
+            role = (String) request.getSession().getAttribute("role");
     %>
 </head>
 <body>
@@ -26,8 +30,25 @@
 
     <div id="container">
         <div id="header">
+            <% if(role.equals("pers")) {%>
+                <h2>Analisi Vendite Farmacia</h2>
+            <%} else {%>
+                <h2>Analisi Vendite Farmacia</h2>
+            <% } %>
         </div> <!-- header -->
         <div id="body">
+            <% if(role.equals("pers")) {%>
+
+            <!-- tabellla -->
+
+
+            <%} else {%>
+
+
+
+
+            <% } %>
+
         </div> <!-- body -->
         <div id="left">
             <ul>

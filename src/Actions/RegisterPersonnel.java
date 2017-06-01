@@ -1,6 +1,6 @@
 package Actions;
 
-import Beans.LoginBean;
+import Beans.PersonBean;
 import Beans.PharmacyBean;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
@@ -14,17 +14,13 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.Date;
 
-/**
- * Created by ubuntu on 31/05/17.
- */
-public class RegisterPharmacy extends Action
+public class RegisterPersonnel extends Action
 {
     @Override
     public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception
     {
-        PharmacyBean bean = (PharmacyBean) form;
+        PersonBean bean = (PersonBean) form;
         HttpSession session;
         Connection connection = null;
         Statement st = null;
@@ -47,40 +43,38 @@ public class RegisterPharmacy extends Action
             return mapping.findForward("REGISTER");
         }
 
-        try {
+        try
+        {
             st = connection.createStatement();
             username = bean.getUsername();
+
+            //prima cerca se username esiste già
+            String query = "SELECT * FROM Operatori WHERE username = '" + username + "'";
+            resultSet = st.executeQuery(query);
+            int conta = 0;
+
+            while(resultSet.next())
+                conta++;
+
+            if(conta != 0)
+            {
+                request.setAttribute("exitCode", "Username già esistente");
+                return mapping.findForward("REGISTER");
+            }
+
             password = bean.getPassword();
-            role = "TF";
+            role = bean.getRole();
             cf = bean.getCf();
             nome = bean.getNome();
             cognome = bean.getCognome();
             codReg = bean.getCodRegionale();
             dataNascita = bean.getDataNascita();
-            nomeF = bean.getNomeF();
-            indirizzo = bean.getIndirizzo();
-            telefono = bean.getTelefono();
-
-            //inserisce farmacia collegata con cf
-            String query = "INSERT INTO Farmacie (nome, indirizzo, telefono) VALUES ("
-                    + "'" + nomeF + "', " + "'" + indirizzo + "', " + "'" + telefono + "')";
-            st.executeUpdate(query);
-
-            //recupera id farmacia appena inserita
-            query = "SELECT id FROM Farmacie WHERE nome = '" + nome + "' AND indirizzo = '" + indirizzo + "' AND telefono = '" + telefono + "'";
-            resultSet = st.executeQuery(query);
-            int idFarmacia = 0;
-            while(resultSet.next())
-                idFarmacia = resultSet.getInt("id");
 
             //inserice il nuovo titolare
-            query = "INSERT INTO Operatori (cf, idFarmacia, ruolo, nome, cognome, dataNascita, codRegionale, username, pass) values ("
-                    + "'" + cf + "', " + "'" + idFarmacia + "', " + "'" + role + "', " + "'" + nome + "', " + "'" + cognome + "', " + "'" + dataNascita + "', "
+            query = "INSERT INTO Operatori (cf, ruolo, nome, cognome, dataNascita, codRegionale, username, pass) values ("
+                    + "'" + cf + "', " + "'" + role + "', " + "'" + nome + "', " + "'" + cognome + "', " + "'" + dataNascita + "', "
                     + "'" + codReg + "', " + "'" + username + "', " + "'" + password + "')";
             st.executeUpdate(query);
-
-
-
 
             request.setAttribute("exitCode", "REGISTRAZIONE AVVENUTA CON SUCCESSO");
             return mapping.findForward("REGISTER");

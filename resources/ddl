@@ -1,7 +1,7 @@
 create table Regione
 (
 	username varchar not null primary key,
-	pass varchar not null;
+	pass varchar not null
 );
 
 create table Pazienti
@@ -16,13 +16,14 @@ create table Pazienti
 create table Operatori
 (
 	cf char(16) primary key not null,
+	idFarmacia integer,
 	ruolo char(2) not null,
-	username varchar not null,
+	username varchar not null unique,
 	pass varchar not null,
 	nome varchar not null,
 	cognome varchar not null,
 	dataNascita date,
-	codRegionale varchar(16)
+	codRegionale varchar
 );
 	
 create table Acquisti
@@ -36,11 +37,10 @@ create table Acquisti
 
 create table Farmacie
 (
-	cfTitolare char(16) not null,
+	id SERIAL primary key,
 	nome varchar not null,
 	indirizzo varchar,
-	telefono integer,
-	primary key (cfTitolare, nome)
+	telefono integer
 );
 
 create table Carrello
@@ -69,8 +69,8 @@ create table Ricette
 	data date
 );
 
-alter table Farmacie
-add foreign key (cftitolare) references Operatori(cf);
+alter table Operatori
+add foreign key (idFarmacia) references Farmacie(id);
 
 alter table Acquisti
 add foreign key (cfOperatore) references Operatori(cf),

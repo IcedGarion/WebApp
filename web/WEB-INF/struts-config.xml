@@ -8,6 +8,7 @@
     <form-beans>
         <form-bean name="RegisterBean" type="Beans.LoginBean" />
         <form-bean name="PharmacyBean" type="Beans.PharmacyBean" />
+        <form-bean name="PersonBean" type="Beans.PersonBean" />
     </form-beans>
     <action-mappings>
         <action path="/login" type = "Actions.LoginAction" name="RegisterBean" scope = "session" >
@@ -16,6 +17,10 @@
         </action>
 
         <action path="/registerPharmacy" type = "Actions.RegisterPharmacy" name="PharmacyBean" scope = "request" >
+            <forward name="REGISTER" path="/jsp/error.jsp" />
+        </action>
+
+        <action path="/registerPersonnel" type = "Actions.RegisterPersonnel" name="PersonBean" scope = "request" >
             <forward name="REGISTER" path="/jsp/error.jsp" />
         </action>
     </action-mappings>

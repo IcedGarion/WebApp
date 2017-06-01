@@ -31,6 +31,7 @@ public class loginCheck
         catch (Exception e)
         {
             System.out.println("Errore connessione al DB");
+            request.getSession().setAttribute("role", "none");
             e.printStackTrace();
             connection.close();
 
@@ -75,6 +76,7 @@ public class loginCheck
         catch(Exception e)
         {
             System.out.println("Errore nella query");
+            request.getSession().setAttribute("role", "none");
             e.printStackTrace();
             connection.close();
 
@@ -119,6 +121,7 @@ public class loginCheck
         else
         {
             request.setAttribute("exitCode", "Username o Password non corretti");
+            request.getSession().setAttribute("role", "none");
             connection.close();
             return "ERROR";
         }

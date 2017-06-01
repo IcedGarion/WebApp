@@ -21,7 +21,7 @@
         }
     %>
 
-    <script type="text/javascript" src="<%=request.getContextPath()%>/javascript/util.js"></script>
+    <script type="text/javascript" src="../javascript/validation.js"></script>
 </head>
 <body>
 <div id="container">
@@ -29,9 +29,6 @@
         <h2>REGISTRA NUOVA FARMACIA</h2>
     </div> <!-- header -->
     <div id="body">
-
-
-        <!-- validazione input (tipo pass = pass) -->
 
         <h4>Dati Titolare Farmacia: </h4>
         <form action="<%=request.getContextPath()%>/registerPharmacy.do" method="post" name="form" onsubmit="return validatePharmacyForm()">
