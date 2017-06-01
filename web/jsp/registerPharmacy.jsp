@@ -21,50 +21,7 @@
         }
     %>
 
-    <script type="text/javascript">
-    function blankFields()
-    {
-        document.getElementById("cf").style.backgroundColor = "white";
-        document.getElementById("nome").style.backgroundColor = "white";
-        document.getElementById("cognome").style.backgroundColor = "white";
-        document.getElementById("username").style.backgroundColor = "white";
-        document.getElementById("password").style.backgroundColor = "white";
-        document.getElementById("passwordConfirm").style.backgroundColor = "white";
-        document.getElementById("dataNascita").style.backgroundColor = "white";
-        document.getElementById("codRegionale").style.backgroundColor = "white";
-        document.getElementById("dataNascita").style.backgroundColor = "white";
-        document.getElementById("nomeF").style.backgroundColor = "white";
-        document.getElementById("indirizzo").style.backgroundColor = "white";
-        document.getElementById("telefono").style.backgroundColor = "white";
-    }
-
-    function continueornot()
-    {
-        var cf = document.forms["form"]["cf"].value;
-        var pass1 = document.forms["form"]["password"].value;
-        var pass2 = document.forms["form"]["passwordConfirm"].value;
-        var data = document.forms["form"]["dataNascita"].value;
-        var tel = document.forms["form"]["telefono"].value;
-
-        if (cf.length != 16)
-        {
-            blankFields();
-            alert("Codice Fiscale non valido!");
-            document.getElementById("cf").style.backgroundColor = "red";
-            return false;
-        }
-        if(! (pass1 == pass2))
-        {
-            blankFields();
-            alert("Le password non corrispondono");
-            document.getElementById("password").style.backgroundColor = "red";
-            document.getElementById("passwordConfirm").style.backgroundColor = "red";
-            return false;
-        }
-
-        return true;
-    }
-    </script>
+    <script type="text/javascript" src="/Progetto/javascript/util.js"></script>
 </head>
 <body>
 <div id="container">
@@ -77,7 +34,7 @@
         <!-- validazione input (tipo pass = pass) -->
 
         <h4>Dati Titolare Farmacia: </h4>
-        <form action="/Progetto/registerPharmacy.do" method="post" name="form" onsubmit="return continueornot()">
+        <form action="/Progetto/registerPharmacy.do" method="post" name="form" onsubmit="return validatePharmacyForm()">
             <input type="text" name="nome" id="nome" required>Nome Titolare<br>
             <input type="text" name="cognome" id="cognome" required>Cognome Titolare<br>
             <input type="text" name="cf" id="cf" required>Codice Fiscale<br>
