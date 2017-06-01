@@ -29,10 +29,10 @@
     </div> <!-- body -->
     <div id="left">
         <ul>
-            <li><a href="privateHome.jsp">HOME</a></li>
-            <li><a href="account.jsp">ACCOUNT</a></li>
-            <li><a href="mail.jsp">POSTA</a></li>
-            <li><a href="logout.jsp">LOGOUT</a></li>
+            <li><a href="<%=request.getContextPath()%>/jsp/privateHome.jsp">HOME</a></li>
+            <li><a href="<%=request.getContextPath()%>/jsp/account.jsp">ACCOUNT</a></li>
+            <li><a href="<%=request.getContextPath()%>/jsp/mail.jsp">POSTA</a></li>
+            <li><a href="<%=request.getContextPath()%>/jsp/logout.jsp">LOGOUT</a></li>
         </ul>
     </div> <!-- left -->
 

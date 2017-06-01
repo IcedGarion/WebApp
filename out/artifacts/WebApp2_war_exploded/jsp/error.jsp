@@ -17,6 +17,6 @@
     }
 %>
 <h1><%= errorMsg%></h1>
-<a href = "/index.html">Torna alla home</a>
+<a href = "<%=request.getContextPath()%>/jsp/privateHome.jsp">Torna alla home</a>
 </body>
 </html>

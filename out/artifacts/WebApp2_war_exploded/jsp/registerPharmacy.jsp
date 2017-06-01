@@ -21,7 +21,7 @@
         }
     %>
 
-    <script type="text/javascript" src="/Progetto/javascript/util.js"></script>
+    <script type="text/javascript" src="<%=request.getContextPath()%>/javascript/util.js"></script>
 </head>
 <body>
 <div id="container">
@@ -34,7 +34,7 @@
         <!-- validazione input (tipo pass = pass) -->
 
         <h4>Dati Titolare Farmacia: </h4>
-        <form action="/Progetto/registerPharmacy.do" method="post" name="form" onsubmit="return validatePharmacyForm()">
+        <form action="<%=request.getContextPath()%>/registerPharmacy.do" method="post" name="form" onsubmit="return validatePharmacyForm()">
             <input type="text" name="nome" id="nome" required>Nome Titolare<br>
             <input type="text" name="cognome" id="cognome" required>Cognome Titolare<br>
             <input type="text" name="cf" id="cf" required>Codice Fiscale<br>
@@ -54,10 +54,10 @@
     </div> <!-- body -->
     <div id="left">
         <ul>
-            <li><a href="privateHome.jsp">HOME</a></li>
-            <li><a href="account.jsp">ACCOUNT</a></li>
-            <li><a href="mail.jsp">POSTA</a></li>
-            <li><a href="logout.jsp">LOGOUT</a></li>
+            <li><a href="<%=request.getContextPath()%>/jsp/privateHome.jsp">HOME</a></li>
+            <li><a href="<%=request.getContextPath()%>/jsp/account.jsp">ACCOUNT</a></li>
+            <li><a href="<%=request.getContextPath()%>/jsp/mail.jsp">POSTA</a></li>
+            <li><a href="<%=request.getContextPath()%>/jsp/logout.jsp">LOGOUT</a></li>
         </ul>
     </div> <!-- left -->
 

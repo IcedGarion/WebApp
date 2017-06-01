@@ -52,25 +52,25 @@
             if (role.equals("reg"))
             { %>
                 <ul>
-                    <li><a href="jsp/registerPharmacy.jsp">Registra una nuova Farmacia</a></li>
-                    <li><a href="jsp/listPharmacy.jsp">Elenco Farmacie</a></li>
-                    <li><a href="jsp/analysis.jsp">Analisi Vendite</a></li>
+                    <li><a href="<%=request.getContextPath()%>/jsp/registerPharmacy.jsp">Registra una nuova Farmacia</a></li>
+                    <li><a href="<%=request.getContextPath()%>/jsp/listPharmacy.jsp">Elenco Farmacie</a></li>
+                    <li><a href="<%=request.getContextPath()%>/jsp/analysis.jsp">Analisi Vendite</a></li>
                 </ul>
             <% }
             else if(role.toUpperCase().equals("TF"))
             { %>
                 <ul>
-                    <li><a href="jsp/registerPersonnel.jsp">Registra Personale Collaboratore</a></li>
-                    <li><a href="jsp/listPersonnel.jsp">Elenco Personale Farmacia</a></li>
-                    <li><a href="jsp/purchase.jsp">Inserisci nuovo acquisto</a></li>
-                    <li><a href="jsp/warehouse.jsp">Magazzino</a></li>
-                    <li><a href="jsp/analysis.jsp">Analisi Vendite</a></li>
+                    <li><a href="<%=request.getContextPath()%>/jsp/registerPersonnel.jsp">Registra Personale Collaboratore</a></li>
+                    <li><a href="<%=request.getContextPath()%>/jsp/listPersonnel.jsp">Elenco Personale Farmacia</a></li>
+                    <li><a href="<%=request.getContextPath()%>/jsp/purchase.jsp">Inserisci nuovo acquisto</a></li>
+                    <li><a href="<%=request.getContextPath()%>/jsp/warehouse.jsp">Magazzino</a></li>
+                    <li><a href="<%=request.getContextPath()%>/jsp/analysis.jsp">Analisi Vendite</a></li>
                 </ul>
             <% }
             else if(role.toUpperCase().equals("DF") || role.toUpperCase().equals("OB"))
             { %>
                 <ul>
-                    <li><a href="jsp/purchase.jsp">Inserisci nuovo acquisto</a></li>
+                    <li><a href="<%=request.getContextPath()%>/jsp/purchase.jsp">Inserisci nuovo acquisto</a></li>
                 </ul>
             <% }
         %>
@@ -78,10 +78,10 @@
 
     <div id="left">
         <ul>
-            <li><a href="jsp/privateHome.jsp">HOME</a></li>
-            <li><a href="jsp/account.jsp">ACCOUNT</a></li>
-            <li><a href="jsp/mail.jsp">POSTA</a></li>
-            <li><a href="jsp/logout.jsp">LOGOUT</a></li>
+            <li><a href="<%=request.getContextPath()%>/jsp/privateHome.jsp">HOME</a></li>
+            <li><a href="<%=request.getContextPath()%>/jsp/account.jsp">ACCOUNT</a></li>
+            <li><a href="<%=request.getContextPath()%>/jsp/mail.jsp">POSTA</a></li>
+            <li><a href="<%=request.getContextPath()%>/jsp/logout.jsp">LOGOUT</a></li>
         </ul>
     </div> <!-- left -->
 
