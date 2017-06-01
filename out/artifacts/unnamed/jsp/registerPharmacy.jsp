@@ -43,8 +43,8 @@
             <br>
             <h4>Dati Farmacia</h4>
             <input type="text" name="nomeF" id="nomeF" required>Nome Farmacia<br>
-            <input type="text" name="indirizzo" id="indirizzo">Indirizzo<br>
-            <input type="text" name="telefono" id="telefono">Numero di Telefono<br>
+            <input type="text" name="indirizzo" id="indirizzo" required>Indirizzo<br>
+            <input type="text" name="telefono" id="telefono" required>Numero di Telefono<br>
 
             <input type="submit" value="REGISTRA">
         </form>

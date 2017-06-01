@@ -40,7 +40,7 @@ create table Farmacie
 	id SERIAL primary key,
 	nome varchar not null,
 	indirizzo varchar,
-	telefono integer
+	telefono varchar(10)
 );
 
 create table Carrello

@@ -67,7 +67,7 @@ public class RegisterPharmacy extends Action
             st.executeUpdate(query);
 
             //recupera id farmacia appena inserita
-            query = "SELECT id FROM Farmacie WHERE nome = '" + nome + "' AND indirizzo = '" + indirizzo + "' AND telefono = '" + telefono + "'";
+            query = "SELECT id FROM Farmacie WHERE nome = '" + nomeF + "' AND indirizzo = '" + indirizzo + "' AND telefono = '" + telefono + "'";
             resultSet = st.executeQuery(query);
             int idFarmacia = 0;
             while(resultSet.next())
