@@ -4,14 +4,14 @@ create table Regione
 	pass varchar not null
 );
 
-create table Pazienti
+create table Farmacie
 (
-	cf char(16) primary key not null,
+	id SERIAL primary key,
 	nome varchar not null,
-	cognome varchar not null,
-	dataNascita date
+	indirizzo varchar,
+	telefono varchar(10),
+	unique(nome, indirizzo, telefono)
 );
-
 
 create table Operatori
 (
@@ -25,32 +25,13 @@ create table Operatori
 	dataNascita date,
 	codRegionale varchar
 );
-	
-create table Acquisti
-(
-	codAcquisto varchar not null,
-	cfOperatore char(16) not null,
-	cfPaziente char(16) not null,
-	totale real,
-	primary key (codAcquisto, cfOperatore)
-);
 
-create table Farmacie
+create table Magazzino
 (
-	id SERIAL primary key,
-	nome varchar not null,
-	indirizzo varchar,
-	telefono varchar(10),
-	unique(nome, indirizzo, telefono)
-);
-
-create table Carrello
-(
-	codAcquisto varchar not null,
-	cfOperatore varchar not null,
-	codProdotto varchar not null,
-	quantita integer not null,
-	primary key (codAcquisto, codProdotto)
+	idFarmacia integer,
+	codProdotto varchar,
+	quantitaDisponibile integer,
+	primary key (idFarmacia, codProdotto)
 );
 
 create table Prodotti
@@ -58,15 +39,38 @@ create table Prodotti
 	codProdotto varchar not null primary key,
 	immagine bytea,
 	descrizione varchar not null,
+	nome varchar not null
+);
+
+create table Acquisti
+(
+	codAcquisto varchar primary key not null,
+	cfOperatore char(16) not null,
+	cfPaziente char(16) not null,
+	codCarrello integer,
+	totale real,
+	data date
+);
+
+create table Carrello
+(
+	id SERIAL primary key,
+	codProdotto varchar not null,
+	quantita integer not null
+);
+
+create table Pazienti
+(
+	cf char(16) primary key not null,
 	nome varchar not null,
-	magazzino integer not null
+	cognome varchar not null,
+	dataNascita date
 );
 
 create table Ricette
 (
 	codRicetta varchar not null primary key,
 	codAcquisto varchar not null,
-	cfOperatore varchar not null,
 	data date
 );
 
@@ -75,12 +79,13 @@ add foreign key (idFarmacia) references Farmacie(id);
 
 alter table Acquisti
 add foreign key (cfOperatore) references Operatori(cf),
-add foreign key (cfPaziente) references Pazienti(cf);
+add foreign key (cfPaziente) references Pazienti(cf),
+add foreign key (codCarrello) references Carrello(id)
 
-alter table Carrello
-add foreign key (codAcquisto, cfOperatore) references Acquisti(codAcquisto, cfOperatore),
+alter table Magazzino
+add foreign key (idFarmacia) references Farmacie(id),
 add foreign key (codProdotto) references Prodotti (codProdotto);
 
 alter table Ricette
-add foreign key (codAcquisto, cfOperatore) references Acquisti(codAcquisto, cfOperatore);
+add foreign key (codAcquisto) references Acquisti(codAcquisto);
 

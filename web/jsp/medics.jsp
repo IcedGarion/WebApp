@@ -4,19 +4,19 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>MAGAZZINO</title>
+    <title>MAIL</title>
 
     <!-- in ogni pagina controlla prima che si è loggati -->
     <%
-        if(! (loginCheck.check((LoginBean) session.getAttribute("RegisterBean"), request, "tf").equals("LOGIN_OK")))
+        if(! (loginCheck.check((LoginBean) session.getAttribute("RegisterBean"), request, "reg").equals("LOGIN_OK")))
         {
             request.setAttribute("exitCode", "Login non effettuata");
     %>
 
-            <!-- redirect verso pagina di errore -->
-            <script type="text/javascript">
-                window.location.replace('error.jsp');
-            </script>
+    <!-- redirect verso pagina di errore -->
+    <script type="text/javascript">
+        window.location.replace('error.jsp');
+    </script>
     <%
         }
     %>
@@ -25,11 +25,9 @@
 <div id="container">
     <div id="header">
     </div> <!-- header -->
+        <h2>ELENCO MEDICI REGIONALI</h2>
     <div id="body">
     </div> <!-- body -->
-
-        Possono vedere tutti il magazzino e solo il TF refillarlo, oppure
-        solo i TF possono vederlo (e refillarlo)?
 
     <div id="left">
         <ul>
