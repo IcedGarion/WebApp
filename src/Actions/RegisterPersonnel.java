@@ -1,5 +1,6 @@
 package Actions;
 
+import Beans.LoginBean;
 import Beans.PersonBean;
 import Beans.PharmacyBean;
 import org.apache.struts.action.Action;
@@ -25,8 +26,9 @@ public class RegisterPersonnel extends Action
         Connection connection = null;
         Statement st = null;
         ResultSet resultSet;
-        String username = "", password = "", role = "", cf = "", nome = "", cognome = "", codReg = "";
+        String usernameTF = "", username = "", password = "", role = "", cf = "", nome = "", cognome = "", codReg = "";
         String indirizzo = "", telefono = "", nomeF = "", dataNascita = "";
+        int conta = 0, farmacia = -1;
 
         try
         {
@@ -51,7 +53,6 @@ public class RegisterPersonnel extends Action
             //prima cerca se username esiste già
             String query = "SELECT * FROM Operatori WHERE username = '" + username + "'";
             resultSet = st.executeQuery(query);
-            int conta = 0;
 
             while(resultSet.next())
                 conta++;
@@ -62,6 +63,15 @@ public class RegisterPersonnel extends Action
                 return mapping.findForward("REGISTER");
             }
 
+            //cerca idFarmacia del titolare che sta inserendo
+            usernameTF = ((LoginBean) request.getSession().getAttribute("RegisterBean")).getUsername();
+            query = "SELECT * FROM Operatori WHERE username = '" + usernameTF + "'";
+            resultSet = st.executeQuery(query);
+
+            while(resultSet.next())
+                farmacia = resultSet.getInt("idFarmacia");
+
+            //inserisce tutti i dati del form, con idfarmacia appena ricavato
             password = bean.getPassword();
             role = bean.getRole();
             cf = bean.getCf();
@@ -71,8 +81,8 @@ public class RegisterPersonnel extends Action
             dataNascita = bean.getDataNascita();
 
             //inserice il nuovo titolare
-            query = "INSERT INTO Operatori (cf, ruolo, nome, cognome, dataNascita, codRegionale, username, pass) values ("
-                    + "'" + cf + "', " + "'" + role + "', " + "'" + nome + "', " + "'" + cognome + "', " + "'" + dataNascita + "', "
+            query = "INSERT INTO Operatori (cf, idFarmacia, ruolo, nome, cognome, dataNascita, codRegionale, username, pass) values ("
+                    + "'" + cf + "', " + farmacia + ", " + "'" + role + "', " + "'" + nome + "', " + "'" + cognome + "', " + "'" + dataNascita + "', "
                     + "'" + codReg + "', " + "'" + username + "', " + "'" + password + "')";
             st.executeUpdate(query);
 

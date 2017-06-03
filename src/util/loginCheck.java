@@ -98,7 +98,7 @@ public class loginCheck
                 //se non è pers, sarà reg : controlla se nel login bean c'è reg
                 else if(roleCheck.toLowerCase().equals(role.toLowerCase()))
                 {
-                    //salva il bean di login in session
+                    //salva il ruolo in session
                     request.getSession().setAttribute("role", role);
                     connection.close();
                     return "LOGIN_OK";
@@ -112,7 +112,7 @@ public class loginCheck
             //se roleCHeck è null, non controlla il ruolo
             else
             {
-                //salva il bean di login in session
+                //salva il ruolo in session
                 request.getSession().setAttribute("role", role);
                 connection.close();
                 return "LOGIN_OK";

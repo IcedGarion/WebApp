@@ -1,9 +1,8 @@
-INSERT INTO Operatori (cf, ruolo, nome, cognome, dataNascita, codRegionale, username, pass)
-	VALUES ('1234567898765432', 'TF', 'Mario', 'Rossi', '08-10-1967', '1234567898765432', 'marioRossi', '1234');
+INSERT INTO Farmacie(nome, indirizzo, telefono)
+        VALUES ('FarmaciaRossi', 'Via Rossi 23', '0111123456');
 
-INSERT INTO farmacie(cftitolare, nome, indirizzo, telefono)
-        VALUES ('1234567898765432', 'FarmaciaRossi', 'Via Rossi 23', '0111123456');
+INSERT INTO Operatori (cf, idFarmacia, ruolo, nome, cognome, dataNascita, codRegionale, username, pass)
+	VALUES ('1234567898765432', <guarda in farmacie>, 'TF', 'Mario', 'Rossi', '08-10-1967', '1234567898765432', 'marioRossi', '1234');
 
 INSERT INTO regione(username, pass)
     VALUES ('regPiemonte', 'asdf');
-

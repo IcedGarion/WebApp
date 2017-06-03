@@ -61,8 +61,23 @@ public class RegisterPharmacy extends Action
             indirizzo = bean.getIndirizzo();
             telefono = bean.getTelefono();
 
+            //controlla se la farmacia esiste gia
+            String query = "SELECT * FROM Farmacie WHERE nome = '" + nomeF + "'" + " AND indirizzo = '" + indirizzo +
+                    "' AND telefono = '" + telefono + "'";
+            resultSet = st.executeQuery(query);
+            int conta = 0;
+
+            while(resultSet.next())
+                conta++;
+
+            if(conta != 0)
+            {
+                request.setAttribute("exitCode", "Farmacia già esistente");
+                return mapping.findForward("REGISTER");
+            }
+
             //inserisce farmacia collegata con cf
-            String query = "INSERT INTO Farmacie (nome, indirizzo, telefono) VALUES ("
+            query = "INSERT INTO Farmacie (nome, indirizzo, telefono) VALUES ("
                     + "'" + nomeF + "', " + "'" + indirizzo + "', " + "'" + telefono + "')";
             st.executeUpdate(query);
 
@@ -78,9 +93,6 @@ public class RegisterPharmacy extends Action
                     + "'" + cf + "', " + "'" + idFarmacia + "', " + "'" + role + "', " + "'" + nome + "', " + "'" + cognome + "', " + "'" + dataNascita + "', "
                     + "'" + codReg + "', " + "'" + username + "', " + "'" + password + "')";
             st.executeUpdate(query);
-
-
-
 
             request.setAttribute("exitCode", "REGISTRAZIONE AVVENUTA CON SUCCESSO");
             return mapping.findForward("REGISTER");
