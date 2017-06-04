@@ -63,10 +63,6 @@
             TableReader reader = new TableReader();
             ResultSet table = reader.buildWarehouseTable(((LoginBean) session.getAttribute("RegisterBean")).getUsername());
 
-
-            //DA AGGIUNGERE BOTTONE AGGIUNGI PER IL TITOLARE!
-
-
             while(table.next())
             {
               %><tr>
@@ -91,7 +87,7 @@
                         </select>
                         </td>
                         <td>
-                            <input type="submit" value="ORDINA PRODOTTI">
+                            <input type="submit" value="ORDINA PRODOTTO">
                             <input type="text" name="productName" id="productName" value="<%= table.getString("nome") %>"
                               style="visibility:hidden">
                         </td>

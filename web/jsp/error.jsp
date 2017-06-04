@@ -17,6 +17,15 @@
     }
 %>
 <h1><%= errorMsg%></h1>
-<a href = "<%=request.getContextPath()%>/jsp/privateHome.jsp">Torna alla home</a>
+<%
+    if(errorMsg.equals("Login non effettuata"))
+    { %>
+        <a href = "<%=request.getContextPath()%>/index.html">Torna alla pagina di Login</a>
+    <%}
+    else
+    {%>
+        <a href = "<%=request.getContextPath()%>/jsp/privateHome.jsp">Torna alla home</a>
+    <%}
+%>
 </body>
 </html>

@@ -63,10 +63,6 @@
             TableReader reader = new TableReader();
             ResultSet table = reader.buildWarehouseTable(((LoginBean) session.getAttribute("RegisterBean")).getUsername());
 
-
-            //DA AGGIUNGERE BOTTONE AGGIUNGI PER IL TITOLARE!
-
-
             while(table.next())
             {
               %><tr>

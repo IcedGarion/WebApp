@@ -23,22 +23,14 @@
 </head>
 <body>
 <div id="container">
-    <div id="header">
-    </div> <!-- header -->
-    <div id="body">
-    </div> <!-- body -->
-    <div id="left">
-        <ul>
-            <li><a href="<%=request.getContextPath()%>/jsp/privateHome.jsp">HOME</a></li>
-            <li><a href="<%=request.getContextPath()%>/jsp/account.jsp">ACCOUNT</a></li>
-            <li><a href="<%=request.getContextPath()%>/jsp/mail.jsp">POSTA</a></li>
-            <li><a href="<%=request.getContextPath()%>/jsp/logout.jsp">LOGOUT</a></li>
-        </ul>
-    </div> <!-- left -->
+    Logout in corso...
 
-    <div id= "footer">
-        <h6>footer</h6>
-    </div> <!--footer-->
+    <%
+        request.getSession().removeAttribute("RegisterBean");
+    %>
+        <script type="text/javascript">
+            window.location.replace('<%=request.getContextPath()%>/index.html');
+        </script>
 </div> <!-- container>
 </body>
 </html>

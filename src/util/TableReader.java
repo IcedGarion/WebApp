@@ -42,6 +42,25 @@ public class TableReader
         return resultSet;
     }
 
+    public boolean update(String query) throws SQLException
+    {
+        try
+        {
+            st = connection.createStatement();
+            st.executeUpdate(query);
+        }
+        catch(Exception e)
+        {
+            System.out.println("Errore nella query");
+            e.printStackTrace();
+            connection.close();
+
+            return false;
+        }
+
+        return true;
+    }
+
     public ResultSet buildPersonnelTable(String username) throws SQLException
     {
         ResultSet table;
@@ -85,24 +104,5 @@ public class TableReader
         table = getTable(query);
 
         return table;
-    }
-
-    public boolean update(String query) throws SQLException
-    {
-        try
-        {
-            st = connection.createStatement();
-            st.executeUpdate(query);
-        }
-        catch(Exception e)
-        {
-            System.out.println("Errore nella query");
-            e.printStackTrace();
-            connection.close();
-
-            return false;
-        }
-
-        return true;
     }
 }
