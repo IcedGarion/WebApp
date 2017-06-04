@@ -22,6 +22,9 @@
     <%
         }
     %>
+
+    <% String role = (String) request.getSession().getAttribute("role"); %>
+
 </head>
 <body>
 <div id="container">
@@ -46,7 +49,15 @@
         <tr>
             <th>Nome Prodotto</th>
             <th>Descrizione</th>
-            <th>Immagine</th>
+            <th>Quantita' Disponibile</th>
+            <!-- <th>Immagine</th> -->
+            <%
+                if(role.toLowerCase().equals("tf"))
+                { %>
+                    <th>Quantita' da ordinare</th>
+                    <th>EFFETTUA ORDINE</th>
+                <% }
+            %>
         </tr>
         <%
             TableReader reader = new TableReader();
@@ -58,13 +69,36 @@
 
             while(table.next())
             {
-        %><tr>
-        <td><%= table.getString("nome") %></td>
-        <td><%= table.getString("descrizione") %></td>
-        <td><%= table.getString("quantitaDisponibile") %></td>
-        <!-- <td>table.getPicture("immagine").toUpperCase() %></td> -->
-    </tr>
-        <%}
+              %><tr>
+                <td><%= table.getString("nome") %></td>
+                <td><%= table.getString("descrizione") %></td>
+                <td><%= table.getString("quantitaDisponibile") %></td>
+                <!-- <td>table.getPicture("immagine").toUpperCase() %></td> -->
+                <%
+                    if(role.toLowerCase().equals("tf"))
+                    { %>
+                        <form action="<%=request.getContextPath()%>/refillWarehouse.do" method="post" name="form">
+                        <td>
+                        <select name="quantita" id="quantita" required="required">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="10">10</option>
+                            <option value="20">20</option>
+                            <option value="50">50</option>
+                        </select>
+                        </td>
+                        <td>
+                            <input type="submit" value="ORDINA PRODOTTI">
+                            <input type="text" name="productName" id="productName" value="<%= table.getString("nome") %>"
+                              style="visibility:hidden">
+                        </td>
+                    <% }
+                %>
+            </tr>
+            <%}
         %>
     </table>
 

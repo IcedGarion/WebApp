@@ -9,6 +9,7 @@
         <form-bean name="RegisterBean" type="Beans.LoginBean" />
         <form-bean name="PharmacyBean" type="Beans.PharmacyBean" />
         <form-bean name="PersonBean" type="Beans.PersonBean" />
+        <form-bean name="WarehouseBean" type="Beans.WarehouseBean"/>
     </form-beans>
     <action-mappings>
         <action path="/login" type = "Actions.LoginAction" name="RegisterBean" scope = "session" >
@@ -22,6 +23,11 @@
 
         <action path="/registerPersonnel" type = "Actions.RegisterPersonnel" name="PersonBean" scope = "request" >
             <forward name="REGISTER" path="/jsp/error.jsp" />
+        </action>
+
+        <action path="/refillWarehouse" type = "Actions.RefillWarehouse" name="WarehouseBean" scope = "request" >
+            <forward name="REFILL_OK" path="/jsp/warehouse.jsp" />
+            <forward name="ERROR" path="/jsp/error.jsp" />
         </action>
     </action-mappings>
 </struts-config>

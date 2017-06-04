@@ -44,10 +44,6 @@ public class TableReader
 
     public ResultSet buildPersonnelTable(String username) throws SQLException
     {
-
-        //DA MIGLIORARE IN UNA QUERY UNICA!
-
-
         ResultSet table;
         String query;
         int farmacia = -1;
@@ -89,5 +85,24 @@ public class TableReader
         table = getTable(query);
 
         return table;
+    }
+
+    public boolean update(String query) throws SQLException
+    {
+        try
+        {
+            st = connection.createStatement();
+            st.executeUpdate(query);
+        }
+        catch(Exception e)
+        {
+            System.out.println("Errore nella query");
+            e.printStackTrace();
+            connection.close();
+
+            return false;
+        }
+
+        return true;
     }
 }
