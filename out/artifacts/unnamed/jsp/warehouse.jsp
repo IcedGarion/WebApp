@@ -1,5 +1,7 @@
 <%@ page import="util.loginCheck" %>
 <%@ page import="Beans.LoginBean" %>
+<%@ page import="util.TableReader" %>
+<%@ page import="java.sql.ResultSet" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -8,7 +10,7 @@
 
     <!-- in ogni pagina controlla prima che si è loggati -->
     <%
-        if(! (loginCheck.check((LoginBean) session.getAttribute("RegisterBean"), request, "tf").equals("LOGIN_OK")))
+        if(! (loginCheck.check((LoginBean) session.getAttribute("RegisterBean"), request, "pers").equals("LOGIN_OK")))
         {
             request.setAttribute("exitCode", "Login non effettuata");
     %>
@@ -24,9 +26,48 @@
 <body>
 <div id="container">
     <div id="header">
+
+        <%
+            if(((String) request.getSession().getAttribute("role")).toLowerCase().equals("tf"))
+            { %>
+                <h2>GESTIONE MAGAZZINO</h2>
+            <%}
+            else
+            { %>
+                <h2>ELENCO PRODOTTI MAGAZZINO</h2>
+            <%}
+        %>
+
     </div> <!-- header -->
     <div id="body">
     </div> <!-- body -->
+
+    <table style="width:100%">
+        <tr>
+            <th>Nome Prodotto</th>
+            <th>Descrizione</th>
+            <th>Immagine</th>
+        </tr>
+        <%
+            TableReader reader = new TableReader();
+            ResultSet table = reader.buildWarehouseTable(((LoginBean) session.getAttribute("RegisterBean")).getUsername());
+
+
+            //DA AGGIUNGERE BOTTONE AGGIUNGI PER IL TITOLARE!
+
+
+            while(table.next())
+            {
+        %><tr>
+        <td><%= table.getString("nome") %></td>
+        <td><%= table.getString("descrizione") %></td>
+        <td><%= table.getString("quantitaDisponibile") %></td>
+        <!-- <td>table.getPicture("immagine").toUpperCase() %></td> -->
+    </tr>
+        <%}
+        %>
+    </table>
+
     <div id="left">
         <ul>
             <li><a href="<%=request.getContextPath()%>/jsp/privateHome.jsp">HOME</a></li>

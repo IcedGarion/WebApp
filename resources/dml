@@ -6,3 +6,13 @@ INSERT INTO Operatori (cf, idFarmacia, ruolo, nome, cognome, dataNascita, codReg
 
 INSERT INTO regione(username, pass)
     VALUES ('regPiemonte', 'asdf');
+
+INSERT INTO prodotti(codprodotto, immagine, descrizione, nome)
+    VALUES ('1', null, 'aspirina generica', 'aspirina');
+
+
+INSERT INTO magazzino(idfarmacia, codprodotto, quantitadisponibile)
+    VALUES (6, '1', 5);
+
+INSERT INTO magazzino(idfarmacia, codprodotto, quantitadisponibile)
+    VALUES (5, '1', 10);

@@ -44,6 +44,10 @@ public class TableReader
 
     public ResultSet buildPersonnelTable(String username) throws SQLException
     {
+
+        //DA MIGLIORARE IN UNA QUERY UNICA!
+
+
         ResultSet table;
         String query;
         int farmacia = -1;
@@ -62,4 +66,28 @@ public class TableReader
         return table;
     }
 
+    public ResultSet buildWarehouseTable(String username) throws SQLException
+    {
+        ResultSet table;
+        String query;
+        int farmacia = -1;
+
+        //prende idFarmacia per trovare la farmacia associata al mio username
+        query = "SELECT idFarmacia FROM Operatori WHERE username = '" + username + "'";
+        table = getTable(query);
+
+        while(table.next())
+            farmacia = table.getInt("idFarmacia");
+
+        //prende tutti i prodotti della farmacia
+        query = "select prodotti.nome, prodotti.descrizione, prodotti.immagine, magazzino.quantitaDisponibile "
+                + "from operatori join farmacie on operatori.idFarmacia = farmacie.id "
+                + "join magazzino on farmacie.id = magazzino.idFarmacia "
+                + "join prodotti on magazzino.codProdotto = prodotti.codprodotto "
+                + "where operatori.username = '" + username + "'";
+
+        table = getTable(query);
+
+        return table;
+    }
 }

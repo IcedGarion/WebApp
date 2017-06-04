@@ -26,18 +26,18 @@
 <body>
 <div id="container">
     <div id="header">
-        ELENCO PERSONALE FARMACIA
+        <h2>ELENCO PERSONALE FARMACIA</h2>
     </div> <!-- header -->
     <div id="body">
         <table style="width:100%">
             <tr>
-                    <th>Nome</th>
-                    <th>Cognome</th>
-                    <th>Username</th>
-                    <th>Ruolo</th>
-                    <th>Codice Fiscale</th>
-                    <th>Data di nascita</th>
-                    <th>Codice Regionale</th>
+                <th>Nome</th>
+                <th>Cognome</th>
+                <th>Username</th>
+                <th>Ruolo</th>
+                <th>Codice Fiscale</th>
+                <th>Data di nascita</th>
+                <th>Codice Regionale</th>
             </tr>
             <%
                 TableReader reader = new TableReader();

@@ -53,6 +53,7 @@
             { %>
                 <ul>
                     <li><a href="<%=request.getContextPath()%>/jsp/registerPharmacy.jsp">Registra una nuova Farmacia</a></li>
+                    <li><a href="<%=request.getContextPath()%>/jsp/medics.jsp">Elenco Medici nella Regione</a></li>
                     <li><a href="<%=request.getContextPath()%>/jsp/analysis.jsp">Analisi Vendite</a></li>
                 </ul>
             <% }
