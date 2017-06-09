@@ -16,7 +16,7 @@
 <html>
 <head>
 
-    <link href="<%=request.getContextPath()%>/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="<%=request.getContextPath()%>/css/home.css" rel="stylesheet" type="text/css">
 
     <title>ACQUISTO</title>
 
@@ -44,14 +44,15 @@
     </div> <!-- header -->
     <div id="body">
 
+    <table>
         <tr>
             <th>Nome Prodotto</th>
             <th>Descrizione</th>
-            <th>Quantita' Disponibile</th>
+            <th class="short">Quantita' Disponibile</th>
             <th>Necessaria ricetta</th>
             <!-- <th>Immagine</th> -->
-            <th>Quantita' da acquistare</th>
-            <th>AGGIUNGI AL CARRELLO</th>
+            <th class="short"class="last">Quantita' da acquistare</th>
+            <th class="blank"> </th>
         </tr>
 
         <%
@@ -59,13 +60,12 @@
             ResultSet table = reader.buildWarehouseTable(((LoginBean) session.getAttribute("RegisterBean")).getUsername());
 
             while(table.next())
-            {
-                %>
+            { %>
                 <tr>
-                <td><%= table.getString("nome") %></td>
-                <td><%= table.getString("descrizione") %></td>
-                <td><%= table.getString("quantitaDisponibile") %></td>
-                <td>
+                    <td><%= table.getString("nome") %></td>
+                    <td><%= table.getString("descrizione") %></td>
+                    <td><%= table.getString("quantitaDisponibile") %></td>
+                    <td>
                     <% if(table.getBoolean("conRicetta"))
                        {%>
                             SI
@@ -75,22 +75,28 @@
                             NO
                        <%}
                     %>
-                </td>
-
-                <!-- <td>table.getPicture("immagine").toUpperCase() %></td> -->
-
-                <form action="<%=request.getContextPath()%>/processPurchase.do" method="post" name="form">
-                    <td>
-                        <input type = "text" name = "qty" required>Quantita' da Acquistare<br>
                     </td>
-                <td>
-                    <input type="submit" value="ORDINA PRODOTTO">
-                    <input type="text" name="productName" id="productName" value="<%= table.getString("nome") %>"
-                           style="visibility:hidden">
-                </td>
-         </tr>
+
+                    <!-- <td>table.getPicture("immagine").toUpperCase() %></td> -->
+
+                    <form action="<%=request.getContextPath()%>/AddToCart.do" method="post" name="form">
+                    <td>
+                        <input class="qty" type = "text" name = "qty" required value="1"> pezzi<br>
+                    </td>
+                    <td class="blank">
+                        <input type="submit" value="ORDINA PRODOTTO">
+                        <input type="text" name="productName" id="productName" value="<%= table.getString("nome") %>"
+                               style="visibility:hidden">
+                    </td>
+                    </form>
+                </tr>
             <% }  %>
     </table>
+
+    <br>
+        <form action="<%=request.getContextPath()%>/ProcessPurchase.do" method="post" name="form">
+            <input type ="submit" value="PROCEDI ALL'ACQUISTO">
+        </form>
 
     </div> <!-- body -->
     <div id="left">

@@ -68,14 +68,6 @@
             TableReader reader = new TableReader();
             LoginBean bean = ((LoginBean) session.getAttribute("RegisterBean"));
 
-            if(bean == null)
-            {%>
-                <!-- redirect verso pagina di errore -->
-                <script type="text/javascript">
-                    window.location.replace('error.jsp');
-                </script>
-            <%}%>
-            <%
             ResultSet table = reader.buildWarehouseTable(bean.getUsername());
 
             while(table.next())

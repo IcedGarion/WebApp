@@ -22,3 +22,49 @@
 {
 
 }
+
+td:not(:last-child),th:not(:last-child)
+{
+    text-align: center;
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+th
+{
+    background-color: #66afe9;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    width: 200px;
+}
+
+th, td
+{
+    border: 1px solid black;
+}
+
+tr:nth-child(even)
+{
+    background-color: #d0e9c6;
+}
+
+.qty
+{
+    width: 50px;
+}
+
+.short
+{
+    width: 100px;
+}
+
+.blank
+{
+    background-color: white;
+    border: none;
+}
+
+.last
+{
+    border-right: dashed;
+}

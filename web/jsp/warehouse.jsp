@@ -67,7 +67,7 @@
 
             TableReader reader = new TableReader();
             LoginBean bean = ((LoginBean) session.getAttribute("RegisterBean"));
-            
+
             ResultSet table = reader.buildWarehouseTable(bean.getUsername());
 
             while(table.next())
