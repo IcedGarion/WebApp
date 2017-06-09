@@ -39,7 +39,8 @@ create table Prodotti
 	codProdotto varchar not null primary key,
 	immagine bytea,
 	descrizione varchar not null,
-	nome varchar not null unique
+	nome varchar not null unique,
+	conRicetta boolean not null
 );
 
 create table Acquisti
@@ -74,6 +75,16 @@ create table Ricette
 	data date
 );
 
+create table Messaggi
+(
+	id SERIAL not null primary key,
+	fromReg varchar,
+	toReg varchar,
+	fromOp varchar,
+	toOp varchar,
+	msg varchar not null
+);
+
 alter table Operatori
 add foreign key (idFarmacia) references Farmacie(id);
 
@@ -88,4 +99,10 @@ add foreign key (codProdotto) references Prodotti (codProdotto);
 
 alter table Ricette
 add foreign key (codAcquisto) references Acquisti(codAcquisto);
+
+alter table Messaggi
+add foreign key (fromReg) references Regione (username),
+add foreign key (toReg) references Regione (username),
+add foreign key (fromOp) references Operatori (cf),
+add foreign key (toOp) references Operatori (cf);
 

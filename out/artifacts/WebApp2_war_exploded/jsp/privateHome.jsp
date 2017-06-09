@@ -5,6 +5,9 @@
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
+
+    <link href="<%=request.getContextPath()%>/css/bootstrap.css" rel="stylesheet" type="text/css">
+
     <title>AREA PRIVATA</title>
 
     <!-- in ogni pagina controlla prima che si è loggati -->

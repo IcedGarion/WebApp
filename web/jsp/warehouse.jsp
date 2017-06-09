@@ -6,6 +6,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+
+    <link href="<%=request.getContextPath()%>/css/bootstrap.css" rel="stylesheet" type="text/css">
+
     <title>MAGAZZINO</title>
 
     <!-- in ogni pagina controlla prima che si è loggati -->
@@ -50,6 +53,7 @@
             <th>Nome Prodotto</th>
             <th>Descrizione</th>
             <th>Quantita' Disponibile</th>
+            <th>Necessaria ricetta</th>
             <!-- <th>Immagine</th> -->
             <%
                 if(role.toLowerCase().equals("tf"))
@@ -60,8 +64,11 @@
             %>
         </tr>
         <%
+
             TableReader reader = new TableReader();
-            ResultSet table = reader.buildWarehouseTable(((LoginBean) session.getAttribute("RegisterBean")).getUsername());
+            LoginBean bean = ((LoginBean) session.getAttribute("RegisterBean"));
+            
+            ResultSet table = reader.buildWarehouseTable(bean.getUsername());
 
             while(table.next())
             {
@@ -69,6 +76,7 @@
                 <td><%= table.getString("nome") %></td>
                 <td><%= table.getString("descrizione") %></td>
                 <td><%= table.getString("quantitaDisponibile") %></td>
+                <td><%= table.getBoolean("conRicetta") %></td>
                 <!-- <td>table.getPicture("immagine").toUpperCase() %></td> -->
                 <%
                     if(role.toLowerCase().equals("tf"))
@@ -91,6 +99,7 @@
                             <input type="text" name="productName" id="productName" value="<%= table.getString("nome") %>"
                               style="visibility:hidden">
                         </td>
+                        </form>
                     <% }
                 %>
             </tr>
@@ -109,7 +118,7 @@
 
     <div id= "footer">
         <h6>footer</h6>
-    </div> <!--footer-->
-</div> <!-- container>
+    </div> <!--footer -->
+</div> <!-- container -->
 </body>
 </html>

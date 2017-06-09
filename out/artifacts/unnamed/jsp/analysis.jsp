@@ -4,6 +4,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+
+    <link href="<%=request.getContextPath()%>/css/bootstrap.css" rel="stylesheet" type="text/css">
+
     <title>ANALISI</title>
 
     <!-- in ogni pagina controlla prima che si è loggati -->

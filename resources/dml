@@ -2,17 +2,16 @@ INSERT INTO Farmacie(nome, indirizzo, telefono)
         VALUES ('FarmaciaRossi', 'Via Rossi 23', '0111123456');
 
 INSERT INTO Operatori (cf, idFarmacia, ruolo, nome, cognome, dataNascita, codRegionale, username, pass)
-	VALUES ('1234567898765432', <guarda in farmacie>, 'TF', 'Mario', 'Rossi', '08-10-1967', '1234567898765432', 'marioRossi', '1234');
+	VALUES ('1234567898765432', 0, 'TF', 'Mario', 'Rossi', '08-10-1967', '1234567898765432', 'marioRossi', '1234');
 
 INSERT INTO regione(username, pass)
     VALUES ('regPiemonte', 'asdf');
 
-INSERT INTO prodotti(codprodotto, immagine, descrizione, nome)
-    VALUES ('1', null, 'aspirina generica', 'aspirina');
+INSERT INTO prodotti(codprodotto, immagine, descrizione, nome, conricetta)
+    VALUES ('1', null, 'aspirina generica', 'aspirina', false);
 
+INSERT INTO prodotti(codprodotto, immagine, descrizione, nome, conricetta)
+    VALUES ('2', null, 'antidolorifico', 'oki', true);
 
 INSERT INTO magazzino(idfarmacia, codprodotto, quantitadisponibile)
-    VALUES (6, '1', 5);
-
-INSERT INTO magazzino(idfarmacia, codprodotto, quantitadisponibile)
-    VALUES (5, '1', 10);
+    VALUES (0, '1', 5);
