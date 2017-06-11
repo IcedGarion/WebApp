@@ -45,10 +45,8 @@ create table Prodotti
 
 create table Acquisti
 (
-	codAcquisto varchar primary key not null,
+	codAcquisto SERIAL primary key not null,
 	cfOperatore char(16) not null,
-	cfPaziente char(16) not null,
-	codCarrello integer,
 	totale real,
 	data date
 );
@@ -57,12 +55,14 @@ create table Carrello
 (
 	id SERIAL primary key,
 	codProdotto varchar not null,
-	quantita integer not null
+	quantita integer not null,
+	codAcquisto integer not null
 );
 
 create table Pazienti
 (
 	cf char(16) primary key not null,
+	codAcquisto integer not null,
 	nome varchar not null,
 	cognome varchar not null,
 	dataNascita date
@@ -89,9 +89,13 @@ alter table Operatori
 add foreign key (idFarmacia) references Farmacie(id);
 
 alter table Acquisti
-add foreign key (cfOperatore) references Operatori(cf),
-add foreign key (cfPaziente) references Pazienti(cf),
-add foreign key (codCarrello) references Carrello(id)
+add foreign key (cfOperatore) references Operatori(cf)
+
+alter table Carrello
+add foreign key (codAcquisto) references Acquisti(codAcquisto)
+
+alter table Pazienti
+add foreign key (codAcquisto) references Acquisti(codAcquisto)
 
 alter table Magazzino
 add foreign key (idFarmacia) references Farmacie(id),

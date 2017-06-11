@@ -5,7 +5,9 @@
 
 <!-- Tanti form quante le righe di prodotti. come in magazzino, bottone aggiungu aggiunge il prodotto, con relativa qtà,
     al "carrello" (un oggetto in session). Alla fine c'è un bottone "PROCEDI" (che non sta per forza in un form)
-    che chiama la action (senza neanche il bean), la quale legge dal carrello -->
+    che chiama la action (senza neanche il bean), la quale legge dal carrello
+    ultima azione (checkout) elimina carrello da session-->
+
 
 <!-- Poi magari compatta tutto in categorie (antidolorifico, antinfiammatorio....)
     che se le schiacci spawnano i prodotti che contiene -->
@@ -79,7 +81,7 @@
 
                     <!-- <td>table.getPicture("immagine").toUpperCase() %></td> -->
 
-                    <form action="<%=request.getContextPath()%>/AddToCart.do" method="post" name="form">
+                    <form action="<%=request.getContextPath()%>/addToCart.do" method="post" name="form">
                     <td>
                         <input class="qty" type = "text" name = "qty" required value="1"> pezzi<br>
                     </td>

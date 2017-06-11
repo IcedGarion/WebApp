@@ -7,11 +7,14 @@ import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
+import sessionObjs.Cart;
 import util.TableReader;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Created by ubuntu on 09/06/17.
@@ -23,9 +26,37 @@ public class AddToCart extends Action
     {
         ProductBean bean = (ProductBean) form;
         boolean result;
-        String query, productName, codProdotto = "";
+        String query, username, cf = "", productName, codProdotto = "";
         int qty;
         ResultSet table;
+        TableReader reader = new TableReader();
+        Cart cart = (Cart) request.getSession().getAttribute("cart");
+        Date date = new Date();
+        SimpleDateFormat sf = new SimpleDateFormat("yyyy.MM.dd");
+
+        //il carrello non è ancora stato creato: questo è il primo prodotto e lo crea lui
+        if(cart == null)
+        {
+            //recupera CF da username
+            username = ((LoginBean) request.getSession().getAttribute("RegisterBean")).getUsername();
+            query = "SELECT cf FROM Operatori WHERE username = '" + username + "'";
+            table = reader.getTable(query);
+
+            while(table.next())
+                cf = table.getString("cf");
+
+            //insert nuovo acquisto
+            query = "INSERT INTO acquisti(cfoperatore, totale, data) " +
+                    "VALUES ('" + cf + "', 0, '" + sf.format(date) + "')";
+            reader.update(query);
+
+            //insert nuovo carrello collegato all'acquisto
+            
+
+
+        }
+
+        //insert nuovo prodotto collegato al carrello
 /*
         TableReader reader = new TableReader();
         qty = Integer.parseInt(bean.getQuantita());

@@ -23,8 +23,7 @@
 
 }
 
-/*td:not(:last-child),th:not(:last-child)/*,table:not(:last-child)*/
-table
+td:not(:last-child),th:not(:last-child)
 {
     text-align: center;
     border: 1px solid black;
@@ -68,10 +67,4 @@ tr:nth-child(even)
 .last
 {
     border-right: dashed;
-}
-
-td:last-child
-{
-    border:none;
-    background-color: white;
 }
