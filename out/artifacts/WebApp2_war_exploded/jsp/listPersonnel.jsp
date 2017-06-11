@@ -53,7 +53,7 @@
                     <td><%= table.getString("cognome") %></td>
                     <td><%= table.getString("username") %></td>
                     <td><%= table.getString("ruolo").toUpperCase() %></td>
-                    <td><%= table.getString("cf") %></td>
+                    <td><%= table.getString("productName") %></td>
                     <td><%= table.getString("datanascita") %></td>
                     <td><%= table.getString("codregionale") %></td>
                     </tr>

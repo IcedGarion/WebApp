@@ -4,18 +4,18 @@ import org.apache.struts.action.ActionForm;
 
 public class ProductBean extends ActionForm
 {
-    private String cf;
+    private String productName;
     private String qty;
 
     public ProductBean()
     {}
 
-    public String getCf() {
-        return cf;
+    public String getProductName() {
+        return productName;
     }
 
-    public void setCf(String cf) {
-        this.cf = cf;
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 
     public String getQty() {

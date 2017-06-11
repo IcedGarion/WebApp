@@ -95,7 +95,7 @@ public class TableReader
             farmacia = table.getInt("idFarmacia");
 
         //prende tutti i prodotti della farmacia
-        query = "select prodotti.nome, prodotti.descrizione, prodotti.immagine, magazzino.quantitaDisponibile, prodotti.conRicetta "
+        query = "select prodotti.codProdotto, prodotti.nome, prodotti.descrizione, prodotti.immagine, magazzino.quantitaDisponibile, prodotti.conRicetta "
                 + "from operatori join farmacie on operatori.idFarmacia = farmacie.id "
                 + "join magazzino on farmacie.id = magazzino.idFarmacia "
                 + "join prodotti on magazzino.codProdotto = prodotti.codprodotto "

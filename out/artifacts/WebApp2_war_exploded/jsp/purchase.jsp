@@ -14,6 +14,8 @@
 
 <!-- Poi magari all'inizio c'è una casella di ricerca per nome -->
 
+<!-- VALIDAZIONE! -->
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -38,8 +40,10 @@
 
         String role = (String) request.getSession().getAttribute("role");
     %>
+
 </head>
 <body>
+
 <div id="container">
     <div id="header">
         <h2>NUOVO ACQUISTO</h2>
@@ -86,8 +90,8 @@
                         <input class="qty" type = "text" name = "qty" required value="1"> pezzi<br>
                     </td>
                     <td class="blank">
-                        <input type="submit" value="ORDINA PRODOTTO">
-                        <input type="text" name="productName" id="productName" value="<%= table.getString("nome") %>"
+                        <input type="submit" value="AGGIUNGI AL CARRELLO">
+                        <input type="text" name="productName" id="productName" value="<%= table.getString("codProdotto") %>"
                                style="visibility:hidden">
                     </td>
                     </form>
@@ -113,6 +117,17 @@
     <div id= "footer">
         <h6>footer</h6>
     </div> <!--footer-->
-</div> <!-- container>
+</div> <!-- container -->
+
+<%
+    String msg = (String) request.getSession().getAttribute("msg");
+
+    if(msg != null)
+    {%>
+        <script>
+            alert("<%= msg %>");
+        </script>
+    <%}%>
+
 </body>
 </html>

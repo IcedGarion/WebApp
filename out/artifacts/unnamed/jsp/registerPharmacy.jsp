@@ -37,7 +37,7 @@
         <form action="<%=request.getContextPath()%>/registerPharmacy.do" method="post" name="form" onsubmit="return validatePharmacyForm()">
             <input type="text" name="nome" id="nome" required>Nome Titolare<br>
             <input type="text" name="cognome" id="cognome" required>Cognome Titolare<br>
-            <input type="text" name="cf" id="cf" required>Codice Fiscale<br>
+            <input type="text" name="productName" id="productName" required>Codice Fiscale<br>
             <input type="text" name="username" id="username" required>Username Titolare<br>
             <input type="password" name="password" id="password" required>Password<br>
             <input type="password" name="passwordConfirm" id="passwordConfirm" required>Conferma Password<br>

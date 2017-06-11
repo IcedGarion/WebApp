@@ -15,7 +15,7 @@ create table Farmacie
 
 create table Operatori
 (
-	cf char(16) primary key not null,
+	productName char(16) primary key not null,
 	idFarmacia integer,
 	ruolo char(2) not null,
 	username varchar not null unique,
@@ -61,7 +61,7 @@ create table Carrello
 
 create table Pazienti
 (
-	cf char(16) primary key not null,
+	productName char(16) primary key not null,
 	codAcquisto integer not null,
 	nome varchar not null,
 	cognome varchar not null,
@@ -89,7 +89,7 @@ alter table Operatori
 add foreign key (idFarmacia) references Farmacie(id);
 
 alter table Acquisti
-add foreign key (cfOperatore) references Operatori(cf)
+add foreign key (cfOperatore) references Operatori(productName)
 
 alter table Carrello
 add foreign key (codAcquisto) references Acquisti(codAcquisto)
@@ -107,6 +107,6 @@ add foreign key (codAcquisto) references Acquisti(codAcquisto);
 alter table Messaggi
 add foreign key (fromReg) references Regione (username),
 add foreign key (toReg) references Regione (username),
-add foreign key (fromOp) references Operatori (cf),
-add foreign key (toOp) references Operatori (cf);
+add foreign key (fromOp) references Operatori (productName),
+add foreign key (toOp) references Operatori (productName);
 
