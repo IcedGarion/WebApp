@@ -15,9 +15,6 @@ import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-/**
- * Created by ubuntu on 09/06/17.
- */
 public class AddToCart extends Action
 {
     @Override
@@ -35,6 +32,24 @@ public class AddToCart extends Action
 
         try
         {
+            //per prima cosa controlla se serve ricetta e se si hanno i ruoli giusti
+            //se no, esce con messaggio di errore
+            //se si, ritorna ad un'altra pagina (altro mapping) con i form per la ricetta/dmedici/pazienti
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             //l'acquisto non è ancora stato creato: (non c'è oggetto PurchaseObj in session)
             //allora questo è il primo prodotto e lo crea lui
             if (acquisto == null)
@@ -95,6 +110,17 @@ public class AddToCart extends Action
             query = "INSERT INTO carrello (codprodotto, quantita, codacquisto)" +
                     " VALUES ('" + codProdotto + "', " + qty + ", '" + codAcquisto + "');";
             reader.update(query);
+
+
+
+
+
+
+            //calcola e aggiorna totale acquisto
+
+
+
+
 
             //aggiorna le quantità in magazzino
             query = "UPDATE magazzino SET quantitadisponibile = " + (oldQty - qty) +
