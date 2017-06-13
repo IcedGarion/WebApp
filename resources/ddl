@@ -40,6 +40,7 @@ create table Prodotti
 	immagine bytea,
 	descrizione varchar not null,
 	nome varchar not null unique,
+	prezzo real not null,
 	conRicetta boolean not null
 );
 

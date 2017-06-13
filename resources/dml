@@ -7,11 +7,11 @@ INSERT INTO Operatori (productName, idFarmacia, ruolo, nome, cognome, dataNascit
 INSERT INTO regione(username, pass)
     VALUES ('regPiemonte', 'asdf');
 
-INSERT INTO prodotti(codprodotto, immagine, descrizione, nome, conricetta)
-    VALUES ('1', null, 'aspirina generica', 'aspirina', false);
+INSERT INTO prodotti(codprodotto, immagine, descrizione, nome, prezzo, conricetta)
+    VALUES ('1', null, 'aspirina generica', 'aspirina', 10, false);
 
-INSERT INTO prodotti(codprodotto, immagine, descrizione, nome, conricetta)
-    VALUES ('2', null, 'antidolorifico', 'oki', true);
+INSERT INTO prodotti(codprodotto, immagine, descrizione, nome, prezzo, conricetta)
+    VALUES ('2', null, 'antidolorifico', 'oki', 12.5, true);
 
 INSERT INTO magazzino(idfarmacia, codprodotto, quantitadisponibile)
     VALUES (0, '1', 5);
