@@ -37,20 +37,20 @@
 <body>
 <div id="container">
     <div id="header">
-        <h2>INSERISCI I DATI DELLA RICETTA</h2>
+        <h2>FARMACO CON RICETTA</h2>
     </div> <!-- header -->
     <div id="body">
-        <h4>Dati Operatore: </h4>
-
-
         <form action="<%=request.getContextPath()%>/addRecipeToCart.do" method="post" name="form" onsubmit="return validatePersonnelForm()">
-            <input type="text" name="nome" id="nome" required>Nome Titolare<br>
+            <h4>Dati Paziente: </h4>
+            <input type="text" name="cfPaz" id="cfPaz" required>Codice fiscale paziente<br>
+            <input type="text" name="nomePaz" id="nomePaz" required>Nome paziente<br>
+            <input type="text" name="cognomePaz" id="cognomePaz" required>Cognome paziente<br>
 
+            <!-- calendario!!! -->
+            <input type="text" name="dataNascitaPaz" id="dataNscitaPaz" required>Data di nascita Paziente<br>
 
-
-            <!-- ROBA -->
-
-
+            <h4>Dati Ricetta:</h4>
+            <input type="text" name="codRegMed" id="codRegMed" required>Codice regionale medico<br>
 
             <input type="submit" value="REGISTRA">
         </form>

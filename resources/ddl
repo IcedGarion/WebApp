@@ -73,6 +73,7 @@ create table Ricette
 (
 	codRicetta varchar not null primary key,
 	codAcquisto varchar not null,
+	codRegionale integer not null,
 	data date
 );
 
@@ -84,6 +85,14 @@ create table Messaggi
 	fromOp varchar,
 	toOp varchar,
 	msg varchar not null
+);
+
+create table medici
+(
+	codRegionale SERIAL not null primary key,
+	nome varchar not null,
+	cognome varchar not null,
+	indirizzo varchar
 );
 
 alter table Operatori
@@ -110,4 +119,7 @@ add foreign key (fromReg) references Regione (username),
 add foreign key (toReg) references Regione (username),
 add foreign key (fromOp) references Operatori (productName),
 add foreign key (toOp) references Operatori (productName);
+
+alter table ricette
+add foreign key (codRegionale) references medici (codRegionale);
 

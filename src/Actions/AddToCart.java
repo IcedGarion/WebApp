@@ -41,7 +41,6 @@ public class AddToCart extends Action
     {
         //non basta: bisogna distinguere! Una volta productBean, una volta RecipeBean
         ProductBean prodBean;
-        RecipeBean recBean;
         boolean conRicetta = true;
         String query, username, cf = "", codProdotto = "", role = "";
         Recipe ricetta;
@@ -180,7 +179,23 @@ public class AddToCart extends Action
             //nel bean RecipeBean
             if(ricetta != null)
             {
-                recBean.getCose....
+                RecipeBean recBean = (RecipeBean) form;
+                String cf, nome, cognome, dataNascita, codReg;
+                //cerca se paziente c'è già: se no, lo inserisce:
+                //cfoperatore non serve: se inserisci paziente nell'acquisto (o meglio, codacquisto in pazienti)
+                //allora puoi già andare a ricavare cfoperatore dall'acquisto corrispondente
+                cf = recBean.getCfPaz();
+                nome = recBean.getNomePaz();
+                cognome = recBean.getCognomePaz();
+                dataNascita = recBean.getDataNascitaPaz();
+                codReg = recBean.getCodRegMed();
+
+                //INFATTI: inserisce in pazienti anche il codAcquisto:
+                codAcquisto;
+
+                //inserisce in ricetta:
+                codAcquisto;
+                data;
             }
 
 
