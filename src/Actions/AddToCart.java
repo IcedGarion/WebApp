@@ -40,6 +40,7 @@ public class AddToCart extends Action
     public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception
     {
         //non basta: bisogna distinguere! Una volta productBean, una volta RecipeBean
+        RecipeBean recBean;
         ProductBean prodBean;
         boolean conRicetta = true;
         String query, username, cf = "", codProdotto = "", role = "";
@@ -50,6 +51,7 @@ public class AddToCart extends Action
         PurchaseObj acquisto = (PurchaseObj) request.getSession().getAttribute("cart");
         Date date = new Date();
         SimpleDateFormat sf = new SimpleDateFormat("yyyy.MM.dd");
+        float total = 0;
 
         try
         {
@@ -157,53 +159,56 @@ public class AddToCart extends Action
 
             //insert nuovo carrello prodotto collegato all'acquisto
             query = "INSERT INTO carrello (codprodotto, quantita, codacquisto)" +
-                    " VALUES ('" + codProdotto + "', " + qty + ", '" + codAcquisto + "');";
+                    " VALUES ('" + codProdotto + "', " + qty + ", " + codAcquisto + ");";
             reader.update(query);
 
 
-
-
-
-
             //calcola e aggiorna totale acquisto
+            query = "SELECT prezzo FROM Prodotti WHERE codProdotto = '" + codProdotto + "'";
+            table = reader.getTable(query);
+            while (table.next())
+                total = table.getFloat("quantitadisponibile");
+            total = total * qty;
 
-
-
-
-
-
-
+            query = "UPDATE Acquisti SET totale = " + total + " WHERE codAcquisto = '" + codAcquisto + "'";
+            reader.update(query);
 
 
             //inserisce anche tutte le informazioni sulla ricetta, i medici, i pazienti.... che arrivano dal form e che ora sono
             //nel bean RecipeBean
             if(ricetta != null)
             {
-                RecipeBean recBean = (RecipeBean) form;
-                String cf, nome, cognome, dataNascita, codReg;
-                //cerca se paziente c'è già: se no, lo inserisce:
-                //cfoperatore non serve: se inserisci paziente nell'acquisto (o meglio, codacquisto in pazienti)
-                //allora puoi già andare a ricavare cfoperatore dall'acquisto corrispondente
-                cf = recBean.getCfPaz();
+                recBean = (RecipeBean) form;
+                String cfPaz, nome, cognome, dataNascita, codReg;
+                int conta = 0;
+
+                //recupera dati dal form di recipe.jsp
+                cfPaz = recBean.getCfPaz();
                 nome = recBean.getNomePaz();
                 cognome = recBean.getCognomePaz();
                 dataNascita = recBean.getDataNascitaPaz();
                 codReg = recBean.getCodRegMed();
 
-                //INFATTI: inserisce in pazienti anche il codAcquisto:
-                codAcquisto;
+                //cerca se paziente c'è già
+                query = "SELECT * FROM Pazienti WHERE cf = '" + cfPaz + "'";
+                reader.getTable(query);
+                while (table.next() && (conta == 0))
+                    conta++;
 
-                //inserisce in ricetta:
-                codAcquisto;
-                data;
+                //se non è presente, deve inserire il nuovo paziente
+                if(conta == 0)
+                {
+                    query = "INSERT INTO pazienti(cf, codacquisto, nome, cognome, datanascita)" +
+                            " VALUES ('" + cfPaz + "', " + codAcquisto + ", '" + nome + "', '" + cognome + "', '" + dataNascita + "')";
+                    reader.update(query);
+                }
+
+                //inserisce dati della Ricetta (come codice usa codacquisto+codregionale)
+                query = "INSERT INTO ricette(codricetta, codacquisto, codregionale, data)"+
+                        " VALUES ('" + (codAcquisto + "," + codReg) +"', '" + codAcquisto +"', " + codReg + ", '" + sf.format(date) + "')";
+                reader.update(query);
+
             }
-
-
-
-
-
-
-
 
 
             //aggiorna le quantità in magazzino
@@ -215,6 +220,21 @@ public class AddToCart extends Action
         catch(Exception e)
         {
             e.printStackTrace();
+
+
+            //se fallisce qualcosa dovrebbe rimettere a posto le quantità nel magazzino, oltre a cancellare
+            //acquisto e carrello!
+            if(oldQty != -1)
+            {
+
+            }
+
+            query = cancella carrello/i collegati all'acquisto codAcquisto;
+            reader.update(query);
+
+            query = cancella acquisto codAcquisto;
+            reader.update(query);
+
             request.getSession().setAttribute("msg", "ERRORE");
             return mapping.findForward("ERROR");
         }

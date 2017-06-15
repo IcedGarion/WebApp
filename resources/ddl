@@ -49,7 +49,8 @@ create table Acquisti
 	codAcquisto SERIAL primary key not null,
 	cfOperatore char(16) not null,
 	totale real,
-	data date
+	data date,
+	completato boolean not null
 );
 
 create table Carrello
@@ -62,7 +63,7 @@ create table Carrello
 
 create table Pazienti
 (
-	productName char(16) primary key not null,
+	cf char(16) primary key not null,
 	codAcquisto integer not null,
 	nome varchar not null,
 	cognome varchar not null,
@@ -99,7 +100,7 @@ alter table Operatori
 add foreign key (idFarmacia) references Farmacie(id);
 
 alter table Acquisti
-add foreign key (cfOperatore) references Operatori(productName)
+add foreign key (cfOperatore) references Operatori(cf)
 
 alter table Carrello
 add foreign key (codAcquisto) references Acquisti(codAcquisto)
