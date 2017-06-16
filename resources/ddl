@@ -73,8 +73,8 @@ create table Pazienti
 create table Ricette
 (
 	codRicetta varchar not null primary key,
-	codAcquisto varchar not null,
-	codRegionale integer not null,
+	codAcquisto integer not null,
+	codRegionale varchar not null,
 	data date
 );
 
@@ -90,7 +90,7 @@ create table Messaggi
 
 create table medici
 (
-	codRegionale SERIAL not null primary key,
+	codRegionale varchar not null primary key,
 	nome varchar not null,
 	cognome varchar not null,
 	indirizzo varchar
@@ -113,14 +113,12 @@ add foreign key (idFarmacia) references Farmacie(id),
 add foreign key (codProdotto) references Prodotti (codProdotto);
 
 alter table Ricette
-add foreign key (codAcquisto) references Acquisti(codAcquisto);
+add foreign key (codAcquisto) references Acquisti(codAcquisto),
+add foreign key (codRegionale) references medici (codRegionale);
 
 alter table Messaggi
 add foreign key (fromReg) references Regione (username),
 add foreign key (toReg) references Regione (username),
 add foreign key (fromOp) references Operatori (productName),
 add foreign key (toOp) references Operatori (productName);
-
-alter table ricette
-add foreign key (codRegionale) references medici (codRegionale);
 

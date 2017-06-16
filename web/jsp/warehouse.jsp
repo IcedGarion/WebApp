@@ -52,6 +52,7 @@
         <tr>
             <th>Nome Prodotto</th>
             <th>Descrizione</th>
+            <th>Prezzo</th>
             <th>Quantita' Disponibile</th>
             <th>Necessaria ricetta</th>
             <!-- <th>Immagine</th> -->
@@ -75,8 +76,19 @@
               %><tr>
                 <td><%= table.getString("nome") %></td>
                 <td><%= table.getString("descrizione") %></td>
+                <td><%= table.getString("prezzo") %></td>
                 <td><%= table.getString("quantitaDisponibile") %></td>
-                <td><%= table.getBoolean("conRicetta") %></td>
+                <td>
+                    <% if(table.getBoolean("conRicetta"))
+                    {%>
+                        SI
+                    <%}
+                    else
+                    {%>
+                        NO
+                    <%}
+                    %>
+                </td>
                 <!-- <td>table.getPicture("immagine").toUpperCase() %></td> -->
                 <%
                     if(role.toLowerCase().equals("tf"))

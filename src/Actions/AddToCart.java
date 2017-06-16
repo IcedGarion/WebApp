@@ -50,7 +50,7 @@ public class AddToCart extends Action
         TableReader reader = new TableReader();
         PurchaseObj acquisto = (PurchaseObj) request.getSession().getAttribute("cart");
         Date date = new Date();
-        SimpleDateFormat sf = new SimpleDateFormat("yyyy.MM.dd");
+        SimpleDateFormat sf = new SimpleDateFormat("dd-MM-yyyy");
         float total = 0;
 
         try
@@ -119,8 +119,8 @@ public class AddToCart extends Action
                 }
 
                 //insert nuovo acquisto
-                query = "INSERT INTO acquisti(cfoperatore, totale, data) " +
-                        "VALUES ('" + cf + "', 0, '" + sf.format(date) + "')";
+                query = "INSERT INTO acquisti(cfoperatore, totale, data, completato) " +
+                        "VALUES ('" + cf + "', 0, '" + sf.format(date) + "', false)";
                 reader.update(query);
 
                 //salva in session l'oggetto PurchaseObj a indicare che è stato aperto un acquisto (un "carrello")
@@ -167,7 +167,7 @@ public class AddToCart extends Action
             query = "SELECT prezzo FROM Prodotti WHERE codProdotto = '" + codProdotto + "'";
             table = reader.getTable(query);
             while (table.next())
-                total = table.getFloat("quantitadisponibile");
+                total = table.getFloat("prezzo");
             total = total * qty;
 
             query = "UPDATE Acquisti SET totale = " + total + " WHERE codAcquisto = '" + codAcquisto + "'";
@@ -205,7 +205,7 @@ public class AddToCart extends Action
 
                 //inserisce dati della Ricetta (come codice usa codacquisto+codregionale)
                 query = "INSERT INTO ricette(codricetta, codacquisto, codregionale, data)"+
-                        " VALUES ('" + (codAcquisto + "," + codReg) +"', '" + codAcquisto +"', " + codReg + ", '" + sf.format(date) + "')";
+                        " VALUES ('" + (codAcquisto + "," + codReg) +"', '" + codAcquisto +"', '" + codReg + "', '" + sf.format(date) + "')";
                 reader.update(query);
 
             }
@@ -226,13 +226,19 @@ public class AddToCart extends Action
             //acquisto e carrello!
             if(oldQty != -1)
             {
-
+                //se è arrivato a modificare le quantità ma poi c'è stata eccezione, ripristina quantità iniziale
+                query = "UPDATE magazzino SET quantitadisponibile = " + oldQty +
+                        " WHERE idFarmacia = " + idFarmacia + " AND codProdotto = '" + codProdotto + "'";
+                reader.update(query);
             }
 
-            query = cancella carrello/i collegati all'acquisto codAcquisto;
+            //cancella il carrello collegato all'acquisto
+            query = "DELETE FROM Carrello WHERE codAcquisto = " + codAcquisto;
             reader.update(query);
 
-            query = cancella acquisto codAcquisto;
+            //BISOGNA METTERE ONDELETE CASCADE NEL DB!
+            //cancella l'acquisto dell'operatore
+            query = "DELETE FROM Acquisti WHERE cfOperatore = '" + cf + "'";
             reader.update(query);
 
             request.getSession().setAttribute("msg", "ERRORE");

@@ -11,6 +11,7 @@
         <form-bean name="PersonBean" type="Beans.PersonBean" />
         <form-bean name="WarehouseBean" type="Beans.WarehouseBean"/>
         <form-bean name="ProductBean" type="Beans.ProductBean"/>
+        <form-bean name="RecipeBean" type="Beans.RecipeBean"/>
     </form-beans>
     <action-mappings>
         <action path="/login" type = "Actions.LoginAction" name="RegisterBean" scope = "session" >
@@ -33,7 +34,12 @@
 
         <action path="/addToCart" type = "Actions.AddToCart" name="ProductBean" scope = "request" >
             <forward name="ADD_OK" path="/jsp/purchase.jsp" />
+            <forward name="NEED_RECIPE" path="/jsp/recipe.jsp" />
             <forward name="ERROR" path="/jsp/error.jsp" />
+        </action>
+
+        <action path="/addRecipeToCart" type = "Actions.AddToCart" name="RecipeBean" scope = "request" >
+            <forward name="ADD_OK" path="/jsp/purchase.jsp" />
         </action>
 
         <action path="/processPurchase" type = "Actions.ProcessPurchase">

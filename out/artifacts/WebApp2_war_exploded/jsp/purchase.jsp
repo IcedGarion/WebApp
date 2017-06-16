@@ -54,6 +54,7 @@
         <tr>
             <th>Nome Prodotto</th>
             <th>Descrizione</th>
+            <th>Prezzo</th>
             <th class="short">Quantita' Disponibile</th>
             <th>Necessaria ricetta</th>
             <!-- <th>Immagine</th> -->
@@ -70,6 +71,7 @@
                 <tr>
                     <td><%= table.getString("nome") %></td>
                     <td><%= table.getString("descrizione") %></td>
+                    <td><%= table.getString("prezzo") %></td>
                     <td><%= table.getString("quantitaDisponibile") %></td>
                     <td>
                     <% if(table.getBoolean("conRicetta"))
