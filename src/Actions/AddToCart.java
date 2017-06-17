@@ -250,7 +250,7 @@ public class AddToCart extends Action
 
             revertChanges(request, cf, idFarmacia, codProdotto, codAcquisto, oldQty);
 
-            request.getSession().setAttribute("msg", "ERRORE");
+            request.getSession().setAttribute("exitCode", "ERRORE AGGIUNTA AL CARRELLO");
             return mapping.findForward("ERROR");
         }
 
