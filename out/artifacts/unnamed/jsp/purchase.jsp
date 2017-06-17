@@ -20,7 +20,7 @@
 <html>
 <head>
 
-    <link href="<%=request.getContextPath()%>/css/home.css" rel="stylesheet" type="text/css">
+    <link href="<%=request.getContextPath()%>/css/common.css" rel="stylesheet" type="text/css">
 
     <title>ACQUISTO</title>
 
@@ -48,76 +48,77 @@
     <div id="header">
         <h2>NUOVO ACQUISTO</h2>
     </div> <!-- header -->
-    <div id="body">
 
-    <table>
-        <tr>
-            <th>Nome Prodotto</th>
-            <th>Descrizione</th>
-            <th>Prezzo</th>
-            <th class="short">Quantita' Disponibile</th>
-            <th>Necessaria ricetta</th>
-            <!-- <th>Immagine</th> -->
-            <th class="short"class="last">Quantita' da acquistare</th>
-            <th class="blank"> </th>
-        </tr>
+    <div id="cont">
+        <div id="left"class="left">
+            <jsp:include page="../util/sidebar.jsp"/>
+        </div> <!-- left -->
+        <div id="body" class="right">
 
-        <%
-            TableReader reader = new TableReader();
-            ResultSet table = reader.buildWarehouseTable(((LoginBean) session.getAttribute("RegisterBean")).getUsername());
+            <table>
+                <tr>
+                    <th>Nome Prodotto</th>
+                    <th>Descrizione</th>
+                    <th>Prezzo</th>
+                    <th>Quantita' Disponibile</th>
+                    <th>Necessaria ricetta</th>
+                    <!-- <th>Immagine</th> -->
+                    <th>Quantita' da acquistare</th>
+                    <th> </th>
+                </tr>
 
-            while(table.next())
-            { %>
+                <%
+                    TableReader reader = new TableReader();
+                    ResultSet table = reader.buildWarehouseTable(((LoginBean) session.getAttribute("RegisterBean")).getUsername());
+
+                    while(table.next())
+                    { %>
                 <tr>
                     <td><%= table.getString("nome") %></td>
                     <td><%= table.getString("descrizione") %></td>
                     <td><%= table.getString("prezzo") %></td>
                     <td><%= table.getString("quantitaDisponibile") %></td>
                     <td>
-                    <% if(table.getBoolean("conRicetta"))
-                       {%>
-                            SI
-                       <%}
-                       else
-                       {%>
-                            NO
-                       <%}
-                    %>
+                        <% if(table.getBoolean("conRicetta"))
+                        {%>
+                        SI
+                        <%}
+                        else
+                        {%>
+                        NO
+                        <%}
+                        %>
                     </td>
 
                     <!-- <td>table.getPicture("immagine").toUpperCase() %></td> -->
 
                     <form action="<%=request.getContextPath()%>/addToCart.do" method="post" name="form">
-                    <td>
-                        <input class="qty" type = "text" name = "qty" required value="1"> pezzi<br>
-                    </td>
-                    <td class="blank">
-                        <input type="submit" value="AGGIUNGI AL CARRELLO">
-                        <input type="text" name="productName" id="productName" value="<%= table.getString("codProdotto") %>"
-                               style="visibility:hidden">
-                    </td>
+                        <td>
+                            <input class="qty" type = "text" name = "qty" required value="1"> pezzi<br>
+                        </td>
+                        <td>
+                            <input type="submit" value="AGGIUNGI AL CARRELLO">
+                            <input type="text" name="productName" id="productName" value="<%= table.getString("codProdotto") %>"
+                                   style="visibility:hidden">
+                        </td>
                     </form>
                 </tr>
-            <% }  %>
-    </table>
+                <% }  %>
+            </table>
 
-    <br>
-        <form action="<%=request.getContextPath()%>/ProcessPurchase.do" method="post" name="form">
-            <input type ="submit" value="PROCEDI ALL'ACQUISTO">
-        </form>
+            <br>
+            <form action="<%=request.getContextPath()%>/checkout.do" method="post" name="form">
+                <input type ="submit" value="PROCEDI ALL'ACQUISTO">
+            </form>
 
-    </div> <!-- body -->
-    <div id="left">
-        <ul>
-            <li><a href="<%=request.getContextPath()%>/jsp/privateHome.jsp">HOME</a></li>
-            <li><a href="<%=request.getContextPath()%>/jsp/account.jsp">ACCOUNT</a></li>
-            <li><a href="<%=request.getContextPath()%>/jsp/mail.jsp">POSTA</a></li>
-            <li><a href="<%=request.getContextPath()%>/jsp/logout.jsp">LOGOUT</a></li>
-        </ul>
-    </div> <!-- left -->
+        </div> <!-- body -->
+        <div class="clear"/>
+    </div>
+
+
 
     <div id= "footer">
-        <h6>footer</h6>
+        <h6>Creato da Garion Musetta _ Tutti i diritti sono riservati @2017</h6>
     </div> <!--footer-->
 </div> <!-- container -->
 

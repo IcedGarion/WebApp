@@ -42,7 +42,7 @@
             <forward name="ADD_OK" path="/jsp/purchase.jsp" />
         </action>
 
-        <action path="/processPurchase" type = "Actions.ProcessPurchase">
+        <action path="/checkout" type = "Actions.ProcessPurchase">
             <forward name="PURCHASE_OK" path="/jsp/error.jsp" />
             <forward name="ERROR" path="/jsp/error.jsp" />
         </action>

@@ -1,0 +1,211 @@
+#cont h2
+{
+    text-align: center;
+    font-family: Comfortaa;
+}
+#login
+{
+    width: auto;
+    display: table;
+    margin: auto;
+    font-family: Comfortaa;
+}
+a:link
+{
+    font-family: Comfortaa;
+    color: black;
+    font-weight: bold;
+}
+a:visited
+{
+    font-family: Comfortaa;
+    color: black;
+    font-weight: bold;
+}
+a:hover
+{
+    font-family: Comfortaa;
+    color: #000059;
+    font-weight: bold;
+}
+body
+{
+    background-image: url('../src/health.jpg');
+    background-size:cover;
+}
+#header
+{
+    margin: 30px;
+    background-image: url('../src/pixel.png');
+    background-repeat:repeat;
+    border: 1px solid black;
+    margin-top: 5%;
+}
+#header h1
+{
+    font-style:oblique;
+    font-family: Comfortaa;
+    text-align:center;
+    text-align-last:center;
+    margin-top: 2%;
+
+    opacity:1;
+}
+#cont
+{
+    background-image: url('../src/pixel.png');
+    background-repeat:repeat;
+    border: 1px solid #000000;
+    height: 350px;
+}
+.center
+{
+    position: absolute;
+    margin-left:50%;
+    padding: 10px;
+}
+#footer
+{
+    bottom:0;
+    position:absolute;
+    text-align:left;
+}
+#footer h6
+{
+    color: #000059;
+}
+#h2
+{
+    text-align: center;
+    font-family: Doodle, Raleway, Dosis;
+}
+#left
+{
+    border: 1px solid black;
+}
+#body
+{
+    font-style: italic;
+    text-decoration: dotted;
+
+}
+.left
+{
+    float: left;
+    display: block;
+    width: 15%;
+    margin: 0 auto;
+    padding: 10px;
+    height: 330px;
+}
+.right
+{
+    float: left;
+    display: block;
+    width: 75%;
+    height: 350px;
+}
+.tleft
+{
+    width: 30%;
+    display: block;
+    float: left;
+    text-align: right;
+}
+.tright
+{
+    width: 33%;
+    display: block;
+    margin-left: 20px;
+    float:left;
+}
+.fleft
+{
+    width: 45%;
+    display: block;
+    float: left;
+    margin-left: 30px;
+}
+.fright
+{
+    width: 45%;
+    display: block;
+    float: right;
+    margin-left: 10px;
+}
+.fcenter
+{
+    margin-right: 10%;
+    margin-left: 10%;
+}
+#elenco > div
+{
+    display: flex;
+}
+#center > div
+{
+    text-align: center;
+    margin-left: 15%;
+}
+.clear
+{
+    clear: both;
+}
+img
+{
+    float: left;
+    margin-left: 20px;
+}
+
+td:not(:last-child),th:not(:last-child)
+{
+    text-align: center;
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+th
+{
+    background-color: #84c8c7;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    width: 200px;
+}
+
+th, td
+{
+    border: 1px solid black;
+}
+
+tr:nth-child(even)
+{
+    background-color: #ffffff;
+}
+
+.qty
+{
+    width: 50px;
+}
+
+.short
+{
+    width: 100px;
+}
+
+.blank
+{
+    background-color: white;
+    border: none;
+}
+
+.last
+{
+    border-right: dashed;
+}
+
+table
+{
+    margin-top: 30px;
+    margin-left: 30px;
+    background-color: #b9b9b9;
+}

@@ -2,33 +2,33 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-
-    <link href="<%=request.getContextPath()%>/css/bootstrap.css" rel="stylesheet" type="text/css">
-
+    <link href="css/common.css" rel="stylesheet" type="text/css">
     <title>HOME</title>
 </head>
 <body>
 <div id="container">
     <div id="header">
-         <h1>Contabilità</h1>
+        <h1>Contabilità</h1>
     </div> <!-- header-->
-    <div id="login">
-        <h2>Log in</h2>
-        <form action = "login.do" method = "post">
-            <input type = "text" name = "username" required>Username<br>
-            <input type = "password" name = "passwd" required>Password<br>
-            <input type = "radio" name = "role" value = "reg" checked = "checked">REGIONE<br>
-            <input type = "radio" name = "role" value = "pers">OPERATORE<br>
-            <input type = "submit" value = "Log in">
-        </form>
+    <div id="cont">
 
-    </div> <!--login-->
-    <div id="left">
-        <h4>REGIONE : Username = codice regione <br>PERSONALE FARMACIA : Username = il tuo username definito in fase di registrazione </h4>
+        <h2>Log in</h2>
+        <div id="login">
+            <form action = "login.do" method = "post">
+                <input type = "text" name = "username" required>Username<a href="" title="REGIONE : Username = codice regione &#13;PERSONALE FARMACIA : Username = il tuo username definito in fase di registrazione">?</a> <br>
+                <input type = "password" name = "passwd" required>Password<br>
+                <input type = "radio" name = "role" value = "reg" checked = "checked">REGIONE<br>
+                <input type = "radio" name = "role" value = "pers">OPERATORE<br>
+                <input type = "submit" value = "Log in">
+            </form>
+
+        </div> <!--login-->
+
     </div>
-    <div id= "footer">
-        <h6>footer</h6>
-    </div> <!--footer-->
 </div> <!-- container-->
+<div id= "footer">
+    <h6>Creato da Garion Musetta _ Tutti i diritti sono riservati @2017</h6>
+</div> <!--footer-->
+
 </body>
 </html>

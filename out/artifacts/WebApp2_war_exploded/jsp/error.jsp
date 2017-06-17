@@ -2,7 +2,7 @@
 <html>
 <head>
 
-    <link href="<%=request.getContextPath()%>/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="<%=request.getContextPath()%>/css/common.css" rel="stylesheet" type="text/css">
 
     <title>RESULTS</title>
 </head>
