@@ -137,7 +137,7 @@ public class AddToCart extends Action
             }
 
             //recupera il codice dell'acquisto corrente
-            query = "SELECT codAcquisto FROM acquisti WHERE cfOperatore = '" + cf + "' AND totale = 0 AND data = '" + sf.format(date) + "'";
+            query = "SELECT codAcquisto FROM acquisti WHERE cfOperatore = '" + cf + "' AND data = '" + sf.format(date) + "'";
             table = reader.getTable(query);
 
             while (table.next())
@@ -189,6 +189,17 @@ public class AddToCart extends Action
                 dataNascita = recBean.getDataNascitaPaz();
                 codReg = recBean.getCodRegMed();
 
+                //inserisce dati della Ricetta (come codice usa codacquisto+codregionale)
+                query = "INSERT INTO ricette(codricetta, codacquisto, codregionale, data)"+
+                        " VALUES ('" + (codAcquisto + "," + codReg) +"', '" + codAcquisto +"', '" + codReg + "', '" + sf.format(date) + "')";
+
+                if(! reader.update(query))
+                {
+                    request.getSession().setAttribute("msg", "MEDICO NON TROVATO! ");
+                    revertChanges(request, cf, idFarmacia, codProdotto, codAcquisto, oldQty);
+                    return mapping.findForward("ADD_OK");
+                }
+
                 //cerca se paziente c'è già
                 query = "SELECT * FROM Pazienti WHERE cf = '" + cfPaz + "'";
                 reader.getTable(query);
@@ -203,11 +214,8 @@ public class AddToCart extends Action
                     reader.update(query);
                 }
 
-                //inserisce dati della Ricetta (come codice usa codacquisto+codregionale)
-                query = "INSERT INTO ricette(codricetta, codacquisto, codregionale, data)"+
-                        " VALUES ('" + (codAcquisto + "," + codReg) +"', '" + codAcquisto +"', '" + codReg + "', '" + sf.format(date) + "')";
-                reader.update(query);
-
+                //rimuove oggetto in session: non serve più
+                request.getSession().removeAttribute("ricetta");
             }
 
 
@@ -221,10 +229,27 @@ public class AddToCart extends Action
         {
             e.printStackTrace();
 
+            revertChanges(request, cf, idFarmacia, codProdotto, codAcquisto, oldQty);
 
+            request.getSession().setAttribute("msg", "ERRORE");
+            return mapping.findForward("ERROR");
+        }
+
+        request.getSession().setAttribute("msg", "PRODOTTO AGGIUNTO AL CARRELLO");
+        return mapping.findForward("ADD_OK");
+    }
+
+    private static void revertChanges(HttpServletRequest request, String cf, int idFarmacia, String codProdotto, int codAcquisto, int oldQty)
+    {
+        String query;
+        TableReader reader;
+
+        try
+        {
+            reader = new TableReader();
             //se fallisce qualcosa dovrebbe rimettere a posto le quantità nel magazzino, oltre a cancellare
             //acquisto e carrello!
-            if(oldQty != -1)
+            if (oldQty != -1)
             {
                 //se è arrivato a modificare le quantità ma poi c'è stata eccezione, ripristina quantità iniziale
                 query = "UPDATE magazzino SET quantitadisponibile = " + oldQty +
@@ -236,16 +261,18 @@ public class AddToCart extends Action
             query = "DELETE FROM Carrello WHERE codAcquisto = " + codAcquisto;
             reader.update(query);
 
+
             //BISOGNA METTERE ONDELETE CASCADE NEL DB!
             //cancella l'acquisto dell'operatore
             query = "DELETE FROM Acquisti WHERE cfOperatore = '" + cf + "'";
             reader.update(query);
 
-            request.getSession().setAttribute("msg", "ERRORE");
-            return mapping.findForward("ERROR");
+            //rimuove oggetti in session: non servono più perchèbisogna rifare tutto daccapo
+            request.getSession().removeAttribute("ricetta");
+            request.getSession().removeAttribute("cart");
         }
-
-        request.getSession().setAttribute("msg", "PRODOTTO AGGIUNTO AL CARRELLO");
-        return mapping.findForward("ADD_OK");
+        catch(Exception e)
+        {}
     }
+
 }
