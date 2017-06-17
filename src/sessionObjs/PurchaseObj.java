@@ -3,7 +3,8 @@ package sessionObjs;
 import java.util.Date;
 
 /**
- * Created by ubuntu on 11/06/17.
+ * Dice soltanto se è già stato aperto un acquisto (è in corso)
+ * e si salva alcuni dati per non andarli a riprendere in db
  */
 public class PurchaseObj
 {

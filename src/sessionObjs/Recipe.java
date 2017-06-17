@@ -1,7 +1,7 @@
 package sessionObjs;
 
 /**
- * Created by ubuntu on 13/06/17.
+ * Dice se l'acquisto ha un prodotto con ricetta e si salva i dati per il redirect (dati del form prodotto)
  */
 public class Recipe
 {

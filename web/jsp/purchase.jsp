@@ -102,7 +102,7 @@
     </table>
 
     <br>
-        <form action="<%=request.getContextPath()%>/ProcessPurchase.do" method="post" name="form">
+        <form action="<%=request.getContextPath()%>/checkout.do" method="post" name="form">
             <input type ="submit" value="PROCEDI ALL'ACQUISTO">
         </form>
 

@@ -7,6 +7,8 @@ import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
+import sessionObjs.CodPurchase;
+import sessionObjs.OriginalQuantity;
 import sessionObjs.PurchaseObj;
 import sessionObjs.Recipe;
 import util.TableReader;
@@ -50,7 +52,8 @@ public class AddToCart extends Action
         TableReader reader = new TableReader();
         PurchaseObj acquisto = (PurchaseObj) request.getSession().getAttribute("cart");
         Date date = new Date();
-        SimpleDateFormat sf = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat recipeDateFormatter = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat todaysDateFormatter = new SimpleDateFormat("hh-mm-ss");
         float total = 0;
 
         try
@@ -120,7 +123,7 @@ public class AddToCart extends Action
 
                 //insert nuovo acquisto
                 query = "INSERT INTO acquisti(cfoperatore, totale, data, completato) " +
-                        "VALUES ('" + cf + "', 0, '" + sf.format(date) + "', false)";
+                        "VALUES ('" + cf + "', 0, '" + todaysDateFormatter.format(date) + "', false)";
                 reader.update(query);
 
                 //salva in session l'oggetto PurchaseObj a indicare che è stato aperto un acquisto (un "carrello")
@@ -137,19 +140,35 @@ public class AddToCart extends Action
             }
 
             //recupera il codice dell'acquisto corrente
-            query = "SELECT codAcquisto FROM acquisti WHERE cfOperatore = '" + cf + "' AND data = '" + sf.format(date) + "'";
+            query = "SELECT codAcquisto FROM acquisti WHERE cfOperatore = '" + cf + "' AND data = '" + todaysDateFormatter.format(date) + "'";
             table = reader.getTable(query);
 
             while (table.next())
                 codAcquisto = table.getInt("codAcquisto");
 
-            //controlla se la quantità immessa è disponibile
-            query = "SELECT quantitadisponibile FROM magazzino WHERE idFarmacia = " + idFarmacia +
-                    " AND codProdotto = '" + codProdotto + "'";
-            table = reader.getTable(query);
+            //salva in session codAcquisti per il checkout
+            request.getSession().setAttribute("codAcquisto", new CodPurchase(codAcquisto));
 
-            while (table.next())
-                oldQty = table.getInt("quantitadisponibile");
+            //controlla se la quantità immessa è disponibile
+            if(request.getSession().getAttribute("quantity") == null)
+            {
+                //se è sempre lo stesso acquisto potrebbe subire modifiche: si salva la prima quantità che legge
+                query = "SELECT quantitadisponibile FROM magazzino WHERE idFarmacia = " + idFarmacia +
+                        " AND codProdotto = '" + codProdotto + "'";
+                table = reader.getTable(query);
+
+                while (table.next())
+                    oldQty = table.getInt("quantitadisponibile");
+
+                request.getSession().setAttribute("quantity", new OriginalQuantity(oldQty));
+            }
+            else
+            {
+                //se l'acquisto era già iniziato, recupera quantità originale dall'oggetto salvato
+                oldQty = ((OriginalQuantity) request.getSession().getAttribute("quantity")).getQty();
+            }
+            //solo a fine acquisto l'oggetto verrà distrutto
+
 
             if(oldQty < qty)
             {
@@ -191,7 +210,7 @@ public class AddToCart extends Action
 
                 //inserisce dati della Ricetta (come codice usa codacquisto+codregionale)
                 query = "INSERT INTO ricette(codricetta, codacquisto, codregionale, data)"+
-                        " VALUES ('" + (codAcquisto + "," + codReg) +"', '" + codAcquisto +"', '" + codReg + "', '" + sf.format(date) + "')";
+                        " VALUES ('" + (codAcquisto + "," + codReg + todaysDateFormatter.format(date)) +"', '" + codAcquisto +"', '" + codReg + "', '" + todaysDateFormatter.format(date) + "')";
 
                 if(! reader.update(query))
                 {
@@ -202,8 +221,8 @@ public class AddToCart extends Action
 
                 //cerca se paziente c'è già
                 query = "SELECT * FROM Pazienti WHERE cf = '" + cfPaz + "'";
-                reader.getTable(query);
-                while (table.next() && (conta == 0))
+                table = reader.getTable(query);
+                while (table.next())
                     conta++;
 
                 //se non è presente, deve inserire il nuovo paziente
@@ -262,14 +281,17 @@ public class AddToCart extends Action
             reader.update(query);
 
 
-            //BISOGNA METTERE ONDELETE CASCADE NEL DB!
-            //cancella l'acquisto dell'operatore
-            query = "DELETE FROM Acquisti WHERE cfOperatore = '" + cf + "'";
-            reader.update(query);
+            //cancella l'acquisto dell'operatore, solo se non ha già inserito paziente
+            if(request.getSession().getAttribute("ricetta") == null)
+            {
+                query = "DELETE FROM Acquisti WHERE cfOperatore = '" + cf + "'";
+                reader.update(query);
+            }
 
             //rimuove oggetti in session: non servono più perchèbisogna rifare tutto daccapo
             request.getSession().removeAttribute("ricetta");
             request.getSession().removeAttribute("cart");
+            request.getSession().removeAttribute("quantity");
         }
         catch(Exception e)
         {}
