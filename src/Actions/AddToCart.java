@@ -68,7 +68,17 @@ public class AddToCart extends Action
 
                 //controlla se serve ricetta e se si hanno i ruoli giusti
                 codProdotto = prodBean.getProductName();
-                qty = Integer.parseInt(prodBean.getQty());
+
+                /*"VALIDAZIONE" QUANTITA... (in javascript non funziona)*/
+                try
+                {
+                    qty = Integer.parseInt(prodBean.getQty());
+                }
+                catch(Exception e)
+                {
+                    request.getSession().setAttribute("msg", "QUANTITA' INSERITA NON CORRETTA");
+                    return mapping.findForward("ADD_OK");
+                }
                 query = "SELECT conRicetta FROM Prodotti WHERE codProdotto = '" + codProdotto + "'";
                 table = reader.getTable(query);
 

@@ -21,7 +21,7 @@
 %>
 <h1><%= errorMsg%></h1>
 <%
-    if(errorMsg.equals("Login non effettuata"))
+    if(errorMsg.equals("Login non effettuata") || errorMsg.equals("Username o Password non corretti"))
     { %>
         <a href = "<%=request.getContextPath()%>/index.html">Torna alla pagina di Login</a>
     <%}

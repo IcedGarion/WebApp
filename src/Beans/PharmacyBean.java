@@ -16,7 +16,6 @@ public class PharmacyBean extends ActionForm
     private String nome;
     private String cognome;
     private String dataNascita;
-    private String codRegionale;
     private String nomeF;
     private String indirizzo;
     private String telefono;
@@ -103,13 +102,5 @@ public class PharmacyBean extends ActionForm
 
     public void setDataNascita(String dataNascita) {
         this.dataNascita = dataNascita;
-    }
-
-    public String getCodRegionale() {
-        return codRegionale;
-    }
-
-    public void setCodRegionale(String codRegionale) {
-        this.codRegionale = codRegionale;
     }
 }

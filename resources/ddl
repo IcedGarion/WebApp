@@ -15,15 +15,14 @@ create table Farmacie
 
 create table Operatori
 (
-	productName char(16) primary key not null,
+	cf char(16) primary key not null,
 	idFarmacia integer,
 	ruolo char(2) not null,
 	username varchar not null unique,
 	pass varchar not null,
 	nome varchar not null,
 	cognome varchar not null,
-	dataNascita date,
-	codRegionale varchar
+	dataNascita date
 );
 
 create table Magazzino
@@ -100,13 +99,13 @@ alter table Operatori
 add foreign key (idFarmacia) references Farmacie(id);
 
 alter table Acquisti
-add foreign key (cfOperatore) references Operatori(cf)
+add foreign key (cfOperatore) references Operatori(cf);
 
 alter table Carrello
-add foreign key (codAcquisto) references Acquisti(codAcquisto)
+add foreign key (codAcquisto) references Acquisti(codAcquisto);
 
 alter table Pazienti
-add foreign key (codAcquisto) references Acquisti(codAcquisto)
+add foreign key (codAcquisto) references Acquisti(codAcquisto);
 
 alter table Magazzino
 add foreign key (idFarmacia) references Farmacie(id),
@@ -119,6 +118,6 @@ add foreign key (codRegionale) references medici (codRegionale);
 alter table Messaggi
 add foreign key (fromReg) references Regione (username),
 add foreign key (toReg) references Regione (username),
-add foreign key (fromOp) references Operatori (productName),
-add foreign key (toOp) references Operatori (productName);
+add foreign key (fromOp) references Operatori (cf),
+add foreign key (toOp) references Operatori (cf);
 

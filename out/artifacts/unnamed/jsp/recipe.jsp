@@ -1,6 +1,3 @@
-<%@ page import="util.loginCheck" %>
-<%@ page import="Beans.LoginBean" %>
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -19,7 +16,7 @@
             <jsp:include page="../util/sidebar.jsp"/>
         </div>
         <div id="body" class="right">
-        <form action="<%=request.getContextPath()%>/addRecipeToCart.do" method="post" name="form" onsubmit="return validatePersonnelForm()">
+        <form action="<%=request.getContextPath()%>/addRecipeToCart.do" method="post" name="form" onsubmit="return validatePrescriptionForm()">
             <h4>Dati Paziente: </h4>
             <input type="text" name="cfPaz" id="cfPaz" required>Codice fiscale paziente<br>
             <input type="text" name="nomePaz" id="nomePaz" required>Nome paziente<br>

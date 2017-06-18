@@ -26,7 +26,7 @@ public class RegisterPersonnel extends Action
         Connection connection = null;
         Statement st = null;
         ResultSet resultSet;
-        String usernameTF = "", username = "", password = "", role = "", cf = "", nome = "", cognome = "", codReg = "";
+        String usernameTF = "", username = "", password = "", role = "", cf = "", nome = "", cognome = "";
         String indirizzo = "", telefono = "", nomeF = "", dataNascita = "";
         int conta = 0, farmacia = -1;
 
@@ -73,17 +73,16 @@ public class RegisterPersonnel extends Action
 
             //inserisce tutti i dati del form, con idfarmacia appena ricavato
             password = bean.getPassword();
-            role = bean.getRole();
+            role = bean.getRole().toUpperCase();
             cf = bean.getCf();
             nome = bean.getNome();
             cognome = bean.getCognome();
-            codReg = bean.getCodRegionale();
             dataNascita = bean.getDataNascita();
 
             //inserice il nuovo titolare
-            query = "INSERT INTO Operatori (cf, idFarmacia, ruolo, nome, cognome, dataNascita, codRegionale, username, pass) values ("
+            query = "INSERT INTO Operatori (cf, idFarmacia, ruolo, nome, cognome, dataNascita, username, pass) values ("
                     + "'" + cf + "', " + farmacia + ", " + "'" + role + "', " + "'" + nome + "', " + "'" + cognome + "', " + "'" + dataNascita + "', "
-                    + "'" + codReg + "', " + "'" + username + "', " + "'" + password + "')";
+                    + "'" + username + "', " + "'" + password + "')";
             st.executeUpdate(query);
 
             request.setAttribute("exitCode", "REGISTRAZIONE AVVENUTA CON SUCCESSO");

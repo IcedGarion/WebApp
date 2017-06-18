@@ -29,7 +29,7 @@ public class RegisterPharmacy extends Action
         Connection connection = null;
         Statement st = null;
         ResultSet resultSet;
-        String username = "", password = "", role = "", cf = "", nome = "", cognome = "", codReg = "";
+        String username = "", password = "", role = "", cf = "", nome = "", cognome = "";
         String indirizzo = "", telefono = "", nomeF = "", dataNascita = "";
 
         try
@@ -55,7 +55,6 @@ public class RegisterPharmacy extends Action
             cf = bean.getCf();
             nome = bean.getNome();
             cognome = bean.getCognome();
-            codReg = bean.getCodRegionale();
             dataNascita = bean.getDataNascita();
             nomeF = bean.getNomeF();
             indirizzo = bean.getIndirizzo();
@@ -89,9 +88,9 @@ public class RegisterPharmacy extends Action
                 idFarmacia = resultSet.getInt("id");
 
             //inserice il nuovo titolare
-            query = "INSERT INTO Operatori (cf, idFarmacia, ruolo, nome, cognome, dataNascita, codRegionale, username, pass) values ("
+            query = "INSERT INTO Operatori (cf, idFarmacia, ruolo, nome, cognome, dataNascita, username, pass) values ("
                     + "'" + cf + "', " + "'" + idFarmacia + "', " + "'" + role + "', " + "'" + nome + "', " + "'" + cognome + "', " + "'" + dataNascita + "', "
-                    + "'" + codReg + "', " + "'" + username + "', " + "'" + password + "')";
+                    + "'" + username + "', " + "'" + password + "')";
             st.executeUpdate(query);
 
             request.setAttribute("exitCode", "REGISTRAZIONE AVVENUTA CON SUCCESSO");

@@ -22,6 +22,9 @@
 
     <link href="<%=request.getContextPath()%>/css/common.css" rel="stylesheet" type="text/css">
 
+    <jsp:include page="../util/checkLog.jsp"/>
+    <script type="text/javascript" src="<%=request.getContextPath()%>/javascript/validation.js"></script>
+
     <title>ACQUISTO</title>
 
     <!-- in ogni pagina controlla prima che si è loggati -->
@@ -97,9 +100,9 @@
                             <input class="qty" type = "text" name = "qty" required value="1"> pezzi<br>
                         </td>
                         <td>
-                            <input type="submit" value="AGGIUNGI AL CARRELLO">
                             <input type="text" name="productName" id="productName" value="<%= table.getString("codProdotto") %>"
                                    style="visibility:hidden">
+                            <input type="submit" value="AGGIUNGI AL CARRELLO">
                         </td>
                     </form>
                 </tr>

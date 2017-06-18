@@ -14,7 +14,6 @@ public class PersonBean extends ActionForm
     private String nome;
     private String cognome;
     private String dataNascita;
-    private String codRegionale;
     private String role;
 
     public PersonBean()
@@ -82,13 +81,5 @@ public class PersonBean extends ActionForm
 
     public void setDataNascita(String dataNascita) {
         this.dataNascita = dataNascita;
-    }
-
-    public String getCodRegionale() {
-        return codRegionale;
-    }
-
-    public void setCodRegionale(String codRegionale) {
-        this.codRegionale = codRegionale;
     }
 }
