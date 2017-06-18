@@ -43,7 +43,7 @@
         </action>
 
         <action path="/checkout" type = "Actions.ProcessPurchase">
-            <forward name="PURCHASE_OK" path="/jsp/error.jsp" />
+            <forward name="PURCHASE_OK" path="/jsp/purchase.jsp" />
             <forward name="ERROR" path="/jsp/error.jsp" />
         </action>
 

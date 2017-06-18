@@ -45,7 +45,7 @@ public class AddToCart extends Action
         RecipeBean recBean;
         ProductBean prodBean;
         boolean conRicetta = true;
-        String query, username, cf = "", codProdotto = "", role = "";
+        String query, username, cf = "", codProdotto = "", role = "", acquistoDate = "";
         Recipe ricetta;
         int oldQty = -1, qty = 0, codAcquisto = -1, idFarmacia = -1;
         ResultSet table;
@@ -53,7 +53,7 @@ public class AddToCart extends Action
         PurchaseObj acquisto = (PurchaseObj) request.getSession().getAttribute("cart");
         Date date = new Date();
         SimpleDateFormat recipeDateFormatter = new SimpleDateFormat("dd-MM-yyyy");
-        SimpleDateFormat todaysDateFormatter = new SimpleDateFormat("hh-mm-ss");
+        SimpleDateFormat todaysDateFormatter = new SimpleDateFormat("dd-MM-yyyy kk:mm:ss");
         float total = 0;
 
         try
@@ -122,25 +122,26 @@ public class AddToCart extends Action
                 }
 
                 //insert nuovo acquisto
+                acquistoDate = todaysDateFormatter.format(date);
                 query = "INSERT INTO acquisti(cfoperatore, totale, data, completato) " +
-                        "VALUES ('" + cf + "', 0, '" + todaysDateFormatter.format(date) + "', false)";
+                        "VALUES ('" + cf + "', 0, '" + acquistoDate + "', false)";
                 reader.update(query);
 
                 //salva in session l'oggetto PurchaseObj a indicare che è stato aperto un acquisto (un "carrello")
                 //con i dati appena inseriti
-                acquisto = new PurchaseObj(cf, date, idFarmacia);
+                acquisto = new PurchaseObj(cf, acquistoDate, idFarmacia);
                 request.getSession().setAttribute("cart", acquisto);
             }
             //altrimenti è già stato aggiunto qualche prodotto e quindi l'acquisto esiste in session
             else
             {
                 cf = acquisto.getCfOp();
-                date = acquisto.getDate();
+                acquistoDate = acquisto.getFormatDate();
                 idFarmacia = acquisto.getIdFarmacia();
             }
 
             //recupera il codice dell'acquisto corrente
-            query = "SELECT codAcquisto FROM acquisti WHERE cfOperatore = '" + cf + "' AND data = '" + todaysDateFormatter.format(date) + "'";
+            query = "SELECT codAcquisto FROM acquisti WHERE cfOperatore = '" + cf + "' AND data = '" + acquistoDate + "'";
             table = reader.getTable(query);
 
             while (table.next())
@@ -210,7 +211,7 @@ public class AddToCart extends Action
 
                 //inserisce dati della Ricetta (come codice usa codacquisto+codregionale)
                 query = "INSERT INTO ricette(codricetta, codacquisto, codregionale, data)"+
-                        " VALUES ('" + (codAcquisto + "," + codReg + todaysDateFormatter.format(date)) +"', '" + codAcquisto +"', '" + codReg + "', '" + todaysDateFormatter.format(date) + "')";
+                        " VALUES ('" + (codAcquisto + "," + codReg + recipeDateFormatter.format(date)) +"', '" + codAcquisto +"', '" + codReg + "', '" + todaysDateFormatter.format(date) + "')";
 
                 if(! reader.update(query))
                 {

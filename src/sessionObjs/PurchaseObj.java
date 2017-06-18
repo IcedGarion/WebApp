@@ -9,20 +9,20 @@ import java.util.Date;
 public class PurchaseObj
 {
     private String cfOp;
-    private Date date;
+    private String formatDate;
     private int idFarmacia;
 
-    public PurchaseObj(String cfOp, Date date, int idFarmacia)
+    public PurchaseObj(String cfOp, String date, int idFarmacia)
     {
         this.cfOp = cfOp;
-        this.date = date;
+        this.formatDate = date;
         this.idFarmacia = idFarmacia;
     }
 
     public String getCfOp() { return cfOp; }
 
-    public Date getDate() {
-        return date;
+    public String getFormatDate() {
+        return formatDate;
     }
 
     public int getIdFarmacia() { return idFarmacia; }

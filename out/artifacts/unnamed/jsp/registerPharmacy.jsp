@@ -25,8 +25,6 @@
                 <input type="text" name="username" id="username" required>Username Titolare<br>
                 <input type="password" name="password" id="password" required>Password<br>
                 <input type="password" name="passwordConfirm" id="passwordConfirm" required>Conferma Password<br>
-                <!-- Noe-> per la data di nascita c'Ã¨ <input type="date" name="dataNascita">,
-                ma non Ã¨ supportato da firefox e da explorer 11 e precedenti -->
                 <input type="text" name="dataNascita" id="dataNascita">Data Nascita (gg-mm-aaaa)<br>
                 <input type="text" name="codRegionale" id="codRegionale" required>Codice Regionale<br>
                 <br>
