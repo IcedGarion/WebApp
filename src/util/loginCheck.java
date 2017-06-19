@@ -74,7 +74,7 @@ public class loginCheck
         {
             System.out.println("Errore nella query");
             request.getSession().setAttribute("role", "none");
-            e.printStackTrace();
+            //e.printStackTrace();
             connection.close();
 
             return "Query sql non valida";

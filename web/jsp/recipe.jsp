@@ -3,6 +3,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/common.css">
+    <script type="text/javascript" src="<%=request.getContextPath()%>/javascript/validation.js"></script>
+
     <%
         if(! (loginCheck.check((LoginBean) session.getAttribute("RegisterBean"), request, "pers").equals("LOGIN_OK")))
         {
@@ -17,7 +20,6 @@
     %>
 
     <title>INFORMAZIONI RICETTA</title>
-    <script type="text/javascript" src="<%=request.getContextPath()%>/javascript/validation.js"></script>
 </head>
 <body>
 <div id="container">

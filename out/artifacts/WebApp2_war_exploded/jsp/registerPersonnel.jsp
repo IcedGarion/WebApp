@@ -1,8 +1,12 @@
 <%@ page import="util.loginCheck" %>
 <%@ page import="Beans.LoginBean" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <html>
 <head>
+    <script type="text/javascript" src="<%=request.getContextPath()%>/javascript/validation.js"></script>
+    <script type="text/javascript" src="<%=request.getContextPath()%>/javascript/validation.js"></script>
+
     <%
         if(! (loginCheck.check((LoginBean) session.getAttribute("RegisterBean"), request, "pers").equals("LOGIN_OK")))
         {
@@ -17,7 +21,6 @@
     %>
 
     <title>RESISTRA NUOVO PERSONALE</title>
-    <script type="text/javascript" src="<%=request.getContextPath()%>/javascript/validation.js"></script>
 </head>
 <body>
 <div id="container">

@@ -5,7 +5,7 @@
 <html>
 <head>
 
-    <link href="<%=request.getContextPath()%>/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="<%=request.getContextPath()%>/javascript/validation.js"></script>
 
     <title>REGISTRAZIONE AVVENUTA CON SUCCESSO</title>
 

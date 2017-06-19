@@ -1,8 +1,13 @@
 <%@ page import="util.loginCheck" %>
 <%@ page import="Beans.LoginBean" %>
+<%@ page import="util.TableReader" %>
+<%@ page import="java.sql.ResultSet" %>
+<%@ page import="util.AnalysisMethod" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <script type="text/javascript" src="<%=request.getContextPath()%>/javascript/validation.js"></script>
+
     <title>ANALISI</title>
     <%
         if(! (loginCheck.check((LoginBean) session.getAttribute("RegisterBean"), request, null).equals("LOGIN_OK")))
@@ -20,7 +25,7 @@
         String role = ((String) request.getSession().getAttribute("role")).toLowerCase();
 
         //possono entrare solo tf e reg
-        if((! role.equals("reg")) || (! role.equals("tf")))
+        if((! role.equals("reg")) && (! role.equals("tf")))
         {
             request.setAttribute("exitCode", "Area riservata! ");
     %>
@@ -30,7 +35,7 @@
         window.location.replace('error.jsp');
     </script>
 
-        }
+    <%   }
     %>
 </head>
 <body>
@@ -49,22 +54,38 @@
             <jsp:include page="../util/sidebar.jsp"/>
         </div>
         <div id="body" class="right">
+            <table>
+                <tr>
+                    <th>Numero complessivo di acquisti</th>
+                    <th>Numero complessivo di prodotti venduti</th>
+                    <th>Numero Farmaci con ricetta</th>
+                    <th>Numero di ricette</th>
+                    <th>Numero medio farmaci per ricetta</th>
+                </tr>
             <%
-                if(role.equals("pers"))
+                try
                 {
-            %>
+                    LoginBean bean = ((LoginBean) session.getAttribute("RegisterBean"));
+                    AnalysisMethod analysis = null;
 
-            <!-- tabellla -->
-
-
+                    if(role.equals("tf"))
+                        analysis = new AnalysisMethod(bean.getUsername(), "tf");
+                    else if(role.equals("reg"))
+                        analysis = new AnalysisMethod(bean.getUsername(), "reg");
+             %>
+                <tr>
+                    <td><%= analysis.getTotPurchases() %></td>
+                    <td><%= analysis.getTotSold() %></td>
+                    <td><%= analysis.getTotSoldWithPrescription() %></td>
+                    <td><%= analysis.getTotPrescriptions() %></td>
+                    <td><%= analysis.getMeanOfPrescription() %></td>
+                </tr>
             <%
-            }
-            else
-            {
-            %>
-
-            <%
-            }
+                }
+                catch (Exception e)
+                {
+                    e.printStackTrace();
+                }
             %>
 
         </div> <!-- body -->
@@ -73,5 +94,6 @@
             <h6>Creato da Garion Musetta _ Tutti i diritti sono riservati @2017</h6>
         </div> <!--footer-->
     </div> <!-- container-->
+</div>
 </body>
 </html>

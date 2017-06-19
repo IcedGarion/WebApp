@@ -2,10 +2,12 @@
 <%@ page import="util.TableReader" %>
 <%@ page import="java.sql.ResultSet" %>
 <%@ page import="util.loginCheck" %>
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <html>
 <head>
+    <script type="text/javascript" src="<%=request.getContextPath()%>/javascript/validation.js"></script>
+
     <%
         if(! (loginCheck.check((LoginBean) session.getAttribute("RegisterBean"), request, "pers").equals("LOGIN_OK")))
         {

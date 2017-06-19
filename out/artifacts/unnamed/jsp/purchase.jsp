@@ -19,6 +19,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <script type="text/javascript" src="<%=request.getContextPath()%>/javascript/validation.js"></script>
+    <script type="text/javascript" src="<%=request.getContextPath()%>/javascript/validation.js"></script>
 
     <%
         if(! (loginCheck.check((LoginBean) session.getAttribute("RegisterBean"), request, "pers").equals("LOGIN_OK")))
@@ -32,9 +34,6 @@
     <%
         }
     %>
-
-    <link href="<%=request.getContextPath()%>/css/common.css" rel="stylesheet" type="text/css">
-    <script type="text/javascript" src="<%=request.getContextPath()%>/javascript/validation.js"></script>
 
     <title>ACQUISTO</title>
 </head>
