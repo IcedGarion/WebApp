@@ -6,9 +6,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.sql.*;
 
-/**
- * Created by ubuntu on 28/05/17.
- */
 public class loginCheck
 {
     //legge il bean del form login, imposta ruolo in session; ritorna stringa di errore/login_ok
@@ -90,7 +87,7 @@ public class loginCheck
                 //controlla se ruolo è "pers" (tf, df, ob) (nel login bean)
                 if(roleCheck.toLowerCase().equals("pers") && (role.toLowerCase().equals("tf") || role.toLowerCase().equals("df") || role.toLowerCase().equals("ob")))
                 {
-                    //salva il bean di login in session
+                    //salva il ruolo in session
                     request.getSession().setAttribute("role", role);
                     connection.close();
                     return "LOGIN_OK";
@@ -105,7 +102,7 @@ public class loginCheck
                 }
                 else
                 {
-                    request.setAttribute("exitCode", "Area riservata a " + roleCheck);
+                    request.getSession().setAttribute("exitCode", "Area riservata a " + roleCheck);
                     return "ERROR";
                 }
             }
@@ -120,7 +117,7 @@ public class loginCheck
         }
         else
         {
-            request.setAttribute("exitCode", "Username o Password non corretti");
+            request.getSession().setAttribute("exitCode", "Username o Password non corretti");
             request.getSession().setAttribute("role", "none");
             connection.close();
             return "ERROR";

@@ -1,10 +1,36 @@
+<%@ page import="util.loginCheck" %>
+<%@ page import="Beans.LoginBean" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>ANALISI</title>
-    <jsp:include page="../util/checkLog.jsp"/>
     <%
-        String role = (String) request.getSession().getAttribute("role");
+        if(! (loginCheck.check((LoginBean) session.getAttribute("RegisterBean"), request, null).equals("LOGIN_OK")))
+        {
+            request.setAttribute("exitCode", "Login non effettuata");
+    %>
+
+    <!-- redirect verso pagina di errore -->
+    <script type="text/javascript">
+        window.location.replace('error.jsp');
+    </script>
+    <%
+        }
+    %>    <%
+        String role = ((String) request.getSession().getAttribute("role")).toLowerCase();
+
+        //possono entrare solo tf e reg
+        if((! role.equals("reg")) || (! role.equals("tf")))
+        {
+            request.setAttribute("exitCode", "Area riservata! ");
+    %>
+
+    <!-- redirect verso pagina di errore -->
+    <script type="text/javascript">
+        window.location.replace('error.jsp');
+    </script>
+
+        }
     %>
 </head>
 <body>
@@ -12,8 +38,8 @@
 
 <div id="container">
     <div id="header">
-        <% if(role.equals("pers")) {%>
-        <h1>Analisi Vendite Farmacia</h1>
+        <% if(role.equals("reg")) {%>
+        <h1>Analisi Vendite Farmacie nella Regione</h1>
         <%} else {%>
         <h1>Analisi Vendite Farmacia</h1>
         <% } %>
@@ -36,8 +62,9 @@
             else
             {
             %>
+
             <%
-                }
+            }
             %>
 
         </div> <!-- body -->

@@ -3,7 +3,7 @@
 <%@ page import="util.TableReader" %>
 <%@ page import="java.sql.ResultSet" %>
 
-<!-- Tanti form quante le righe di prodotti. come in magazzino, bottone aggiungu aggiunge il prodotto, con relativa qtà,
+<!-- Tanti form quante le righe di prodotti. come in magazzino, bottone aggiungi aggiunge il prodotto, con relativa qtà,
     al "carrello" (un oggetto in session). Alla fine c'è un bottone "PROCEDI" (che non sta per forza in un form)
     che chiama la action (senza neanche il bean), la quale legge dal carrello
     ultima azione (checkout) elimina carrello da session-->
@@ -20,30 +20,23 @@
 <html>
 <head>
 
-    <link href="<%=request.getContextPath()%>/css/common.css" rel="stylesheet" type="text/css">
-
-    <jsp:include page="../util/checkLog.jsp"/>
-    <script type="text/javascript" src="<%=request.getContextPath()%>/javascript/validation.js"></script>
-
-    <title>ACQUISTO</title>
-
-    <!-- in ogni pagina controlla prima che si è loggati -->
     <%
         if(! (loginCheck.check((LoginBean) session.getAttribute("RegisterBean"), request, "pers").equals("LOGIN_OK")))
         {
-            request.setAttribute("exitCode", "Login non effettuata");
     %>
 
-         <!-- redirect verso pagina di errore -->
-            <script type="text/javascript">
-                window.location.replace('error.jsp');
-            </script>
+    <!-- redirect verso pagina di errore -->
+    <script type="text/javascript">
+        window.location.replace('error.jsp');
+    </script>
     <%
         }
-
-        String role = (String) request.getSession().getAttribute("role");
     %>
 
+    <link href="<%=request.getContextPath()%>/css/common.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="<%=request.getContextPath()%>/javascript/validation.js"></script>
+
+    <title>ACQUISTO</title>
 </head>
 <body>
 
@@ -71,6 +64,8 @@
                 </tr>
 
                 <%
+                    try
+                    {
                     TableReader reader = new TableReader();
                     ResultSet table = reader.buildWarehouseTable(((LoginBean) session.getAttribute("RegisterBean")).getUsername());
 
@@ -106,7 +101,10 @@
                         </td>
                     </form>
                 </tr>
-                <% }  %>
+                <% }
+                }catch (Exception e)
+                {}
+                %>
             </table>
 
             <br>

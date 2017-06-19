@@ -1,9 +1,23 @@
+<%@ page import="util.loginCheck" %>
+<%@ page import="Beans.LoginBean" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <%
+        if(! (loginCheck.check((LoginBean) session.getAttribute("RegisterBean"), request, "reg").equals("LOGIN_OK")))
+        {
+    %>
+
+            <!-- redirect verso pagina di errore -->
+            <script type="text/javascript">
+                window.location.replace('error.jsp');
+            </script>
+    <%
+        }
+    %>
+
+    <script type="text/javascript" src="<%=request.getContextPath()%>/javascript/validation.js"></script>
     <title>REGISTRA NUOVA FARMACIA</title>
-    <jsp:include page="../util/checkLog.jsp"/>
-    <script type="text/javascript" src="../javascript/validation.js"></script>
 </head>
 <body>
 <div id="container">

@@ -11,9 +11,8 @@
 
     <!-- in ogni pagina controlla prima che si è loggati -->
     <%
-        if(! (loginCheck.check((LoginBean) session.getAttribute("RegisterBean"), request, null).equals("LOGIN_OK")))
+        if(! (loginCheck.check((LoginBean) session.getAttribute("RegisterBean"), request, "reg").equals("LOGIN_OK")))
         {
-            request.setAttribute("exitCode", "Login non effettuata");
     %>
 
     <!-- redirect verso pagina di errore -->

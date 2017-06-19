@@ -72,7 +72,7 @@ create table Pazienti
 create table Ricette
 (
 	codRicetta varchar not null primary key,
-	codAcquisto integer not null,
+	idCarrello integer not null,
 	codRegionale varchar not null,
 	data date
 );
@@ -112,7 +112,7 @@ add foreign key (idFarmacia) references Farmacie(id),
 add foreign key (codProdotto) references Prodotti (codProdotto);
 
 alter table Ricette
-add foreign key (codAcquisto) references Acquisti(codAcquisto),
+add foreign key (idCarrello) references Carrello(id),
 add foreign key (codRegionale) references medici (codRegionale);
 
 alter table Messaggi

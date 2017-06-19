@@ -1,12 +1,25 @@
 <%@ page import="Beans.LoginBean" %>
 <%@ page import="util.TableReader" %>
 <%@ page import="java.sql.ResultSet" %>
+<%@ page import="util.loginCheck" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <%
+        if(! (loginCheck.check((LoginBean) session.getAttribute("RegisterBean"), request, "pers").equals("LOGIN_OK")))
+        {
+            %>
+
+            <!-- redirect verso pagina di errore -->
+            <script type="text/javascript">
+                window.location.replace('error.jsp');
+            </script>
+            <%
+        }
+    %>
+
     <title>LISTA PERSONALE</title>
-    <jsp:include page="../util/checkLog.jsp"/>
 </head>
 <body>
 <div id="container">
@@ -28,6 +41,8 @@
                     <th>Data di nascita</th>
                 </tr>
                 <%
+                    try
+                    {
                     TableReader reader = new TableReader();
                     ResultSet table = reader.buildPersonnelTable(((LoginBean) session.getAttribute("RegisterBean")).getUsername());
 
@@ -42,6 +57,9 @@
                 <td><%= table.getString("datanascita") %></td>
             </tr>
                 <%}
+                }
+                catch(Exception e)
+                {}
                 %>
             </table>
         </div> <!-- body -->

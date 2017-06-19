@@ -47,7 +47,7 @@ public class AddToCart extends Action
         boolean conRicetta = true;
         String query, username, cf = "", codProdotto = "", role = "", acquistoDate = "";
         Recipe ricetta;
-        int oldQty = -1, qty = 0, codAcquisto = -1, idFarmacia = -1;
+        int oldQty = -1, qty = 0, codAcquisto = -1, idFarmacia = -1, idCarrello = -1;
         ResultSet table;
         TableReader reader = new TableReader();
         PurchaseObj acquisto = (PurchaseObj) request.getSession().getAttribute("cart");
@@ -192,6 +192,13 @@ public class AddToCart extends Action
                     " VALUES ('" + codProdotto + "', " + qty + ", " + codAcquisto + ");";
             reader.update(query);
 
+            //salva id Carrello (serial) appena aggiunto
+            query = "SELECT id FROM Carrello WHERE codprodotto = '" + codProdotto + "' AND"
+                    + " quantita = " + qty + " AND codacquisto = " + codAcquisto;
+            table = reader.getTable(query);
+            while (table.next())
+                idCarrello = table.getInt("id");
+
 
             //calcola e aggiorna totale acquisto
             query = "SELECT prezzo FROM Prodotti WHERE codProdotto = '" + codProdotto + "'";
@@ -220,8 +227,8 @@ public class AddToCart extends Action
                 codReg = recBean.getCodRegMed();
 
                 //inserisce dati della Ricetta (come codice usa codacquisto+codregionale)
-                query = "INSERT INTO ricette(codricetta, codacquisto, codregionale, data)"+
-                        " VALUES ('" + (codAcquisto + "," + codReg + recipeDateFormatter.format(date)) +"', '" + codAcquisto +"', '" + codReg + "', '" + todaysDateFormatter.format(date) + "')";
+                query = "INSERT INTO ricette(codricetta, idCarrello, codregionale, data)"+
+                        " VALUES ('" + (codAcquisto + "," + codReg + recipeDateFormatter.format(date)) +"', '" + idCarrello +"', '" + codReg + "', '" + todaysDateFormatter.format(date) + "')";
 
                 if(! reader.update(query))
                 {

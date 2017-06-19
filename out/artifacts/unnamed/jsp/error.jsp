@@ -10,7 +10,7 @@
 <% String errorMsg = null;
     try
     {
-        errorMsg = (String) request.getAttribute("exitCode");
+        errorMsg = (String) request.getSession().getAttribute("exitCode");
         if(errorMsg == null)
             errorMsg = "Login non effettuata";
     }
@@ -29,6 +29,8 @@
     {%>
         <a href = "<%=request.getContextPath()%>/jsp/privateHome.jsp">Torna alla home</a>
     <%}
+
+    request.getSession().removeAttribute("exitCode");
 %>
 </body>
 </html>

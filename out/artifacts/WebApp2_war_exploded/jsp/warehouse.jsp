@@ -1,12 +1,24 @@
 <%@ page import="Beans.LoginBean" %>
 <%@ page import="util.TableReader" %>
 <%@ page import="java.sql.ResultSet" %>
+<%@ page import="util.loginCheck" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <%
+        if(! (loginCheck.check((LoginBean) session.getAttribute("RegisterBean"), request, "pers").equals("LOGIN_OK")))
+        {
+    %>
+
+            <!-- redirect verso pagina di errore -->
+            <script type="text/javascript">
+                location.replace('<%=request.getContextPath()%>/jsp/error.jsp');
+            </script>
+    <%
+        }
+    %>
     <title>MAGAZZINO</title>
-    <jsp:include page="../util/checkLog.jsp"/>
     <% String role = (String) request.getSession().getAttribute("role"); %>
 </head>
 <body>
@@ -47,14 +59,15 @@
                     %>
                 </tr>
                 <%
-
-                    TableReader reader = new TableReader();
-                    LoginBean bean = ((LoginBean) session.getAttribute("RegisterBean"));
-
-                    ResultSet table = reader.buildWarehouseTable(bean.getUsername());
-
-                    while(table.next())
+                    try
                     {
+                        TableReader reader = new TableReader();
+                        LoginBean bean = ((LoginBean) session.getAttribute("RegisterBean"));
+
+                        ResultSet table = reader.buildWarehouseTable(bean.getUsername());
+
+                        while(table.next())
+                        {
                 %><tr>
                 <td><%= table.getString("nome") %></td>
                 <td><%= table.getString("descrizione") %></td>
@@ -89,6 +102,9 @@
                 %>
             </tr>
                 <%}
+                }
+                catch(Exception e)
+                {}
                 %>
             </table>
         </div> <!-- body -->

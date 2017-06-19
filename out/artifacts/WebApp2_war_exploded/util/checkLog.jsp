@@ -8,13 +8,12 @@
 <%
     if(! (loginCheck.check((LoginBean) session.getAttribute("RegisterBean"), request, null).equals("LOGIN_OK")))
     {
-        request.setAttribute("exitCode", "Login non effettuata");
 %>
 
-<!-- redirect verso pagina di errore -->
-<script type="text/javascript">
-    window.location.replace('error.jsp');
-</script>
+        <!-- redirect verso pagina di errore -->
+        <script type="text/javascript">
+            window.location.replace('error.jsp');
+        </script>
 <%
     }
 %>
