@@ -116,4 +116,32 @@ public class TableReader
 
         return getTable(query);
     }
+
+    public ResultSet buildNewMailTable(String role, String username) throws SQLException
+    {
+        ResultSet table;
+        String query;
+        int farmacia = -1;
+
+        if(role.toLowerCase().equals("reg"))
+        {
+            //prende tutti i nomi delle farmacie
+            query = "SELECT nome AS username from Farmacie";
+        }
+        else
+        {
+            //prende idFarmacia per trovare la farmacia associata al mio username
+            query = "SELECT idFarmacia FROM Operatori WHERE username = '" + username + "'";
+            table = getTable(query);
+
+            while(table.next())
+                farmacia = table.getInt("idFarmacia");
+
+            //prende tutti gli username degli operatori della stessa farmacia
+            query = "SELECT username from Operatori WHERE idFarmacia = " + farmacia + " AND ruolo = '"  + role.toUpperCase() +  "'";
+        }
+
+
+        return getTable(query);
+    }
 }

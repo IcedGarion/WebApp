@@ -12,6 +12,7 @@
         <form-bean name="WarehouseBean" type="Beans.WarehouseBean"/>
         <form-bean name="ProductBean" type="Beans.ProductBean"/>
         <form-bean name="RecipeBean" type="Beans.RecipeBean"/>
+        <form-bean name="MailBean" type="Beans.MailBean"/>
     </form-beans>
     <action-mappings>
         <action path="/login" type = "Actions.LoginAction" name="RegisterBean" scope = "session" >
@@ -44,6 +45,11 @@
 
         <action path="/checkout" type = "Actions.ProcessPurchase">
             <forward name="PURCHASE_OK" path="/jsp/purchase.jsp" />
+            <forward name="ERROR" path="/jsp/error.jsp" />
+        </action>
+
+        <action path="/mail" type = "Actions.SendMail" name="MailBean" scope="request">
+            <forward name="SEND_OK" path="/jsp/mail.jsp" />
             <forward name="ERROR" path="/jsp/error.jsp" />
         </action>
 

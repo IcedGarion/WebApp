@@ -5,7 +5,6 @@
 <html>
 <head>
     <script type="text/javascript" src="<%=request.getContextPath()%>/javascript/validation.js"></script>
-    <script type="text/javascript" src="<%=request.getContextPath()%>/javascript/validation.js"></script>
 
     <%
         if(! (loginCheck.check((LoginBean) session.getAttribute("RegisterBean"), request, "pers").equals("LOGIN_OK")))

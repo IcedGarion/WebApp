@@ -7,7 +7,7 @@ create table Regione
 create table Farmacie
 (
 	id SERIAL primary key,
-	nome varchar not null,
+	nome varchar not null unique,
 	indirizzo varchar,
 	telefono varchar(10),
 	unique(nome, indirizzo, telefono)
@@ -84,6 +84,7 @@ create table Messaggi
 	toReg varchar,
 	fromOp varchar,
 	toOp varchar,
+	oggetto varchar not null,
 	msg varchar not null
 );
 
