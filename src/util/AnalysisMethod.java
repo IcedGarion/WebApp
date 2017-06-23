@@ -29,70 +29,103 @@ public class AnalysisMethod
 
     public int getTotPurchases() throws SQLException
     {
-        String query = "";
-        ResultSet table;
-        int totPurchases = 0;
+        String queryForTf, queryForReg;
 
-        if(role.equals("tf"))
-        {
-            //per tf, sceglie tutti gli acquisti degli operatori di quella farmacia (solo acquisti completati)
-            query = "SELECT COUNT(*) AS count FROM Acquisti JOIN Operatori on Acquisti.cfOperatore = Operatori.cf"
+        //per tf, sceglie tutti gli acquisti degli operatori di quella farmacia (solo acquisti completati)
+        queryForTf = "SELECT COUNT(*) AS count FROM Acquisti JOIN Operatori on Acquisti.cfOperatore = Operatori.cf"
                     + " WHERE Operatori.idFarmacia = " + idFarmacia + " AND Acquisti.completato = true";
-        }
-        else if(role.equals("reg"))
-        {
-            //per reg, sceglie tutti gli acquisti di tutti gli operatori (solo acquisti completati)
-            query = "SELECT COUNT(*) FROM Acquisti JOIN Operatori on Acquisti.cfOperatore = Operatori.cf"
+        //per reg, sceglie tutti gli acquisti di tutti gli operatori (solo acquisti completati)
+        queryForReg = "SELECT COUNT(*) FROM Acquisti JOIN Operatori on Acquisti.cfOperatore = Operatori.cf"
                     + " WHERE Acquisti.completato = true";
-        }
 
-        table = reader.getTable(query);
-        while(table.next())
-            totPurchases = table.getInt("count");
-
-        return totPurchases;
+        return getTable(queryForTf, queryForReg);
     }
 
     public int getTotSold() throws SQLException
     {
-        String query = "";
-        ResultSet table;
-        int totPurchases = 0;
+        String queryForTf, queryForReg;
 
-        if(role.equals("tf"))
-        {
-            //per tf, sceglie tutti i prodotti di tutti gli acquisti degli operatori di quella farmacia (solo acquisti completati)
-            query = "SELECT SUM(Carrello.quantita) AS count FROM Acquisti JOIN Operatori on Acquisti.cfOperatore = Operatori.cf"
+        //per tf, sceglie tutti i prodotti di tutti gli acquisti degli operatori di quella farmacia (solo acquisti completati)
+        queryForTf = "SELECT SUM(Carrello.quantita) AS count FROM Acquisti JOIN Operatori on Acquisti.cfOperatore = Operatori.cf"
                     + " JOIN carrello on Acquisti.codAcquisto = Carrello.codAcquisto"
                     + " WHERE Operatori.idFarmacia = " + idFarmacia + "AND Acquisti.completato = true";
-        }
-        else if(role.equals("reg"))
-        {
-            //per reg, sceglie tutti i prodotti gli acquisti di tutti gli operatori (solo acquisti completati)
-            query = "SELECT SUM(Carrello.quantita) AS count FROM Acquisti JOIN Operatori on Acquisti.cfOperatore = Operatori.cf"
+        //per reg, sceglie tutti i prodotti gli acquisti di tutti gli operatori (solo acquisti completati)
+        queryForReg = "SELECT SUM(Carrello.quantita) AS count FROM Acquisti JOIN Operatori on Acquisti.cfOperatore = Operatori.cf"
                     + " JOIN carrello on Acquisti.codAcquisto = Carrello.codAcquisto"
                     + " WHERE Acquisti.completato = true";
-        }
+
+        return getTable(queryForTf, queryForReg);
+    }
+
+    public int getTotSoldWithPrescription() throws SQLException
+    {
+        String queryForTf, queryForReg;
+
+        //per tf, sceglie tutti i prodotti di tutti gli acquisti degli operatori di quella farmacia (solo acquisti completati)
+        queryForTf = "SELECT SUM(Carrello.quantita) AS count FROM Acquisti JOIN Operatori on Acquisti.cfOperatore = Operatori.cf"
+                    + " JOIN carrello on Acquisti.codAcquisto = Carrello.codAcquisto JOIN Ricette on Carrello.id = Ricette.idCarrello"
+                    + " WHERE Operatori.idFarmacia = " + idFarmacia + "AND Acquisti.completato = true";
+
+        //per reg, sceglie tutti i prodotti gli acquisti di tutti gli operatori (solo acquisti completati)
+        queryForReg = "SELECT SUM(Carrello.quantita) AS count FROM Acquisti JOIN Operatori on Acquisti.cfOperatore = Operatori.cf"
+                    + " JOIN carrello on Acquisti.codAcquisto = Carrello.codAcquisto JOIN Ricette on Carrello.id = Ricette.idCarrello"
+                    + " WHERE Acquisti.completato = true";
+
+        return getTable(queryForTf, queryForReg);
+    }
+
+    public int getTotPrescriptions() throws SQLException
+    {
+        String queryForTf, queryForReg;
+
+        //per tf,
+        queryForTf = "SELECT COUNT(*) AS count FROM Acquisti JOIN Operatori on Acquisti.cfOperatore = Operatori.cf"
+                    + " JOIN carrello on Acquisti.codAcquisto = Carrello.codAcquisto JOIN Ricette on Carrello.id = Ricette.idCarrello"
+                    + " WHERE Operatori.idFarmacia = " + idFarmacia + "AND Acquisti.completato = true";
+
+        //per reg,
+        queryForReg = "SELECT COUNT(*) AS count FROM Acquisti JOIN Operatori on Acquisti.cfOperatore = Operatori.cf"
+                    + " JOIN carrello on Acquisti.codAcquisto = Carrello.codAcquisto JOIN Ricette on Carrello.id = Ricette.idCarrello"
+                    + " WHERE Acquisti.completato = true";
+
+        return getTable(queryForTf, queryForReg);
+    }
+
+    public float getMeanOfPrescription() throws SQLException
+    {
+        String queryForTf, queryForReg;
+
+        //per tf, (simile a tot prodotti con ricetta) prende tutti i prodotti degli gli acquisti con ricetta
+        //della farmacia dell'operatore che fa la query, e li divide per il numero di quegli acquisti con ricetta
+        queryForTf = "SELECT AVG(Carrello.quantita) AS count FROM Acquisti JOIN Operatori on Acquisti.cfOperatore = Operatori.cf"
+                + " JOIN carrello on Acquisti.codAcquisto = Carrello.codAcquisto JOIN Ricette on Carrello.id = Ricette.idCarrello"
+                + " WHERE Operatori.idFarmacia = " + idFarmacia + "AND Acquisti.completato = true";
+
+        //per reg, (simile) prende tutti i prodotti con ricetta venduti e divide per il numero i acquisti con ricetta
+        queryForReg = "SELECT AVG(Carrello.quantita) AS count FROM Acquisti JOIN Operatori on Acquisti.cfOperatore = Operatori.cf"
+                + " JOIN carrello on Acquisti.codAcquisto = Carrello.codAcquisto JOIN Ricette on Carrello.id = Ricette.idCarrello"
+                + " WHERE Acquisti.completato = true";
+
+        return getTable(queryForTf, queryForReg);
+    }
+
+    //result column is always named "count"
+    private int getTable(String queryForTf, String queryForReg) throws SQLException
+    {
+        String query = "";
+        ResultSet table;
+        int tot = 0;
+
+        //prende il ruolo in session e decide la query
+        if(role.equals("tf"))
+            query = queryForTf;
+        else if(role.equals("reg"))
+            query = queryForReg;
 
         table = reader.getTable(query);
         while(table.next())
-            totPurchases = table.getInt("count");
+            tot = table.getInt("count");
 
-        return totPurchases;
-    }
-
-    public int getTotSoldWithPrescription()
-    {
-        return -1;
-    }
-
-    public int getTotPrescriptions()
-    {
-        return -1;
-    }
-
-    public int getMeanOfPrescription()
-    {
-        return -1;
+        return tot;
     }
 }

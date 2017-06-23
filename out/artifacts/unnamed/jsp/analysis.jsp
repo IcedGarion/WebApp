@@ -1,12 +1,12 @@
 <%@ page import="util.loginCheck" %>
 <%@ page import="Beans.LoginBean" %>
-<%@ page import="util.TableReader" %>
-<%@ page import="java.sql.ResultSet" %>
 <%@ page import="util.AnalysisMethod" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <html>
 <head>
     <script type="text/javascript" src="<%=request.getContextPath()%>/javascript/validation.js"></script>
+    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/common.css">
 
     <title>ANALISI</title>
     <%
