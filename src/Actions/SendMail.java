@@ -28,7 +28,8 @@ public class SendMail extends Action
         Statement st = null;
         ResultSet resultSet;
 
-        System.out.println(bean.getUsername());
+        for(String s : bean.getUsername())
+            System.out.println(s.toString());
 
         request.getSession().setAttribute("msg", "Mail inviata! ");
         return mapping.findForward("SEND_OK");

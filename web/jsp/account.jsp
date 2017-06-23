@@ -1,6 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/common.css">
+
     <title>ACCOUNT</title>
 </head>
 <body>

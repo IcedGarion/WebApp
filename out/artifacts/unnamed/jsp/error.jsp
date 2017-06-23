@@ -12,7 +12,11 @@
     {
         errorMsg = (String) request.getSession().getAttribute("exitCode");
         if(errorMsg == null)
-            errorMsg = "Login non effettuata";
+        {
+            errorMsg = (String) request.getAttribute("exitCode");
+            if (errorMsg == null)
+                errorMsg = "Login non effettuata";
+        }
     }
     catch(Exception e)
     {

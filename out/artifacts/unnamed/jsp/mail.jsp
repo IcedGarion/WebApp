@@ -3,6 +3,8 @@
 <head>
     <title>MAIL</title>
     <jsp:include page="../util/checkLog.jsp"/>
+    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/common.css">
+
     <%
         String role = ((String) request.getSession().getAttribute("role")).toLowerCase();
     %>
@@ -19,7 +21,7 @@
         </div> <!-- left -->
 
         <div id="right">
-            <h4><a href="newMail.jsp">Invia nuova Mail</a></h4>
+            <h4><a href="<%=request.getContextPath()%>/jsp/newMail.jsp">Invia nuova Mail</a></h4>
         </div>
 
         <div id="body">

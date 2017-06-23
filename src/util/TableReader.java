@@ -138,7 +138,7 @@ public class TableReader
                 farmacia = table.getInt("idFarmacia");
 
             //prende tutti gli username degli operatori della stessa farmacia
-            query = "SELECT username from Operatori WHERE idFarmacia = " + farmacia + " AND ruolo = '"  + role.toUpperCase() +  "'";
+            query = "SELECT username from Operatori WHERE idFarmacia = " + farmacia;
         }
 
 

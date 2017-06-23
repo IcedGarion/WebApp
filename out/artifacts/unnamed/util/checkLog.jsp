@@ -3,7 +3,6 @@
 <%@ page import="Beans.LoginBean" %>
 <html>
 <body>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/common.css">
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <%
     if(! (loginCheck.check((LoginBean) session.getAttribute("RegisterBean"), request, null).equals("LOGIN_OK")))

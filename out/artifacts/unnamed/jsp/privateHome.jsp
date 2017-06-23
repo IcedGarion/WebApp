@@ -2,6 +2,8 @@
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
+    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/common.css">
+
     <title>AREA PRIVATA</title>
     <jsp:include page="../util/checkLog.jsp"/>
     <% String role = (String) request.getSession().getAttribute("role"); %>

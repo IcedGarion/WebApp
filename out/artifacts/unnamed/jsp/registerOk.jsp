@@ -6,6 +6,7 @@
 <head>
 
     <script type="text/javascript" src="<%=request.getContextPath()%>/javascript/validation.js"></script>
+    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/common.css">
 
     <title>REGISTRAZIONE AVVENUTA CON SUCCESSO</title>
 
