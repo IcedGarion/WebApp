@@ -144,4 +144,30 @@ public class TableReader
 
         return getTable(query);
     }
+
+    public ResultSet buildSentMailTable(String role, String username) throws SQLException
+    {
+        ResultSet table;
+        String query;
+
+        if (role.toLowerCase().equals("reg"))
+            query = "SELECT toReg, toOp, msg, oggetto, dt_invio FROM Messaggi WHERE fromReg = '" + username + "'";
+        else
+            query = "SELECT toReg, toOp, msg, oggetto, dt_invio FROM Messaggi WHERE fromOp = '" + username + "'";
+
+        return getTable(query);
+    }
+
+    public ResultSet buildInboxMailTable(String role, String username) throws SQLException
+    {
+        ResultSet table;
+        String query;
+
+        if (role.toLowerCase().equals("reg"))
+            query = "SELECT fromReg, fromOp, msg, oggetto, dt_invio FROM Messaggi WHERE toReg = '" + username + "'";
+        else
+            query = "SELECT fromReg, fromOp, msg, oggetto, dt_invio FROM Messaggi WHERE toOp = '" + username + "'";
+
+        return getTable(query);
+    }
 }

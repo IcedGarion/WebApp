@@ -13,22 +13,17 @@
 <body>
 <div id="container">
     <div id="header">
-        <h2>Mail Inbox</h2>
+        <h2>Mail</h2>
     </div> <!-- header -->
     <div id="cont">
         <div id="left" class="left">
             <jsp:include page="../util/sidebar.jsp"/>
         </div> <!-- left -->
 
-        <div id="right">
-            <h4><a href="<%=request.getContextPath()%>/jsp/newMail.jsp">Invia nuova Mail</a></h4>
-        </div>
-
         <div id="body">
-            <!-- Costruisce "tabella" mail in arrivo -->
-            <%
-
-            %>
+            <h4><a href="<%=request.getContextPath()%>/jsp/newMail.jsp">Invia nuova Mail</a></h4>
+            <h4><a href="<%=request.getContextPath()%>/jsp/inboxMail.jsp">Mail ricevute</a></h4>
+            <h4><a href="<%=request.getContextPath()%>/jsp/sentMail.jsp">Mail inviate</a></h4>
         </div> <!-- body -->
         <div class="clear"/>
     </div>
@@ -37,5 +32,20 @@
         <h6>Creato da Garion Musetta _ Tutti i diritti sono riservati @2017</h6>
     </div> <!--footer-->
 </div> <!-- container-->
+
+<%
+    String msg = (String) request.getSession().getAttribute("msg");
+
+    if(msg != null)
+    {
+%>
+        <script>
+            alert("<%= msg %>");
+        </script>
+<%
+        request.getSession().removeAttribute("msg");
+    }
+%>
+
 </body>
 </html>

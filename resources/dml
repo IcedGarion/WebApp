@@ -19,3 +19,9 @@ INSERT INTO magazzino(idfarmacia, codprodotto, quantitadisponibile)
 INSERT INTO medici(codregionale, nome, cognome, indirizzo)
     VALUES ('codRegMed01', 'Massimo', 'DeMedici', 'Via Demedici 23');
 
+INSERT INTO messaggi(dt_invio, fromreg, toreg, fromop, toop, oggetto, msg)
+    VALUES ('2017-11-12', null, null, 'marioRossi', 'paoloP', 'ciao', 'lol');
+
+INSERT INTO messaggi(dt_invio, fromreg, toreg, fromop, toop, oggetto, msg)
+    VALUES ('2017-11-12 10:10', null, 'regPiemonte', 'marioRossi', null, 'salve', 'lel');
+

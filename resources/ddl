@@ -80,6 +80,7 @@ create table Ricette
 create table Messaggi
 (
 	id SERIAL not null primary key,
+	dt_invio timestamp not null,
 	fromReg varchar,
 	toReg varchar,
 	fromOp varchar,
@@ -119,6 +120,6 @@ add foreign key (codRegionale) references medici (codRegionale);
 alter table Messaggi
 add foreign key (fromReg) references Regione (username),
 add foreign key (toReg) references Regione (username),
-add foreign key (fromOp) references Operatori (cf),
-add foreign key (toOp) references Operatori (cf);
+add foreign key (fromOp) references Operatori (username),
+add foreign key (toOp) references Operatori (username);
 
