@@ -52,8 +52,19 @@ public class SendMail extends Action
 
                 //regione non può inviare a "un'altra" regione
                 if(role.toLowerCase().equals("reg"))
+                {
+                    //cerca username del titolare della farmacia
+
+
+
+
+
+
+
                     query = "INSERT INTO messaggi(dt_invio, fromreg, toreg, fromop, toop, oggetto, msg)\n" +
                             "    VALUES ('" + data + "', '" + username + "', null, null, '" + dest + "', '" + obj + "', '" + msg + "')";
+
+                }
                 else
                 {
                     //se il destinatario e' regione, setta la property toOp a null
@@ -66,20 +77,28 @@ public class SendMail extends Action
                                 "    VALUES ('" + data + "', null, null, '" + username + "', '" + dest + "', '" + obj + "', '" + msg + "')";
                 }
 
-                for(int i=1; i<dest.length(); i++)
+                for(int i=1; i<dests.length; i++)
                 {
                     //accoda altre insert alla precedente, se ci sono piu' destinatari:
                     //stessa logica di prima
                     dest = dests[i];
                     if(role.toLowerCase().equals("reg"))
-                        query = ", VALUES ('" + data + "', '" + username + "', null, null, '" + dest + "', '" + obj + "', '" + msg + "')";
+                    {
+                        //cerca username del titolare della farmacia
+
+
+
+
+
+                        query += ", ('" + data + "', '" + username + "', null, null, '" + dest + "', '" + obj + "', '" + msg + "')";
+                    }
                     else
                     {
                         if(dest.toLowerCase().startsWith("reg"))
-                            query = ", VALUES ('" + data + "', null, '" + dest + "', '" + username + "', null, '" + obj + "', '" + msg + "')";
+                            query += ", ('" + data + "', null, '" + dest + "', '" + username + "', null, '" + obj + "', '" + msg + "')";
                             //viceversa
                         else
-                            query = ", VALUES ('" + data + "', null, null, '" + username + "', '" + dest + "', '" + obj + "', '" + msg + "')";
+                            query += ", ('" + data + "', null, null, '" + username + "', '" + dest + "', '" + obj + "', '" + msg + "')";
                     }
                 }
             }
