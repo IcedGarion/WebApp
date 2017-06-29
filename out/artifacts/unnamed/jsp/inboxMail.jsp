@@ -34,6 +34,17 @@
                     ResultSet table = reader.buildInboxMailTable(role, bean.getUsername());
                     String username, mitt;
 
+
+
+
+
+                    //e se vuota?
+
+
+
+
+
+
                     while(table.next())
                     {
             %>

@@ -29,7 +29,7 @@ public class SendMail extends Action
         MailBean bean = (MailBean) form;
         LoginBean login = (LoginBean) request.getSession().getAttribute("RegisterBean");
         String[] dests;
-        String obj, msg, data, query, username, role;
+        String obj, msg, data, query = "", username, role, dest;
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         TableReader reader = new TableReader();
 
@@ -46,14 +46,45 @@ public class SendMail extends Action
             //da fare insert multiple per ogni String in dests!
             //e capire dove mettere null, se è toOp o toReg!
 
+            if(dests.length > 0)
+            {
+                dest = dests[0];
+
+                //regione non può inviare a "un'altra" regione
+                if(role.toLowerCase().equals("reg"))
+                    query = "INSERT INTO messaggi(dt_invio, fromreg, toreg, fromop, toop, oggetto, msg)\n" +
+                            "    VALUES ('" + data + "', '" + username + "', null, null, '" + dest + "', '" + obj + "', '" + msg + "')";
+                else
+                {
+                    //se il destinatario e' regione, setta la property toOp a null
+                    if(dest.toLowerCase().startsWith("reg"))
+                        query = "INSERT INTO messaggi(dt_invio, fromreg, toreg, fromop, toop, oggetto, msg)\n" +
+                            "    VALUES ('" + data + "', null, '" + dest + "', '" + username + "', null, '" + obj + "', '" + msg + "')";
+                    //viceversa
+                    else
+                        query = "INSERT INTO messaggi(dt_invio, fromreg, toreg, fromop, toop, oggetto, msg)\n" +
+                                "    VALUES ('" + data + "', null, null, '" + username + "', '" + dest + "', '" + obj + "', '" + msg + "')";
+                }
+
+                for(int i=1; i<dest.length(); i++)
+                {
+                    //accoda altre insert alla precedente, se ci sono piu' destinatari:
+                    //stessa logica di prima
+                    dest = dests[i];
+                    if(role.toLowerCase().equals("reg"))
+                        query = ", VALUES ('" + data + "', '" + username + "', null, null, '" + dest + "', '" + obj + "', '" + msg + "')";
+                    else
+                    {
+                        if(dest.toLowerCase().startsWith("reg"))
+                            query = ", VALUES ('" + data + "', null, '" + dest + "', '" + username + "', null, '" + obj + "', '" + msg + "')";
+                            //viceversa
+                        else
+                            query = ", VALUES ('" + data + "', null, null, '" + username + "', '" + dest + "', '" + obj + "', '" + msg + "')";
+                    }
+                }
+            }
 
 
-            if(role.toLowerCase().equals("reg"))
-                query = "INSERT INTO messaggi(dt_invio, fromreg, toreg, fromop, toop, oggetto, msg)\n" +
-                    "    VALUES ('" + data + "', '" + username + "', "lol", null, "lol", '" + obj + "', '" + msg + "')";
-            else
-                query = "INSERT INTO messaggi(dt_invio, fromreg, toreg, fromop, toop, oggetto, msg)\n" +
-                        "    VALUES ('" + data + "', null, "lol", '" + username + "', "lol", '" + obj + "', '" + msg + "')";
 
 
             reader.update(query);

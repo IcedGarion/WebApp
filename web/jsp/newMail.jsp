@@ -1,6 +1,7 @@
 <%@ page import="util.TableReader" %>
 <%@ page import="Beans.LoginBean" %>
 <%@ page import="java.sql.ResultSet" %>
+<%@ page import="util.Configurations" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -24,25 +25,52 @@
         <div id="body">
             <!-- form per l'invio -->
             <form action="<%=request.getContextPath()%>/mail.do" method="post" name="form" onsubmit="return validateMailForm()">
+
+
+
+
+                <!-- invia a tutti check? -->
+                <!-- anche regione dest!
+                    GUARDA IL TABLEREADER: aggiungi una colonna
+                    POI LO STESSO CHE MANDA LA MAIL NON DEVE APPARIRE TRA I DEST!
+                    https://www.tutorialspoint.com/jdbc/updating-result-sets.htm -->
+
+
+
                 Username destinatari : <br>
                     <%
                         try
                         {
                         TableReader reader = new TableReader();
                         LoginBean bean = ((LoginBean) session.getAttribute("RegisterBean"));
-                        ResultSet table = reader.buildNewMailTable(role, bean.getUsername());
+                        String userUsername = bean.getUsername();
+                        ResultSet table = reader.buildNewMailTable(role, userUsername);
                         String username;
+                        boolean reg = role.equals("reg");
 
                         while(table.next())
                         {
                             username = table.getString("username");
+                            //stampa la checkbox solo se non è lo stesso utente che invia
+                            if(!reg && username.equals(userUsername))
+                                continue;
                     %>
                     <input type="checkbox" name="username" value="<%= username %>"><%= username %>
                     <%
                         }
+
+                        //aggiunge anche username reg
+                        if(!reg)
+                        {
+                    %>
+                    <input type="checkbox" name="username" value="<%= Configurations.REG_USERNAME %>"><%= Configurations.REG_USERNAME %>
+                    <%
+                        }
                         }
                         catch (Exception e)
-                        { }
+                        {
+                            e.printStackTrace();
+                        }
                     %>
                 <br>
                 <input type="text" name="obj" id="obj" required>Oggetto<br>

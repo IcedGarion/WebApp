@@ -121,7 +121,7 @@ public class TableReader
     {
         ResultSet table;
         String query;
-        int farmacia = -1;
+        int farmacia = -1, deleteRow = 0;
 
         if(role.toLowerCase().equals("reg"))
         {
@@ -141,6 +141,27 @@ public class TableReader
             query = "SELECT username from Operatori WHERE idFarmacia = " + farmacia;
         }
 
+/*      IMPLEMENTATO IN newMail.jsp
+
+
+        //rimuove username del mittente dai possibili destinatari
+        table = getTable(query);
+        while(table.next())
+        {
+            deleteRow++;
+            if(table.getString("username").equals(username))
+                break;
+        }
+
+        table.absolute(deleteRow);
+        table.deleteRow();
+        //se si tratta di un pers, aggiunge username della farmacia
+        table.moveToInsertRow();
+        table.updateString("username",Configurations.REG_USERNAME);
+        table.insertRow();
+        //poi rimette a posto la tabella
+        table.absolute(1);
+*/
 
         return getTable(query);
     }
