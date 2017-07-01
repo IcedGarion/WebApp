@@ -14,7 +14,7 @@
         request.getSession().removeAttribute("RegisterBean");
     %>
     <script type="text/javascript">
-        window.location.replace('<%=request.getContextPath()%>/index.html');
+        window.location.replace('<%=request.getContextPath()%>/index.jsp');
     </script>
 </div> <!-- container-->
 </body>

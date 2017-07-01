@@ -14,16 +14,19 @@
 
 </head>
 <body>
-<div id="container">
+<div class="wrapper style1">
     <div id="header">
+        <div class="container">
+            <nav id="nav">
+                <jsp:include page="../util/bar.jsp"/>
+            </nav>
+        </div>
+    </div>
+    <div id="banner">
         <h2>Invia nuova mail</h2>
-    </div> <!-- header -->
-    <div id="cont">
-        <div id="left" class="left">
-            <jsp:include page="../util/sidebar.jsp"/>
-        </div> <!-- left -->
-        <div id="body">
-            <!-- form per l'invio -->
+    </div>
+
+    <!-- form per l'invio -->
             <form action="<%=request.getContextPath()%>/mail.do" method="post" name="form" onsubmit="return validateMailForm()">
 
 
@@ -78,13 +81,9 @@
                 <input type="submit" value="INVIA">
             </form>
 
-        </div> <!-- body -->
-        <div class="clear"/>
-    </div>
-
     <div id= "footer">
         <h6>Creato da Garion Musetta _ Tutti i diritti sono riservati @2017</h6>
-    </div> <!--footer-->
-</div> <!-- container-->
+    </div>
+</div>
 </body>
 </html>

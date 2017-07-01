@@ -27,7 +27,7 @@
 <%
     if(errorMsg.equals("Login non effettuata") || errorMsg.equals("Username o Password non corretti"))
     { %>
-        <a href = "<%=request.getContextPath()%>/index.html">Torna alla pagina di Login</a>
+        <a href = "<%=request.getContextPath()%>/index.jsp">Torna alla pagina di Login</a>
     <%}
     else
     {%>

@@ -2,7 +2,6 @@ package Actions;
 
 import Beans.LoginBean;
 import Beans.MailBean;
-import Beans.PharmacyBean;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
@@ -11,10 +10,7 @@ import util.TableReader;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import java.sql.Connection;
 import java.sql.ResultSet;
-import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -29,9 +25,10 @@ public class SendMail extends Action
         MailBean bean = (MailBean) form;
         LoginBean login = (LoginBean) request.getSession().getAttribute("RegisterBean");
         String[] dests;
-        String obj, msg, data, query = "", username, role, dest;
+        String obj, msg, data, query = "", username, role, dest, tf = "", queryTf;
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         TableReader reader = new TableReader();
+        ResultSet table;
 
         try
         {
@@ -54,15 +51,17 @@ public class SendMail extends Action
                 if(role.toLowerCase().equals("reg"))
                 {
                     //cerca username del titolare della farmacia
+                    queryTf = "SELECT Operatori.username FROM Operatori JOIN Farmacie"
+                    + " ON Operatori.idFarmacia = Farmacie.id"
+                    + " WHERE Operatori.ruolo = 'TF' AND Farmacie.nome = '" + dest + "'";
+                    table = reader.getTable(queryTf);
 
+                    while(table.next())
+                        tf = table.getString("username");
 
-
-
-
-
-
+                    //invia al rispettivo titolare
                     query = "INSERT INTO messaggi(dt_invio, fromreg, toreg, fromop, toop, oggetto, msg)\n" +
-                            "    VALUES ('" + data + "', '" + username + "', null, null, '" + dest + "', '" + obj + "', '" + msg + "')";
+                            "    VALUES ('" + data + "', '" + username + "', null, null, '" + tf + "', '" + obj + "', '" + msg + "')";
 
                 }
                 else
@@ -85,12 +84,16 @@ public class SendMail extends Action
                     if(role.toLowerCase().equals("reg"))
                     {
                         //cerca username del titolare della farmacia
+                        queryTf = "SELECT Operatori.username FROM Operatori JOIN Farmacie"
+                                + " ON Operatori.idFarmacia = Farmacie.id"
+                                + " WHERE Operatori.ruolo = 'TF' AND Farmacie.nome = '" + dest + "'";
+                        table = reader.getTable(queryTf);
+
+                        while(table.next())
+                            tf = table.getString("username");
 
 
-
-
-
-                        query += ", ('" + data + "', '" + username + "', null, null, '" + dest + "', '" + obj + "', '" + msg + "')";
+                        query += ", ('" + data + "', '" + username + "', null, null, '" + tf + "', '" + obj + "', '" + msg + "')";
                     }
                     else
                     {

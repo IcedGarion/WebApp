@@ -1,26 +1,38 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix = "sql" uri = "http://java.sun.com/jsp/jstl/sql" %>
-<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
-<html>
-  <head>
-    <title>CONNESSIONE AL DB JAVA</title>
-  </head>
-  <body>
-  <div>
-      <sql:setDataSource driver = "org.postgresql.Driver" url = "jdbc:postgresql://localhost:5432/contabilita" user = "ubuntu" password = "ubuntu" /> <!-- serve: scarica driver JAR postgres, fai un db con user pass ubuntu -->
-      <sql:query var = "result" sql = "select * from Farmacie" />
-      <h1>CONTENUTO DB:</h1>
-      <UL>
-          <c:forEach var = "row" items = "${result.rows}">
-              <LI>${row.name}</LI>
-          </c:forEach>
-      </UL>
-  </div>
-  <br>
-      <h1>FORM</h1>
-      <form action = "register.do" method = "post">
-        <input type = "text" name = "query">QUERY<br>
-        <input type = "submit" value = "ESEGUI">
-      </form>
-  </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="css/common.css" rel="stylesheet" type="text/css">
+    <title>HOME</title>
+</head>
+<body>
+<div class="wrapper style1">
+	<div id="header">
+        <div class="container">
+            <nav id="nav" hidden>
+                <jsp:include page="/util/bar.jsp"/>
+            </nav>
+        </div>
+	</div>
+	<div id="banner">
+    			<h2>Contabilità</h2>
+	</div>
+
+        <div id="login">
+		<h1>Log in</h1>
+		    <form action = "login.do" method = "post">
+		        <input type = "text" name = "username" required>Username<a href="" title="REGIONE : Username = codice regione &#13;PERSONALE FARMACIA : Username = il tuo username definito in fase di registrazione">?</a> <br>
+		        <input type = "password" name = "passwd" required>Password<br>
+		        <input type = "radio" name = "role" value = "reg" checked = "checked">REGIONE<br>
+		        <input type = "radio" name = "role" value = "pers">OPERATORE<br>
+		        <input type = "submit" value = "Log in">
+		    </form>
+
+        </div>
+
+	<div id= "footer">
+	    <h6>Creato da Garion Musetta _ Tutti i diritti sono riservati @2017</h6>
+	</div> <!--footer-->
+</div
+</body>
 </html>

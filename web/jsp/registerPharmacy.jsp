@@ -22,16 +22,18 @@
     <title>REGISTRA NUOVA FARMACIA</title>
 </head>
 <body>
-<div id="container">
-    <div id="header">
-        <h1>REGISTRA NUOVA FARMACIA</h1>
-    </div> <!-- header -->
 
-    <div id="cont">
-        <div id="left" class="left">
-            <jsp:include page="../util/sidebar.jsp"/>
-        </div> <!-- left -->
-        <div id="body" class="right">
+<div class="wrapper style1">
+    <div id="header">
+        <div class="container">
+            <nav id="nav">
+                <jsp:include page="../util/bar.jsp"/>
+            </nav>
+        </div>
+    </div>
+    <div id="banner">
+        <h2>registra nuova farmacia</h2>
+    </div>
 
             <h4>Dati Titolare Farmacia: </h4>
             <form action="<%=request.getContextPath()%>/registerPharmacy.do" method="post" name="form" onsubmit="return validatePharmacyForm()">
@@ -50,9 +52,7 @@
 
                 <input type="submit" value="REGISTRA">
             </form>
-        </div> <!-- body -->
-        <div class="clear"/>
-    </div>
+
     <div id= "footer">
         <h6>Creato da Garion Musetta _ Tutti i diritti sono riservati @2017</h6>
     </div> <!--footer-->

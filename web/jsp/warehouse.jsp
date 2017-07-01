@@ -25,9 +25,16 @@
     <% String role = (String) request.getSession().getAttribute("role"); %>
 </head>
 <body>
-<div id="container">
-    <div id="header">
 
+<div class="wrapper style1">
+    <div id="header">
+        <div class="container">
+            <nav id="nav">
+                <jsp:include page="../util/bar.jsp"/>
+            </nav>
+        </div>
+    </div>
+    <div id="banner">
         <%
             if(((String) request.getSession().getAttribute("role")).toLowerCase().equals("tf"))
             { %>
@@ -38,14 +45,8 @@
         <h1>ELENCO PRODOTTI MAGAZZINO</h1>
         <%}
         %>
+    </div>
 
-    </div> <!-- header -->
-
-    <div id="cont">
-        <div id="left" class="left">
-            <jsp:include page="../util/sidebar.jsp"/>
-        </div> <!-- left -->
-        <div id="body" class="right">
             <table style="width:100%">
                 <tr>
                     <th>Nome Prodotto</th>
@@ -124,16 +125,9 @@
                 {}
                 %>
             </table>
-        </div> <!-- body -->
-
-        <div class="clear"/>
-    </div>
-
     <div id= "footer">
-        <script>
-            $("#footer").load("../util/footer.html");
-        </script>
-    </div> <!--footer-->
+        <h6>Creato da Garion Musetta _ Tutti i diritti sono riservati @2017</h6>
+    </div>  <!--footer-->
 </div> <!-- container -->
 </body>
 </html>

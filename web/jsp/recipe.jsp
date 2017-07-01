@@ -22,16 +22,18 @@
     <title>INFORMAZIONI RICETTA</title>
 </head>
 <body>
-<div id="container">
-    <div id="header">
-        <h1>FARMACO CON RICETTA</h1>
-    </div> <!-- header -->
 
-    <div id="cont">
-        <div id="left" class="left">
-            <jsp:include page="../util/sidebar.jsp"/>
+<div class="wrapper style1">
+    <div id="header">
+        <div class="container">
+            <nav id="nav">
+                <jsp:include page="../util/bar.jsp"/>
+            </nav>
         </div>
-        <div id="body" class="right">
+    </div>
+    <div id="banner">
+        <h2>ricetta</h2>
+    </div>
         <form action="<%=request.getContextPath()%>/addRecipeToCart.do" method="post" name="form" onsubmit="return validatePrescriptionForm()">
             <h4>Dati Paziente: </h4>
             <input type="text" name="cfPaz" id="cfPaz" required>Codice fiscale paziente<br>
@@ -46,14 +48,10 @@
 
             <input type="submit" value="REGISTRA">
         </form>
-        </div> <!-- body -->
-        <div class="clear"/>
-    </div>
-
 
     <div id= "footer">
         <h6>Creato da Garion Musetta _ Tutti i diritti sono riservati @2017</h6>
-    </div> <!--footer-->
-</div> <!-- container>
+    </div>
+</div>
 </body>
 </html>

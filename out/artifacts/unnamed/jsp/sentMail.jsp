@@ -14,16 +14,18 @@
 
 </head>
 <body>
-<div id="container">
-    <div id="header">
-        <h2>Mail Inviate</h2>
-    </div> <!-- header -->
-    <div id="cont">
-        <div id="left" class="left">
-            <jsp:include page="../util/sidebar.jsp"/>
-        </div> <!-- left -->
 
-        <div id="body">
+<div class="wrapper style1">
+    <div id="header">
+        <div class="container">
+            <nav id="nav">
+                <jsp:include page="../util/bar.jsp"/>
+            </nav>
+        </div>
+    </div>
+    <div id="banner">
+        <h2>mail inviate</h2>
+    </div>
             <!-- tABELLA PER LE MAIL -->
             <br>
 <%
@@ -33,9 +35,11 @@
             LoginBean bean = ((LoginBean) session.getAttribute("RegisterBean"));
             ResultSet table = reader.buildSentMailTable(role, bean.getUsername());
             String username, dest;
+            int i = 0;
 
             while(table.next())
             {
+                i++;
 %>
             <h4>Destinatario : </h4>
             <%
@@ -59,16 +63,18 @@
             <%= table.getString("msg") %>
 <%
             }
+
+            if(i == 0)
+            {
+%>
+                <h4>Nessuna mail inviata!</h4>
+<%
+            }
         }
         catch(Exception e)
-        {
-
-        }
+        { }
 %>
 
-        </div> <!-- body -->
-        <div class="clear"/>
-    </div>
 
     <div id= "footer">
         <h6>Creato da Garion Musetta _ Tutti i diritti sono riservati @2017</h6>

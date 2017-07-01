@@ -1,211 +1,364 @@
-#cont h2
-{
-    text-align: center;
-    font-family: Comfortaa;
-}
-#login
-{
-    width: auto;
-    display: table;
-    margin: auto;
-    font-family: Comfortaa;
-}
-a:link
-{
-    font-family: Comfortaa;
-    color: black;
-    font-weight: bold;
-}
-a:visited
-{
-    font-family: Comfortaa;
-    color: black;
-    font-weight: bold;
-}
-a:hover
-{
-    font-family: Comfortaa;
-    color: #000059;
-    font-weight: bold;
-}
-body
-{
-    background-image: url('../src/health.jpg');
-    background-size:cover;
-}
-#header
-{
-    margin: 30px;
-    background-image: url('../src/pixel.png');
-    background-repeat:repeat;
-    border: 1px solid black;
-    margin-top: 5%;
-}
-#header h1
-{
-    font-style:oblique;
-    font-family: Comfortaa;
-    text-align:center;
-    text-align-last:center;
-    margin-top: 2%;
+@import url("font-awesome.min.css");
+@import url("http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800");
 
-    opacity:1;
-}
-#cont
-{
-    background-image: url('../src/pixel.png');
-    background-repeat:repeat;
-    border: 1px solid #000000;
-    height: 350px;
-}
-.center
-{
-    position: absolute;
-    margin-left:50%;
-    padding: 10px;
-}
-#footer
-{
-    bottom:0;
-    position:absolute;
-    text-align:left;
-}
-#footer h6
-{
-    color: #000059;
-}
-#h2
-{
-    text-align: center;
-    font-family: Doodle, Raleway, Dosis;
-}
-#left
-{
-    border: 1px solid black;
-}
-#body
-{
-    font-style: italic;
-    text-decoration: dotted;
+	body 
+	{
+		background: #222222;
+	}
 
-}
-.left
-{
-    float: left;
-    display: block;
-    width: 15%;
-    margin: 0 auto;
-    padding: 10px;
-    height: 330px;
-}
-.right
-{
-    float: left;
-    display: block;
-    width: 75%;
-    height: 350px;
-}
-.tleft
-{
-    width: 30%;
-    display: block;
-    float: left;
-    text-align: right;
-}
-.tright
-{
-    width: 33%;
-    display: block;
-    margin-left: 20px;
-    float:left;
-}
-.fleft
-{
-    width: 45%;
-    display: block;
-    float: left;
-    margin-left: 30px;
-}
-.fright
-{
-    width: 45%;
-    display: block;
-    float: right;
-    margin-left: 10px;
-}
-.fcenter
-{
-    margin-right: 10%;
-    margin-left: 10%;
-}
-#elenco > div
-{
-    display: flex;
-}
-#center > div
-{
-    text-align: center;
-    margin-left: 15%;
-}
-.clear
-{
-    clear: both;
-}
-img
-{
-    float: left;
-    margin-left: 20px;
-}
+	#login > input[type="text"], input[type="password"]
+	{
+		border: solid 1px #82b440;
+		color: inherit;
+		display: block;
+		outline: 0;
+		padding: 0.75em;
+		text-decoration: none;
+		width: 75%;
+	}
 
-td:not(:last-child),th:not(:last-child)
-{
-    text-align: center;
-    border: 1px solid black;
-    border-collapse: collapse;
-}
+	body, input, select
+	{
+		color: #555555;
+		font-family: 'Open Sans', sans-serif;
+		font-size: 12pt;
+		font-weight: 300;
+		line-height: 1.65em;
+	}
 
-th
-{
-    background-color: #84c8c7;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    width: 200px;
-}
+	a
+	{
+		color: #82b440;
+		text-decoration: underline;
+	}
 
-th, td
-{
-    border: 1px solid black;
-}
+	ul, table
+	{
+		margin: 0 0 2em 0;
+	}
+
+	h1, h2, h3, h4, h5, h6
+	{
+		color: inherit;
+		font-weight: 700;
+	}
+
+	input[type="text"],
+	input[type="password"],
+	input[type="email"]
+	{
+		background: none;
+		border: solid 1px #82b440;
+		color: inherit;
+		display: block;
+		outline: 0;
+		padding: 0.75em;
+		text-decoration: none;
+		width: 50%;
+		align: center;
+	}
+
+	input[type="text"],
+	input[type="password"],
+	input[type="email"] {
+		line-height: 1em;
+	}
+
+
+/* Lists */
+
+
+	ul
+	{
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+		ul li {
+			padding: 0.40em 0em;
+		}
+
+
+
+	table {
+		width: 100%;
+		border: 1px solid #82b440;
+        color: #b9b9b9;
+        text-align: center;
+
+	}
+	table > tr, th{
+		border: 1px solid #82b440;
+	}
 
 tr:nth-child(even)
 {
-    background-color: #ffffff;
+    background-color: #3e3e3e;
+
 }
 
-.qty
-{
-    width: 50px;
-}
+	input[type="submit"],
+	input[type="reset"]
+	{
+        margin: 0 0 0 0;
+		border: 2px solid #82b440;
+		cursor: pointer;
+		display: inline-block;
+		padding: 0.90em 1.2em;
+		letter-spacing: 1px;
+		text-align: center;
+		text-decoration: none;
+		text-transform: uppercase;
+		font-size: 1.4em;
+	}
 
-.short
-{
-    width: 100px;
-}
+		input[type="submit"]:hover,
+		input[type="reset"]:hover
+		{
+			background: #82b440;
+			color: white;
+		}
 
-.blank
-{
-    background-color: white;
-    border: none;
-}
+	.wrapper
+	{
+		padding: 6em 0em 4em 0em;
+	}
 
-.last
-{
-    border-right: dashed;
-}
+		.wrapper.style1
+		{
+			padding: 0em;
+			background: #222222;
+		}
 
-table
-{
-    margin-top: 30px;
-    margin-left: 30px;
-    background-color: #b9b9b9;
-}
+
+/* Header */
+
+	#header {
+		color: white;
+		height: 4em;
+		background: rgba(0, 0, 0, 0.5);
+	}
+
+		#header .container {
+			position: relative;
+		}
+
+	.homepage #logo {
+		display: none;
+	}
+
+	.homepage #nav {
+		position: static;
+		text-align: center;
+	}
+
+	#logo {
+		line-height: 2em;
+		letter-spacing: 2px;
+		text-transform: uppercase;
+		font-size: 2em;
+		font-weight: 400;
+	}
+
+		#logo h1 {
+			display: inline-block;
+			margin: 0;
+			padding: 0;
+		}
+
+		#logo a {
+			color: inherit;
+		}
+
+	#nav {
+		position: absolute;
+		top: 0;
+		right: 0;
+	}
+
+		#nav > ul {
+			margin: 0;
+		}
+
+			#nav > ul > li {
+				border-radius: 4px;
+				display: inline-block;
+				margin-left: 0.5em;
+				padding: 0 0.5em;
+			}
+
+				#nav > ul > li a {
+					color: inherit;
+					line-height: 4em;
+					letter-spacing: 2px;
+					text-decoration: none;
+					text-transform: uppercase;
+					font-weight: 400;
+					font-size: 1em;
+				}
+
+				#nav > ul > li:first-child {
+					margin-left: 0;
+				}
+
+				#nav > ul > li.active a {
+					color: white;
+				}
+
+				#nav > ul > li > ul {
+					display: none;
+				}
+
+/* Dropotron */
+
+	.dropotron {
+		top: 2em;
+		background: rgba(32, 32, 32, 0.75);
+		border-radius: 4px;
+		color: inherit;
+		min-width: 12em;
+		padding: 1em 0;
+		color: white;
+	}
+
+		.dropotron > li {
+			line-height: 2em;
+			padding: 0 1em;
+		}
+
+			.dropotron > li > a {
+				color: inherit;
+				letter-spacing: 2px;
+				text-decoration: none;
+				text-transform: uppercase;
+			}
+
+			.dropotron > li.active > a, .dropotron > li:hover > a {
+				color: inherit;
+			}
+
+		.dropotron.level-0 {
+			border-radius: 0 0 4px 4px;
+			font-size: 1em;
+			margin-left: -0.5em;
+		}
+
+/* Banner */
+
+	#banner {
+		padding: 6em 0em 3em 0em;
+		text-align: center;
+		text-transform: uppercase;
+		color: white;
+	}
+
+		#banner .container {
+			padding: 0em 8em;
+		}
+
+		#banner h2 {
+			display: inline-block;
+			padding: 0.50em 0.30em;
+			background: #82b440;
+			font-size: 3em;
+			font-weight: 400;
+		}
+
+		#banner span, #banner p {
+			display: block;
+			letter-spacing: 1px;
+			text-transform: uppercase;
+			font-size: 1.6em;
+			font-weight: 300;
+		}
+
+		#banner span {
+			padding: 1em 0em;
+		}
+
+/* Main */
+
+	#main {
+		padding: 4em 0;
+	}
+
+		#main #content .major, #main #sidebar .major {
+			text-align: left;
+		}
+
+		#main #sidebar section {
+			margin-top: 4em;
+		}
+
+			#main #sidebar section:first-child {
+				margin-top: 0;
+			}
+
+		#main #sidebar .major {
+			padding-bottom: 2em;
+		}
+
+			#main #sidebar .major h2 {
+				font-size: 1.8em;
+			}
+
+/* Footer */
+
+	#footer {
+		padding: 6em 0 2em 0;
+		text-align: center;
+		color: white;
+	}
+
+		#footer hr {
+			border-bottom: 1px solid;
+			border-color: inherit;
+			opacity: .05;
+		}
+
+		#footer .major h2 {
+			color: inherit;
+		}
+
+		#footer .major .byline {
+			color: inherit;
+			opacity: .4;
+		}
+
+		#footer .copyright {
+			margin-top: 3em;
+			text-align: center;
+		}
+
+
+/* Extra */
+
+	#extra1 h2 {
+		display: block;
+		margin-bottom: 1em;
+		letter-spacing: 1px;
+		line-height: 1.4em;
+		text-transform: uppercase;
+		font-size: 1.8em;
+		font-weight: 400;
+	}
+
+	#extra1 h3 {
+		display: block;
+		margin-bottom: 1em;
+		letter-spacing: 1px;
+		line-height: 1.4em;
+		text-transform: uppercase;
+		font-size: 1.6em;
+		font-weight: 400;
+	}
+
+/* Team */
+
+	#team h3 {
+		margin-bottom: 0.50em;
+		letter-spacing: 2px;
+		text-transform: uppercase;
+		font-weight: 700;
+	}

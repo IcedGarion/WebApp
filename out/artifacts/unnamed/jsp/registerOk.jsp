@@ -26,22 +26,17 @@
 
 </head>
 <body>
-<div id="container">
-    <div id="header">
-    </div> <!-- header -->
-    <div id="body">
-    </div> <!-- body -->
-    <div id="left">
-        <ul>
-            <li><a href="<%=request.getContextPath()%>/jsp/privateHome.jsp">HOME</a></li>
-            <li><a href="<%=request.getContextPath()%>/jsp/account.jsp">ACCOUNT</a></li>
-            <li><a href="<%=request.getContextPath()%>/jsp/mail.jsp">POSTA</a></li>
-            <li><a href="<%=request.getContextPath()%>/jsp/logout.jsp">LOGOUT</a></li>
-        </ul>
-    </div> <!-- left -->
 
+<div class="wrapper style1">
+    <div id="header">
+        <div class="container">
+            <nav id="nav">
+                <jsp:include page="../util/bar.jsp"/>
+            </nav>
+        </div>
+    </div>
     <div id= "footer">
-        <h6>footer</h6>
+        <h6>Creato da Garion Musetta _ Tutti i diritti sono riservati @2017</h6>
     </div> <!--footer-->
 </div> <!-- container>
 </body>

@@ -17,7 +17,7 @@
     </div> <!-- header -->
     <div id="cont">
         <div id="left" class="left">
-            <jsp:include page="../util/sidebar.jsp"/>
+            <jsp:include page="../util/bar.jsp"/>
         </div> <!-- left -->
 
         <div id="body">

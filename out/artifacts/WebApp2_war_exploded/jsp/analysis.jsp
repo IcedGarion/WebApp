@@ -41,19 +41,22 @@
 <body>
 <!-- controlla attribute per vedere cosa mostrare -->
 
-<div id="container">
+<div class="wrapper style1">
     <div id="header">
+        <div class="container">
+            <nav id="nav">
+                <jsp:include page="../util/bar.jsp"/>
+            </nav>
+        </div>
+    </div>
+    <div id="banner">
         <% if(role.equals("reg")) {%>
-        <h1>Analisi Vendite Farmacie nella Regione</h1>
+        <h2>Analisi Vendite Farmacie nella Regione</h2>
         <%} else {%>
-        <h1>Analisi Vendite Farmacia</h1>
+        <h2>Analisi Vendite Farmacia</h2>
         <% } %>
     </div> <!-- header -->
-    <div id="cont">
-        <div id="left" class="left">
-            <jsp:include page="../util/sidebar.jsp"/>
-        </div>
-        <div id="body" class="right">
+
             <table>
                 <tr>
                     <th>Numero complessivo di acquisti</th>
@@ -87,13 +90,11 @@
                     e.printStackTrace();
                 }
             %>
-
-        </div> <!-- body -->
-        <div class="clear"/>
+            </table>
         <div id= "footer">
             <h6>Creato da Garion Musetta _ Tutti i diritti sono riservati @2017</h6>
         </div> <!--footer-->
-    </div> <!-- container-->
 </div>
+
 </body>
 </html>

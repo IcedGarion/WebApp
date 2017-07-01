@@ -40,16 +40,17 @@
 </head>
 <body>
 
-<div id="container">
+<div class="wrapper style1">
     <div id="header">
-        <h2>NUOVO ACQUISTO</h2>
-    </div> <!-- header -->
-
-    <div id="cont">
-        <div id="left"class="left">
-            <jsp:include page="../util/sidebar.jsp"/>
-        </div> <!-- left -->
-        <div id="body" class="right">
+        <div class="container">
+            <nav id="nav">
+                <jsp:include page="../util/bar.jsp"/>
+            </nav>
+        </div>
+    </div>
+    <div id="banner">
+        <h2>nuovo acquisto</h2>
+    </div>
 
             <table>
                 <tr>
@@ -97,7 +98,7 @@
                         <td>
                             <input type="text" name="productName" id="productName" value="<%= table.getString("codProdotto") %>"
                                    style="visibility:hidden">
-                            <input type="submit" value="AGGIUNGI AL CARRELLO">
+                            <input id="small" type="submit" value="AGGIUNGI AL CARRELLO">
                         </td>
                     </form>
                 </tr>
