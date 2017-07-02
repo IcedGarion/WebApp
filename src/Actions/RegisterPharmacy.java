@@ -1,6 +1,5 @@
 package Actions;
 
-import Beans.LoginBean;
 import Beans.PharmacyBean;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
@@ -14,11 +13,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.Date;
 
-/**
- * Created by ubuntu on 31/05/17.
- */
 public class RegisterPharmacy extends Action
 {
     @Override
@@ -47,7 +42,8 @@ public class RegisterPharmacy extends Action
             return mapping.findForward("REGISTER");
         }
 
-        try {
+        try
+        {
             st = connection.createStatement();
             username = bean.getUsername();
             password = bean.getPassword();
@@ -72,6 +68,20 @@ public class RegisterPharmacy extends Action
             if(conta != 0)
             {
                 request.setAttribute("exitCode", "Farmacia già esistente");
+                return mapping.findForward("REGISTER");
+            }
+
+            //controlla se titolare esiste gia' come operatore
+            query = "SELECT * FROM Operatori WHERE username = '" + username + "'";
+            resultSet = st.executeQuery(query);
+            conta = 0;
+
+            while(resultSet.next())
+                conta++;
+
+            if(conta != 0)
+            {
+                request.setAttribute("exitCode", "Operatore già esistente");
                 return mapping.findForward("REGISTER");
             }
 

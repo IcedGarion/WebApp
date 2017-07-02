@@ -4,7 +4,7 @@
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/common.css">
-    <script type="text/javascript" src="<%=request.getContextPath()%>/javascript/validation.js"></script>
+    <script type="text/javascript" src="<%=request.getContextPath()%>/javascript/validationRecipe.js"></script>
 
     <%
         if(! (loginCheck.check((LoginBean) session.getAttribute("RegisterBean"), request, "pers").equals("LOGIN_OK")))
@@ -41,7 +41,7 @@
             <input type="text" name="cognomePaz" id="cognomePaz" required>Cognome paziente<br>
 
             <!-- calendario!!! -->
-            <input type="text" name="dataNascitaPaz" id="dataNscitaPaz" required>Data di nascita Paziente<br>
+            <input type="text" name="dataNascitaPaz" id="dataNascitaPaz" required>Data di nascita Paziente<br>
 
             <h4>Dati Ricetta:</h4>
             <input type="text" name="codRegMed" id="codRegMed" required>Codice regionale medico<br>

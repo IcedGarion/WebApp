@@ -105,8 +105,11 @@ public class SendMail extends Action
                     }
                 }
             }
-
-
+            else
+            {
+                request.getSession().setAttribute("msg", "Nessun destinatario scelto! ");
+                return mapping.findForward("SEND_OK");
+            }
 
 
             reader.update(query);

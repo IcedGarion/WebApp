@@ -94,8 +94,16 @@ public class RegisterPersonnel extends Action
             e.printStackTrace();
             connection.close();
 
-            request.setAttribute("exitCode", "Query sql non valida");
-            return mapping.findForward("REGISTER");
+            if(e.getMessage().contains("duplicate key"))
+            {
+                request.setAttribute("exitCode", "Utente gia' registrato!");
+                return mapping.findForward("REGISTER");
+            }
+            else
+            {
+                request.setAttribute("exitCode", "Query sql non valida");
+                return mapping.findForward("REGISTER");
+            }
         }
     }
 }

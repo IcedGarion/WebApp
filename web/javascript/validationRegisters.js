@@ -15,8 +15,6 @@ function blankPersonnelFields()
     document.getElementById("password").style.backgroundColor = "white";
     document.getElementById("passwordConfirm").style.backgroundColor = "white";
     document.getElementById("dataNascita").style.backgroundColor = "white";
-    document.getElementById("codRegionale").style.backgroundColor = "white";
-    document.getElementById("dataNascita").style.backgroundColor = "white";
 }
 
 function validateCf(cf, user)
@@ -30,8 +28,8 @@ function validateCf(cf, user)
         else
             blankPersonnelFields();
 
-        alert("Codice Fiscale non valido!");
         document.getElementById("cf").style.backgroundColor = "red";
+        alert("Codice Fiscale non valido!");
         return false;
     }
     else
@@ -50,6 +48,7 @@ function validateName(name, id, user)
             blankPersonnelFields();
 
         document.getElementById(id).style.backgroundColor = "red";
+        alert("Nome non valido!");
         return false;
     }
     else
@@ -65,9 +64,10 @@ function validatePassword(pass1, pass2, user)
         else
             blankPersonnelFields();
 
-        alert("Le password non corrispondono");
         document.getElementById("password").style.backgroundColor = "red";
         document.getElementById("passwordConfirm").style.backgroundColor = "red";
+        alert("Le password non corrispondono");
+
         return false;
     }
     else
@@ -89,6 +89,7 @@ function validateDate(date, user)
             blankPersonnelFields();
 
         document.getElementById("dataNascita").style.backgroundColor = "red";
+        alert("Data non valida! ");
         return false;
     }
     else
@@ -110,6 +111,8 @@ function validateNumber(number, user)
             blankPersonnelFields();
 
         document.getElementById("telefono").style.backgroundColor = "red";
+        alert("Numero di telefono non valido!");
+
         return false;
     }
     else
@@ -125,7 +128,6 @@ function validatePersonnelForm()
     var pass2 = document.forms["form"]["passwordConfirm"].value;
     var data = document.forms["form"]["dataNascita"].value;
     var ret = true;
-
     ret = validateName(nome, "nome", "pers");
     if(ret == true)
         ret = validateName(cognome, "cognome", "pers");
@@ -135,7 +137,6 @@ function validatePersonnelForm()
         ret = validatePassword(pass1, pass2, "pers");
     if(ret == true)
         ret = validateDate(data, "pers");
-
     return ret;
 }
 
@@ -163,9 +164,4 @@ function validatePharmacyForm()
         ret = validateNumber(tel, "reg");
 
     return ret;
-}
-
-function validatePrescriptionForm()
-{
-    alert("Validazione....");
 }

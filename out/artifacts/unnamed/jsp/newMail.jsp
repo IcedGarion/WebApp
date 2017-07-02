@@ -5,13 +5,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>NEW MAIL</title>
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/common.css">
+    <script type="text/javascript" src="<%=request.getContextPath()%>/javascript/validationRegisters.js"></script>
     <jsp:include page="../util/checkLog.jsp"/>
     <%
         String role = ((String) request.getSession().getAttribute("role")).toLowerCase();
     %>
 
+    <title>NEW MAIL</title>
 </head>
 <body>
 <div class="wrapper style1">
@@ -63,6 +64,10 @@
 
 
                          // invia a tutti check? -->
+
+
+
+
 
 
 
