@@ -19,8 +19,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <script type="text/javascript" src="<%=request.getContextPath()%>/javascript/validationRegisters.js"></script>
-    <script type="text/javascript" src="<%=request.getContextPath()%>/javascript/validationRegisters.js"></script>
+    <script type="text/javascript" src="<%=request.getContextPath()%>/javascript/validationPurchase.js"></script>
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/common.css">
 
     <%
@@ -34,11 +33,24 @@
     </script>
     <%
         }
+
+        //rimuove oggetto parziale coi dati del prodotto, usato in addToCart.java
+        //combinato col js sotto
+        request.getSession().removeAttribute("ricetta");
     %>
+    <!-- forza la pagina a ricaricare se schiacciato il bottone indietro -->
+    <script type="text/javascript">
+        if (!!window.performance && window.performance.navigation.type === 2)
+        {
+            // value 2 means "The page was accessed by navigating into the history"
+            console.log('Reloading');
+            window.location.reload(); // reload whole page
+        }
+    </script>
 
     <title>ACQUISTO</title>
 </head>
-<body>
+<<body onunload="">
 
 <div class="wrapper style1">
     <div id="header">
@@ -91,9 +103,9 @@
 
                     <!-- <td>table.getPicture("immagine").toUpperCase() %></td> -->
 
-                    <form action="<%=request.getContextPath()%>/addToCart.do" method="post" name="form">
+                    <form action="<%=request.getContextPath()%>/addToCart.do" method="post" name="form" onsubmit="return validatePurchase()">
                         <td>
-                            <input class="qty" type = "text" name = "qty" required value="1"> pezzi<br>
+                            <input class="qty" type = "text" name = "qty" id ="qty" required value="1"> pezzi<br>
                         </td>
                         <td>
                             <input type="text" name="productName" id="productName" value="<%= table.getString("codProdotto") %>"
@@ -125,6 +137,7 @@
 </div> <!-- container -->
 
 <%
+
     String msg = (String) request.getSession().getAttribute("msg");
 
     if(msg != null)

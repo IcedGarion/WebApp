@@ -1,9 +1,11 @@
 function blankRecipeFields()
 {
-    document.getElementById("cfPaz").style.backgroundColor = "white";
-    document.getElementById("nomePaz").style.backgroundColor = "white";
-    document.getElementById("cognomePaz").style.backgroundColor = "white";
-    document.getElementById("dataNascitaPaz").style.backgroundColor = "white";
+    var color = "#92fc71"
+    document.getElementById("cfPaz").style.backgroundColor = color;
+    document.getElementById("nomePaz").style.backgroundColor = color;
+    document.getElementById("cognomePaz").style.backgroundColor = color;
+    document.getElementById("dataNascitaPaz").style.backgroundColor = color;
+    document.getElementById("codRegMed").style.backgroundColor = color;
 }
 
 function validateCf(cf, id)

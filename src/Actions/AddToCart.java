@@ -22,7 +22,7 @@ import java.util.Date;
 public class AddToCart extends Action
 {
     /*
-      in pratica: per prima cosa controlla se la action è stata richiamata da purchase o da recipe.jsp:
+      in pratica: per prima cosa controlla se la action è stata richiamata da purchase o da recipe.jsp (cioe' dopo aver validato la ricetta):
       nel secondo caso, oggetto in session sarà != null perchè serviva la ricetta. (spiegato dopo)
 
       Se è la prima volta: Recipe sarà null quindi cerca se serve la ricetta per il prodotto: se no,
@@ -61,6 +61,7 @@ public class AddToCart extends Action
             //per prima cosa controlla se è stato chiamato dopo inserimento ricetta (e quindi ha già dei dati)
             ricetta = (Recipe) request.getSession().getAttribute("ricetta");
 
+            //se non ho ricetta, salva dati prodotto e manda al form ricetta
             if(ricetta == null)
             {
                 //se sono qua mi ha chiamato purchase.jsp, quindi ho un bean ProductBean
@@ -69,16 +70,6 @@ public class AddToCart extends Action
                 //controlla se serve ricetta e se si hanno i ruoli giusti
                 codProdotto = prodBean.getProductName();
 
-                /*"VALIDAZIONE" QUANTITA... (in javascript non funziona)*/
-                try
-                {
-                    qty = Integer.parseInt(prodBean.getQty());
-                }
-                catch(Exception e)
-                {
-                    request.getSession().setAttribute("msg", "QUANTITA' INSERITA NON CORRETTA");
-                    return mapping.findForward("ADD_OK");
-                }
                 query = "SELECT conRicetta FROM Prodotti WHERE codProdotto = '" + codProdotto + "'";
                 table = reader.getTable(query);
 
@@ -109,7 +100,6 @@ public class AddToCart extends Action
             else
             {
                 //se sono qua mi ha chiamato recipe.jsp e quindi ho un bean RecipeBean
-                recBean = (RecipeBean) form;
                 codProdotto = ricetta.getCodProdotto();
                 qty = ricetta.getQty();
             }

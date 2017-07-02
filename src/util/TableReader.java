@@ -12,8 +12,8 @@ public class TableReader
     {
         try
         {
-            Class.forName("org.postgresql.Driver");
-            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/contabilita", "ubuntu", "ubuntu");
+            Class.forName(Configurations.DB_DRIVER);
+            connection = DriverManager.getConnection(Configurations.DB_URL, Configurations.USER, Configurations.PASS);
         }
         catch(Exception e)
         {
@@ -85,14 +85,6 @@ public class TableReader
     {
         ResultSet table;
         String query;
-        int farmacia = -1;
-
-        //prende idFarmacia per trovare la farmacia associata al mio username
-        query = "SELECT idFarmacia FROM Operatori WHERE username = '" + username + "'";
-        table = getTable(query);
-
-        while(table.next())
-            farmacia = table.getInt("idFarmacia");
 
         //prende tutti i prodotti della farmacia
         query = "select prodotti.codProdotto, prodotti.nome, prodotti.prezzo, prodotti.descrizione, prodotti.immagine, magazzino.quantitaDisponibile, prodotti.conRicetta "
@@ -121,7 +113,7 @@ public class TableReader
     {
         ResultSet table;
         String query;
-        int farmacia = -1, deleteRow = 0;
+        int farmacia = -1;
 
         if(role.toLowerCase().equals("reg"))
         {
@@ -141,54 +133,30 @@ public class TableReader
             query = "SELECT username from Operatori WHERE idFarmacia = " + farmacia;
         }
 
-/*      IMPLEMENTATO IN newMail.jsp
-
-
-        //rimuove username del mittente dai possibili destinatari
-        table = getTable(query);
-        while(table.next())
-        {
-            deleteRow++;
-            if(table.getString("username").equals(username))
-                break;
-        }
-
-        table.absolute(deleteRow);
-        table.deleteRow();
-        //se si tratta di un pers, aggiunge username della farmacia
-        table.moveToInsertRow();
-        table.updateString("username",Configurations.REG_USERNAME);
-        table.insertRow();
-        //poi rimette a posto la tabella
-        table.absolute(1);
-*/
-
         return getTable(query);
     }
 
     public ResultSet buildSentMailTable(String role, String username) throws SQLException
     {
-        ResultSet table;
         String query;
 
         if (role.toLowerCase().equals("reg"))
-            query = "SELECT toReg, toOp, msg, oggetto, dt_invio FROM Messaggi WHERE fromReg = '" + username + "'";
+            query = "SELECT toOp, msg, oggetto, dt_invio FROM Messaggi WHERE fromReg = '" + username + "'";
         else
             query = "SELECT toReg, toOp, msg, oggetto, dt_invio FROM Messaggi WHERE fromOp = '" + username + "'";
 
-        return getTable(query);
+        return getTable(query + " ORDER BY dt_invio DESC");
     }
 
     public ResultSet buildInboxMailTable(String role, String username) throws SQLException
     {
-        ResultSet table;
         String query;
 
         if (role.toLowerCase().equals("reg"))
-            query = "SELECT fromReg, fromOp, msg, oggetto, dt_invio FROM Messaggi WHERE toReg = '" + username + "'";
+            query = "SELECT fromOp, msg, oggetto, dt_invio FROM Messaggi WHERE toReg = '" + username + "'";
         else
             query = "SELECT fromReg, fromOp, msg, oggetto, dt_invio FROM Messaggi WHERE toOp = '" + username + "'";
 
-        return getTable(query);
+        return getTable(query + " ORDER BY dt_invio DESC");
     }
 }

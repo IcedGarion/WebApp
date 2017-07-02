@@ -59,8 +59,8 @@
 
             <br>
             <h4>Messaggio : </h4>
-            <br>
             <%= table.getString("msg") %>
+            <br>
 <%
             }
 

@@ -43,7 +43,7 @@
                 <input type="text" name="username" id="username" required>Username Titolare<br>
                 <input type="password" name="password" id="password" required>Password<br>
                 <input type="password" name="passwordConfirm" id="passwordConfirm" required>Conferma Password<br>
-                <input type="text" name="dataNascita" id="dataNascita">Data Nascita (gg-mm-aaaa)<br>
+                <input type="text" name="dataNascita" id="dataNascita">Data di Nascita (gg-mm-aaaa)<br>
                 <br>
                 <h4>Dati Farmacia</h4>
                 <input type="text" name="nomeF" id="nomeF" required>Nome Farmacia<br>

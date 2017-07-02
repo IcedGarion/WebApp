@@ -7,6 +7,7 @@
 <head>
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/common.css">
     <script type="text/javascript" src="<%=request.getContextPath()%>/javascript/validationRegisters.js"></script>
+    <script type="text/javascript" src="<%=request.getContextPath()%>/javascript/util.js"></script>
     <jsp:include page="../util/checkLog.jsp"/>
     <%
         String role = ((String) request.getSession().getAttribute("role")).toLowerCase();
@@ -59,24 +60,11 @@
                     <input type="checkbox" name="username" value="<%= Configurations.REG_USERNAME %>"><%= Configurations.REG_USERNAME %>
                     <%
                         }
-
-
-
-
-                         // invia a tutti check? -->
-
-
-
-
-
-
-
-
-
-
-
-
-
+                    %>
+                    <!-- invia a tutti check -->
+                    <br>
+                    <input type="checkbox" name="all" onClick="selectAll(this, 'username')" /> Seleziona tutti<br/>
+                    <%
                         }
                         catch (Exception e)
                         {
@@ -85,7 +73,7 @@
                     %>
                 <br>
                 <input type="text" name="obj" id="obj" required>Oggetto<br>
-                <input type="text" name="text" id="text" required>Testo mail...<br>
+                <textarea name="text" id="text" rows="20" cols="50" onfocus="clearArea(this);" required>Testo mail...</textarea><br>
                 <input type="submit" value="INVIA">
             </form>
 

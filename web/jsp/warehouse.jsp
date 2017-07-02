@@ -38,11 +38,11 @@
         <%
             if(((String) request.getSession().getAttribute("role")).toLowerCase().equals("tf"))
             { %>
-        <h1>GESTIONE MAGAZZINO</h1>
+        <h2>GESTIONE MAGAZZINO</h2>
         <%}
         else
         { %>
-        <h1>ELENCO PRODOTTI MAGAZZINO</h1>
+        <h2>ELENCO PRODOTTI MAGAZZINO</h2>
         <%}
         %>
     </div>

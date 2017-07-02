@@ -1,20 +1,22 @@
 function blankPharmacyFields()
 {
+    var color = "#92fc71";
     blankPersonnelFields();
-    document.getElementById("nomeF").style.backgroundColor = "white";
-    document.getElementById("indirizzo").style.backgroundColor = "white";
-    document.getElementById("telefono").style.backgroundColor = "white";
+    document.getElementById("nomeF").style.backgroundColor = color;
+    document.getElementById("indirizzo").style.backgroundColor = color;
+    document.getElementById("telefono").style.backgroundColor = color;
 }
 
 function blankPersonnelFields()
 {
-    document.getElementById("cf").style.backgroundColor = "white";
-    document.getElementById("nome").style.backgroundColor = "white";
-    document.getElementById("cognome").style.backgroundColor = "white";
-    document.getElementById("username").style.backgroundColor = "white";
-    document.getElementById("password").style.backgroundColor = "white";
-    document.getElementById("passwordConfirm").style.backgroundColor = "white";
-    document.getElementById("dataNascita").style.backgroundColor = "white";
+    var color = "#92fc71";
+    document.getElementById("cf").style.backgroundColor = color;
+    document.getElementById("nome").style.backgroundColor = color;
+    document.getElementById("cognome").style.backgroundColor = color;
+    document.getElementById("username").style.backgroundColor = color;
+    document.getElementById("password").style.backgroundColor = color;
+    document.getElementById("passwordConfirm").style.backgroundColor = color;
+    document.getElementById("dataNascita").style.backgroundColor = color;
 }
 
 function validateCf(cf, user)
