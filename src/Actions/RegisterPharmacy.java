@@ -5,6 +5,7 @@ import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
+import util.TableReader;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,31 +21,14 @@ public class RegisterPharmacy extends Action
     public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception
     {
         PharmacyBean bean = (PharmacyBean) form;
-        HttpSession session;
-        Connection connection = null;
-        Statement st = null;
         ResultSet resultSet;
         String username = "", password = "", role = "", cf = "", nome = "", cognome = "";
         String indirizzo = "", telefono = "", nomeF = "", dataNascita = "";
+        TableReader reader;
 
         try
         {
-            Class.forName("org.postgresql.Driver");
-            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/contabilita", "ubuntu", "ubuntu");
-        }
-        catch (Exception e)
-        {
-            System.out.println("Errore connessione al DB");
-            e.printStackTrace();
-            connection.close();
-
-            request.setAttribute("exitCode", "Errore Connessione al DB");
-            return mapping.findForward("REGISTER");
-        }
-
-        try
-        {
-            st = connection.createStatement();
+            reader = new TableReader();
             username = bean.getUsername();
             password = bean.getPassword();
             role = "TF";
@@ -59,7 +43,7 @@ public class RegisterPharmacy extends Action
             //controlla se la farmacia esiste gia
             String query = "SELECT * FROM Farmacie WHERE nome = '" + nomeF + "'" + " AND indirizzo = '" + indirizzo +
                     "' AND telefono = '" + telefono + "'";
-            resultSet = st.executeQuery(query);
+            resultSet = reader.getTable(query);
             int conta = 0;
 
             while(resultSet.next())
@@ -73,7 +57,7 @@ public class RegisterPharmacy extends Action
 
             //controlla se titolare esiste gia' come operatore
             query = "SELECT * FROM Operatori WHERE username = '" + username + "'";
-            resultSet = st.executeQuery(query);
+            resultSet = reader.getTable(query);
             conta = 0;
 
             while(resultSet.next())
@@ -88,11 +72,11 @@ public class RegisterPharmacy extends Action
             //inserisce farmacia collegata con cf
             query = "INSERT INTO Farmacie (nome, indirizzo, telefono) VALUES ("
                     + "'" + nomeF + "', " + "'" + indirizzo + "', " + "'" + telefono + "')";
-            st.executeUpdate(query);
+            reader.update(query);
 
             //recupera id farmacia appena inserita
             query = "SELECT id FROM Farmacie WHERE nome = '" + nomeF + "' AND indirizzo = '" + indirizzo + "' AND telefono = '" + telefono + "'";
-            resultSet = st.executeQuery(query);
+            resultSet = reader.getTable(query);
             int idFarmacia = 0;
             while(resultSet.next())
                 idFarmacia = resultSet.getInt("id");
@@ -101,7 +85,7 @@ public class RegisterPharmacy extends Action
             query = "INSERT INTO Operatori (cf, idFarmacia, ruolo, nome, cognome, dataNascita, username, pass) values ("
                     + "'" + cf + "', " + "'" + idFarmacia + "', " + "'" + role + "', " + "'" + nome + "', " + "'" + cognome + "', " + "'" + dataNascita + "', "
                     + "'" + username + "', " + "'" + password + "')";
-            st.executeUpdate(query);
+            reader.update(query);
 
             request.setAttribute("exitCode", "REGISTRAZIONE AVVENUTA CON SUCCESSO");
             return mapping.findForward("REGISTER");
@@ -110,7 +94,6 @@ public class RegisterPharmacy extends Action
         {
             System.out.println("Errore nella query");
             e.printStackTrace();
-            connection.close();
 
             request.setAttribute("exitCode", "Query sql non valida");
             return mapping.findForward("REGISTER");

@@ -13,31 +13,13 @@ public class loginCheck
     public static String check(LoginBean form, HttpServletRequest request, String roleCheck) throws SQLException
     {
         LoginBean bean = (LoginBean) form;
-        HttpSession session;
-        Connection connection = null;
-        Statement st = null;
         ResultSet resultSet;
         String username = "", password = "", role = "";
         boolean loginOk = false;
+        TableReader reader = new TableReader();
 
         try
         {
-            Class.forName("org.postgresql.Driver");
-            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/contabilita", "ubuntu", "ubuntu");
-        }
-        catch (Exception e)
-        {
-            System.out.println("Errore connessione al DB");
-            request.getSession().setAttribute("role", "none");
-            e.printStackTrace();
-            connection.close();
-
-            return "Errore Connessione al DB";
-        }
-
-        try
-        {
-            st = connection.createStatement();
             username = bean.getUsername();
             password = bean.getPasswd();
             role = bean.getRole();
@@ -52,7 +34,7 @@ public class loginCheck
                 tableName = "operatori";
             }
 
-            resultSet = st.executeQuery("SELECT * FROM " + tableName + " WHERE username = '" + username
+            resultSet = reader.getTable("SELECT * FROM " + tableName + " WHERE username = '" + username
                     + "' AND pass = '" + password + "'");
 
 
@@ -75,7 +57,6 @@ public class loginCheck
             System.out.println("Errore nella query");
             request.getSession().setAttribute("role", "none");
             //e.printStackTrace();
-            connection.close();
 
             return "Query sql non valida";
         }
@@ -89,7 +70,6 @@ public class loginCheck
                 {
                     //salva il ruolo in session
                     request.getSession().setAttribute("role", role);
-                    connection.close();
                     return "LOGIN_OK";
                 }
                 //se non è pers, sarà reg : controlla se nel login bean c'è reg
@@ -97,7 +77,6 @@ public class loginCheck
                 {
                     //salva il ruolo in session
                     request.getSession().setAttribute("role", role);
-                    connection.close();
                     return "LOGIN_OK";
                 }
                 else
@@ -111,7 +90,6 @@ public class loginCheck
             {
                 //salva il ruolo in session
                 request.getSession().setAttribute("role", role);
-                connection.close();
                 return "LOGIN_OK";
             }
         }
@@ -119,7 +97,6 @@ public class loginCheck
         {
             request.getSession().setAttribute("exitCode", "Username o Password non corretti");
             request.getSession().setAttribute("role", "none");
-            connection.close();
             return "ERROR";
         }
     }

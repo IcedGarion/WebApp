@@ -98,17 +98,6 @@ public class TableReader
         return table;
     }
 
-    public ResultSet buildAllOperatorsTable() throws SQLException
-    {
-        ResultSet table;
-        String query;
-
-        //prende tutti gli operatori di tutte le farmacie
-        query = "SELECT cf from Operatori";
-
-        return getTable(query);
-    }
-
     public ResultSet buildNewMailTable(String role, String username) throws SQLException
     {
         ResultSet table;
