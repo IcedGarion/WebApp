@@ -27,7 +27,7 @@
         <h2>mail inviate</h2>
     </div>
             <!-- tABELLA PER LE MAIL -->
-            <br>
+    <table class="mail">
 <%
         try
         {
@@ -41,26 +41,42 @@
             {
                 i++;
 %>
-            <h4>Destinatario : </h4>
+            <tr class="blank_row">
+            <td colspan="3"></td>
+            </tr>
+
+            <tr><td width="15%">
+            <h4>Data : </h4>
+            </td><td width="85%">
+            <%= table.getString("dt_invio") %>
+            </td></tr>
+
+            <tr><td width="15%">
+            <h4>Inviata a : </h4>
+            </td><td width="85%">
             <%
                 dest = table.getString("toOp");
                 if(dest == null)
                     dest = table.getString("toReg");
             %>
             <%= dest %>
+            </td></tr>
 
-            <br>
+            <tr><td width="15%">
             <h4>Oggetto : </h4>
+            </td><td width="85%">
             <%= table.getString("oggetto") %>
+            </td></tr>
 
-            <br>
-            <h4>Data : </h4>
-            <%= table.getString("dt_invio") %>
-
-            <br>
+            <tr><td width="15%">
             <h4>Messaggio : </h4>
+            </td><td width="85%">
             <%= table.getString("msg") %>
-            <br>
+            </td></tr>
+
+            <tr class="blank_row">
+            <td colspan="3"></td>
+            </tr>
 <%
             }
 
@@ -75,7 +91,7 @@
         { }
 %>
 
-
+    </table>
     <div id= "footer">
         <h6>Creato da Garion Musetta _ Tutti i diritti sono riservati @2017</h6>
     </div> <!--footer-->

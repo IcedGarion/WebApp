@@ -41,7 +41,6 @@ public class AddToCart extends Action
     @Override
     public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception
     {
-        //non basta: bisogna distinguere! Una volta productBean, una volta RecipeBean
         RecipeBean recBean;
         ProductBean prodBean;
         boolean conRicetta = true;
@@ -59,9 +58,10 @@ public class AddToCart extends Action
         try
         {
             //per prima cosa controlla se è stato chiamato dopo inserimento ricetta (e quindi ha già dei dati)
+            //oppure se s' stata chiamata da add to cart
             ricetta = (Recipe) request.getSession().getAttribute("ricetta");
 
-            //se non ho ricetta, salva dati prodotto e manda al form ricetta
+            //se non ho ricetta, salva dati prodotto e manda al form ricetta (se serve)
             if(ricetta == null)
             {
                 //se sono qua mi ha chiamato purchase.jsp, quindi ho un bean ProductBean
@@ -69,6 +69,17 @@ public class AddToCart extends Action
 
                 //controlla se serve ricetta e se si hanno i ruoli giusti
                 codProdotto = prodBean.getProductName();
+
+                /*"VALIDAZIONE" QUANTITA... (in javascript non funziona)*/
+                try
+                {
+                    qty = Integer.parseInt(prodBean.getQty());
+                }
+                catch(Exception e)
+                {
+                    request.getSession().setAttribute("msg", "QUANTITA' INSERITA NON CORRETTA");
+                    return mapping.findForward("ADD_OK");
+                }
 
                 query = "SELECT conRicetta FROM Prodotti WHERE codProdotto = '" + codProdotto + "'";
                 table = reader.getTable(query);

@@ -26,7 +26,7 @@
         <h2>Mail in arrivo</h2>
     </div>
     <!-- tABELLA PER LE MAIL -->
-        <br>
+        <table class = "mail">
         <%
             try
             {
@@ -40,27 +40,44 @@
                 {
                     i++;
         %>
-        <h4>Mittente : </h4>
-        <%
-            mitt = table.getString("fromOp");
-            if(mitt == null)
-                mitt = table.getString("fromReg");
-        %>
-        <%= mitt %>
+                    <tr class="blank_row">
+                    <td colspan="3"></td>
+                    </tr>
 
-        <br>
-        <h4>Oggetto : </h4>
-        <%= table.getString("oggetto") %>
+                    <tr><td width="15%">
+                    <h4>Data : </h4>
+                    </td><td width="85%">
+                    <%= table.getString("dt_invio") %>
+                    </td></tr>
 
-        <br>
-        <h4>Data : </h4>
-        <%= table.getString("dt_invio") %>
+                    <tr><td width="15%">
+                    <h4>Mittente : </h4>
+                    <%
+                        mitt = table.getString("fromOp");
+                        if(mitt == null)
+                            mitt = table.getString("fromReg");
+                    %>
+                    </td><td width="85%">
+                    <%= mitt %>
+                    </td></tr>
 
-        <br>
-        <h4>Messaggio : </h4>
-        <%= table.getString("msg") %>
-        <br>
-        <%
+                    <tr><td width="15%">
+                    <h4>Oggetto : </h4>
+                    </td><td width="85%">
+                    <%= table.getString("oggetto") %>
+                    </td></tr>
+
+                    <tr><td width="15%">
+                    <h4>Messaggio : </h4>
+                    </td><td width="85%">
+                    <%= table.getString("msg") %>
+                    </td></tr>
+
+                <tr class="blank_row">
+                <td colspan="3"></td>
+                </tr>
+
+                    <%
                 }
 
                 if(i == 0)
@@ -75,7 +92,7 @@
 
             }
         %>
-
+        </table>
 
     <div id= "footer">
         <h6>Creato da Garion Musetta _ Tutti i diritti sono riservati @2017</h6>

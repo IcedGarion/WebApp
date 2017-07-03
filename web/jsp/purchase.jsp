@@ -19,7 +19,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <script type="text/javascript" src="<%=request.getContextPath()%>/javascript/validationPurchase.js"></script>
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/common.css">
 
     <%
@@ -103,7 +102,7 @@
 
                     <!-- <td>table.getPicture("immagine").toUpperCase() %></td> -->
 
-                    <form action="<%=request.getContextPath()%>/addToCart.do" method="post" name="form" onsubmit="return validatePurchase()">
+                    <form action="<%=request.getContextPath()%>/addToCart.do" method="post" name="form">
                         <td>
                             <input class="qty" type = "text" name = "qty" id ="qty" required value="1"> pezzi<br>
                         </td>

@@ -47,7 +47,7 @@
         %>
     </div>
 
-            <table style="width:100%">
+            <table style="width:80%">
                 <tr>
                     <th>Nome Prodotto</th>
                     <th>Descrizione</th>

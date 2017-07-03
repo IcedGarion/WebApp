@@ -72,7 +72,7 @@
                         }
                     %>
                 <br>
-                <input type="text" name="obj" id="obj" required>Oggetto<br>
+                Oggetto<br> <input type="text" name="obj" id="obj" required>
                 <textarea name="text" id="text" rows="20" cols="50" onfocus="clearArea(this);" required>Testo mail...</textarea><br>
                 <input type="submit" value="INVIA">
             </form>

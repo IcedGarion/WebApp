@@ -37,18 +37,18 @@
 
             <h4>Dati Titolare Farmacia: </h4>
             <form action="<%=request.getContextPath()%>/registerPharmacy.do" method="post" name="form" onsubmit="return validatePharmacyForm()">
-                <input type="text" name="nome" id="nome" required>Nome Titolare<br>
-                <input type="text" name="cognome" id="cognome" required>Cognome Titolare<br>
-                <input type="text" name="cf" id="cf" required>Codice Fiscale<br>
-                <input type="text" name="username" id="username" required>Username Titolare<br>
-                <input type="password" name="password" id="password" required>Password<br>
-                <input type="password" name="passwordConfirm" id="passwordConfirm" required>Conferma Password<br>
-                <input type="text" name="dataNascita" id="dataNascita">Data di Nascita (gg-mm-aaaa)<br>
+                Nome Titolare<br> <input type="text" name="nome" id="nome" required>
+                Cognome Titolare<br> <input type="text" name="cognome" id="cognome" required>
+                Codice Fiscale<br><input type="text" name="cf" id="cf" required>
+                Username Titolare<br><input type="text" name="username" id="username" required>
+                Password<br><input type="password" name="password" id="password" required>
+                Conferma Password<br><input type="password" name="passwordConfirm" id="passwordConfirm" required>
+                Data di Nascita (gg-mm-aaaa)<br><input type="text" name="dataNascita" id="dataNascita">
                 <br>
                 <h4>Dati Farmacia</h4>
-                <input type="text" name="nomeF" id="nomeF" required>Nome Farmacia<br>
-                <input type="text" name="indirizzo" id="indirizzo" required>Indirizzo<br>
-                <input type="text" name="telefono" id="telefono" required>Numero di Telefono<br>
+                Nome Farmacia<br><input type="text" name="nomeF" id="nomeF" required>
+                Indirizzo<br><input type="text" name="indirizzo" id="indirizzo" required>
+                Numero di Telefono<br><input type="text" name="telefono" id="telefono" required>
 
                 <input type="submit" value="REGISTRA">
             </form>

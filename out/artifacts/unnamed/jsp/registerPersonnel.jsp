@@ -37,13 +37,13 @@
     </div>
             <h4>Dati Operatore: </h4>
             <form action="<%=request.getContextPath()%>/registerPersonnel.do" method="post" name="form" onsubmit="return validatePersonnelForm()">
-                <input type="text" name="nome" id="nome" required>Nome Operatore<br>
-                <input type="text" name="cognome" id="cognome" required>Cognome Operatore<br>
-                <input type="text" name="cf" id="cf" required>Codice Fiscale<br>
-                <input type="text" name="username" id="username" required>Username<br>
-                <input type="password" name="password" id="password" required>Password<br>
-                <input type="password" name="passwordConfirm" id="passwordConfirm" required>Conferma Password<br>
-                <input type="text" name="dataNascita" id="dataNascita">Data di Nascita (gg-mm-aaaa)<br>
+                Nome Operatore<br> <input type="text" name="nome" id="nome" required>
+                Cognome Operatore<br> <input type="text" name="cognome" id="cognome" required>
+                Codice Fiscale<br> <input type="text" name="cf" id="cf" required>
+                Username<br> <input type="text" name="username" id="username" required>
+                Password<br> <input type="password" name="password" id="password" required>
+                Conferma Password<br> <input type="password" name="passwordConfirm" id="passwordConfirm" required>
+                Data di Nascita (gg-mm-aaaa)<br> <input type="text" name="dataNascita" id="dataNascita">
                 <input type="radio" name="role" value="df" checked="checked">Dottore Farmacista<br>
                 <input type="radio" name="role" value="ob">Operatore di banco<br>
                 <input type="submit" value="REGISTRA">

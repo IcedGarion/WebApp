@@ -36,15 +36,13 @@
     </div>
         <form action="<%=request.getContextPath()%>/addRecipeToCart.do" method="post" name="form" onsubmit="return validatePrescriptionForm()">
             <h4>Dati Paziente: </h4>
-            <input type="text" name="cfPaz" id="cfPaz" required>Codice fiscale paziente<br>
-            <input type="text" name="nomePaz" id="nomePaz" required>Nome paziente<br>
-            <input type="text" name="cognomePaz" id="cognomePaz" required>Cognome paziente<br>
-
-            <!-- calendario!!! -->
-            <input type="text" name="dataNascitaPaz" id="dataNascitaPaz" required>Data di nascita Paziente<br>
+            Codice fiscale paziente<br> <input type="text" name="cfPaz" id="cfPaz" required>
+            Nome paziente<br> <input type="text" name="nomePaz" id="nomePaz" required>
+            Cognome paziente<br> <input type="text" name="cognomePaz" id="cognomePaz" required>
+            Data di nascita Paziente<br> <input type="text" name="dataNascitaPaz" id="dataNascitaPaz" required>
 
             <h4>Dati Ricetta:</h4>
-            <input type="text" name="codRegMed" id="codRegMed" required>Codice regionale medico<br>
+            Codice regionale medico<br> <input type="text" name="codRegMed" id="codRegMed" required>
 
             <input type="submit" value="REGISTRA">
         </form>
