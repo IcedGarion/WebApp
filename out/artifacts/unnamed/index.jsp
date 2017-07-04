@@ -16,8 +16,8 @@
 			<!-- <a href="" title="REGIONE : Username = codice regione &#13;PERSONALE FARMACIA : Username = il tuo username definito in fase di registrazione">?</a> -->
 
 		    <form action = "login.do" method = "post">
-				Username <br><input type = "text" name = "username" size = "7" required>
-				Password<br><input type = "password" name = "passwd" size = "7" required>
+				Username <br><input type = "text" name = "username" size = "12" required>
+				Password<br><input type = "password" name = "passwd" size = "12	" required>
 		        <input type = "radio" name = "role" value = "reg" checked = "checked">REGIONE<br>
 		        <input type = "radio" name = "role" value = "pers">OPERATORE<br>
 		        <input type = "submit" value = "Log in">

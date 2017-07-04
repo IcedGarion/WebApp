@@ -45,7 +45,7 @@
 
             <h4>Dati Ricetta:</h4>
             Codice regionale medico<br> <input type="text" name="codRegMed" id="codRegMed" required>
-
+            <br>
             <input type="submit" value="REGISTRA">
         </form>
     </div>

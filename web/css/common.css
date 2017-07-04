@@ -36,7 +36,7 @@
 		width: 600px;
 		height: 500px;
 		z-index: 15;
-		top: 50%;
+		top: 75%;
 		left: 50%;
 		margin: -100px 0 0 -150px;
 	}
@@ -56,12 +56,12 @@
 	textarea
 	{
 		border: solid 1px #82b440;
-		color: inherit;
+		background-color: #222222;
+		color: #000000;
 		display: block;
 		outline: 0;
 		padding: 0.75em;
 		text-decoration: none;
-		width: 75%;
 	}
 
 	#login > input[type="text"], input[type="password"]
@@ -150,11 +150,10 @@
 		border: 1px solid #82b440;
 	}
 
-tr:nth-child(even)
-{
-    background-color: #3e3e3e;
-
-}
+	tr:nth-child(even)
+	{
+	    background-color: #3e3e3e;
+	}
 
 	input[type="submit"],
 	input[type="reset"]
@@ -169,14 +168,15 @@ tr:nth-child(even)
 		text-decoration: none;
 		text-transform: uppercase;
 		font-size: 1.4em;
+		width: 300px;
 	}
 
-		input[type="submit"]:hover,
-		input[type="reset"]:hover
-		{
-			background: #82b440;
-			color: white;
-		}
+	input[type="submit"]:hover,
+	input[type="reset"]:hover
+	{
+		background: #82b440;
+		color: white;
+	}
 
 	.wrapper
 	{

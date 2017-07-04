@@ -87,7 +87,7 @@ public class TableReader
         String query;
 
         //prende tutti i prodotti della farmacia
-        query = "select prodotti.codProdotto, prodotti.nome, prodotti.prezzo, prodotti.descrizione, prodotti.immagine, magazzino.quantitaDisponibile, prodotti.conRicetta "
+        query = "select prodotti.codProdotto, prodotti.nome, prodotti.prezzo, prodotti.descrizione, magazzino.quantitaDisponibile, prodotti.conRicetta "
                 + "from operatori join farmacie on operatori.idFarmacia = farmacie.id "
                 + "join magazzino on farmacie.id = magazzino.idFarmacia "
                 + "join prodotti on magazzino.codProdotto = prodotti.codprodotto "

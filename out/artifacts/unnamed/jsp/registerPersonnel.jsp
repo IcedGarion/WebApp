@@ -48,6 +48,7 @@
                 Data di Nascita (gg-mm-aaaa)<br> <input type="text" name="dataNascita" id="dataNascita">
                 <input type="radio" name="role" value="df" checked="checked">Dottore Farmacista<br>
                 <input type="radio" name="role" value="ob">Operatore di banco<br>
+                <br>
                 <input type="submit" value="REGISTRA">
             </form>
 

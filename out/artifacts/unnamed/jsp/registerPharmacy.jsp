@@ -50,7 +50,7 @@
                 Nome Farmacia<br><input type="text" name="nomeF" id="nomeF" required>
                 Indirizzo<br><input type="text" name="indirizzo" id="indirizzo" required>
                 Numero di Telefono<br><input type="text" name="telefono" id="telefono" required>
-
+                <br>
                 <input type="submit" value="REGISTRA">
             </form>
     </div>

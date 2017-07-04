@@ -47,7 +47,7 @@
         %>
     </div>
 
-            <table style="width:80%">
+            <table>
                 <tr>
                     <th>Nome Prodotto</th>
                     <th>Descrizione</th>
@@ -81,7 +81,6 @@
                     { %>
                 <form action="<%=request.getContextPath()%>/refillWarehouse.do" method="post" name="form">
                     <td>
-                        <!-- Noe-> potresti usare <input type=number name=quantita min=1 max=50-->
                         <select name="quantita" id="quantita" required="required">
                             <option value="1">1</option>
                             <option value="2">2</option>

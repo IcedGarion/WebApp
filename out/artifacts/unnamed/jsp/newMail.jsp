@@ -30,7 +30,7 @@
 
     <div class = "forms">
     <!-- form per l'invio -->
-            <form action="<%=request.getContextPath()%>/mail.do" method="post" name="form" onsubmit="return validateMailForm()">
+            <form action="<%=request.getContextPath()%>/mail.do" method="post" name="form">
 
                 Username destinatari : <br>
                     <%
@@ -42,23 +42,28 @@
                         ResultSet table = reader.buildNewMailTable(role, userUsername);
                         String username;
                         boolean reg = role.equals("reg");
+                        int i = 1;
 
                         while(table.next())
                         {
+                            if((i % 4) == 0)
+                                %> <br> <%
                             username = table.getString("username");
                             //stampa la checkbox solo se non è lo stesso utente che invia
                             if(!reg && username.equals(userUsername))
                                 continue;
                     %>
-                    <input type="checkbox" name="username" value="<%= username %>"><%= username %>
+                             <input type="checkbox" name="username" value="<%= username %>"><%= username %>
                     <%
+
+                            i++;
                         }
 
                         //aggiunge anche username reg
                         if(role.equals("tf"))
                         {
                     %>
-                    <input type="checkbox" name="username" value="<%= Configurations.REG_USERNAME %>"><%= Configurations.REG_USERNAME %>
+                            <br>  <input type="checkbox" name="username" value="<%= Configurations.REG_USERNAME %>"><%= Configurations.REG_USERNAME %>
                     <%
                         }
                     %>
@@ -74,7 +79,7 @@
                     %>
                 <br>
                 Oggetto<br> <input type="text" name="obj" id="obj" required>
-                <textarea name="text" id="text" rows="20" cols="50" onfocus="clearArea(this);" required>Testo mail...</textarea><br>
+                <textarea name="text" id="text" rows="20" cols="38" onfocus="clearArea(this);" required>Testo mail...</textarea><br>
                 <input type="submit" value="INVIA">
             </form>
     </div>
