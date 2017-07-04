@@ -9,7 +9,7 @@
     <% String role = (String) request.getSession().getAttribute("role"); %>
 </head>
 <body>
-<div class="wrapper style1">
+<footer class="wrapper style1">
     <div id="header">
         <div class="container">
             <nav id="nav">
@@ -37,36 +37,39 @@
         <% }
         %>
     </div>
+
+    <div class="links">
     <%
             if (role.equals("reg"))
             { %>
         <ul>
-            <li><a href="<%=request.getContextPath()%>/jsp/registerPharmacy.jsp">Registra una nuova Farmacia</a></li>
-            <li><a href="<%=request.getContextPath()%>/jsp/analysis.jsp">Analisi Vendite</a></li>
+            <li><h4><a href="<%=request.getContextPath()%>/jsp/registerPharmacy.jsp">Registra una nuova Farmacia</a></h4></li>
+            <li><h4><a href="<%=request.getContextPath()%>/jsp/analysis.jsp">Analisi Vendite</a></h4></li>
         </ul>
         <% }
         else if(role.toUpperCase().equals("TF"))
         { %>
         <ul>
-            <li><a href="<%=request.getContextPath()%>/jsp/registerPersonnel.jsp">Registra Personale Collaboratore</a></li>
-            <li><a href="<%=request.getContextPath()%>/jsp/listPersonnel.jsp">Elenco Personale Farmacia</a></li>
-            <li><a href="<%=request.getContextPath()%>/jsp/purchase.jsp">Inserisci nuovo acquisto</a></li>
-            <li><a href="<%=request.getContextPath()%>/jsp/warehouse.jsp">Magazzino</a></li>
-            <li><a href="<%=request.getContextPath()%>/jsp/analysis.jsp">Analisi Vendite</a></li>
+            <li><h4><a href="<%=request.getContextPath()%>/jsp/registerPersonnel.jsp">Registra Personale Collaboratore</a></h4></li>
+            <li><h4><a href="<%=request.getContextPath()%>/jsp/listPersonnel.jsp">Elenco Personale Farmacia</a></h4></li>
+            <li><h4><a href="<%=request.getContextPath()%>/jsp/purchase.jsp">Inserisci nuovo acquisto</a></h4></li>
+            <li><h4><a href="<%=request.getContextPath()%>/jsp/warehouse.jsp">Magazzino</a></h4></li>
+            <li><h4><a href="<%=request.getContextPath()%>/jsp/analysis.jsp">Analisi Vendite</a></h4></li>
         </ul>
         <% }
         else if(role.toUpperCase().equals("DF") || role.toUpperCase().equals("OB"))
         { %>
         <ul>
-            <li><a href="<%=request.getContextPath()%>/jsp/purchase.jsp">Inserisci nuovo acquisto</a></li>
+            <li><h4><a href="<%=request.getContextPath()%>/jsp/purchase.jsp">Inserisci nuovo acquisto</a></h4></li>
         </ul>
         <% }
         %>
 
-
-    <div id= "footer">
-        <h6>Creato da Garion Musetta _ Tutti i diritti sono riservati @2017</h6>
     </div>
+
+    <footer id = "footer">
+        <h6>Creato da Garion Musetta _ Tutti i diritti sono riservati @2017</h6>
+    </footer>
 </div>
 </body>
 </html>

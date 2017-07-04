@@ -76,24 +76,7 @@
                 <td><%= table.getString("nome") %></td>
                 <td><%= table.getString("descrizione") %></td>
                 <td><%= table.getString("quantitaDisponibile") %></td>
-                <td><%= table.getBoolean("conRicetta") %></td>
-
-
-
-
-
-
-
-                <!-- Noe-> fossi in te eviterei di far processare immagini a java, io l'ho tolto-->
-                <!-- <td>table.getPicture("immagine").toUpperCase() %></td> -->
-
-
-
-
-
-
-
-                <%
+                <td><%= table.getBoolean("conRicetta") %></td><%
                     if(role.toLowerCase().equals("tf"))
                     { %>
                 <form action="<%=request.getContextPath()%>/refillWarehouse.do" method="post" name="form">
@@ -125,9 +108,10 @@
                 {}
                 %>
             </table>
-    <div id= "footer">
+
+    <footer id= "footer">
         <h6>Creato da Garion Musetta _ Tutti i diritti sono riservati @2017</h6>
-    </div>  <!--footer-->
+    </footer>  <!--footer-->
 </div> <!-- container -->
 </body>
 </html>

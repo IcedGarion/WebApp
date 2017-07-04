@@ -35,6 +35,8 @@
     <div id="banner">
         <h2>registra nuovo collaboratore</h2>
     </div>
+
+    <div class="forms">
             <h4>Dati Operatore: </h4>
             <form action="<%=request.getContextPath()%>/registerPersonnel.do" method="post" name="form" onsubmit="return validatePersonnelForm()">
                 Nome Operatore<br> <input type="text" name="nome" id="nome" required>
@@ -46,11 +48,14 @@
                 Data di Nascita (gg-mm-aaaa)<br> <input type="text" name="dataNascita" id="dataNascita">
                 <input type="radio" name="role" value="df" checked="checked">Dottore Farmacista<br>
                 <input type="radio" name="role" value="ob">Operatore di banco<br>
+                <br>
                 <input type="submit" value="REGISTRA">
             </form>
-    <div id= "footer">
+
+    </div>
+    <footer id= "footer">
         <h6>Creato da Garion Musetta _ Tutti i diritti sono riservati @2017</h6>
-    </div> <!--footer-->
+    </footer> <!--footer-->
 </div> <!-- container-->
 </body>
 </html>

@@ -19,6 +19,28 @@
 		margin-right:15%;
 	}
 
+	.links
+	{
+		position: absolute;
+		width: 300px;
+		height: 200px;
+		z-index: 15;
+		top: 75%;
+		left: 50%;
+		margin: -100px 0 0 -150px;
+	}
+
+	.forms
+	{
+		position: absolute;
+		width: 600px;
+		height: 500px;
+		z-index: 15;
+		top: 50%;
+		left: 50%;
+		margin: -100px 0 0 -150px;
+	}
+
 	#login
 	{
 		width:40%;
@@ -28,10 +50,19 @@
 
     #footer
     {
-        text-align: center;
-        height: 5px;
         background: #000000;
     }
+
+	textarea
+	{
+		border: solid 1px #82b440;
+		color: inherit;
+		display: block;
+		outline: 0;
+		padding: 0.75em;
+		text-decoration: none;
+		width: 75%;
+	}
 
 	#login > input[type="text"], input[type="password"]
 	{

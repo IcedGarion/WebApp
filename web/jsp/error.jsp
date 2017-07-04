@@ -36,5 +36,9 @@
 
     request.getSession().removeAttribute("exitCode");
 %>
+
+<footer id= "footer">
+    <h6>Creato da Garion Musetta _ Tutti i diritti sono riservati @2017</h6>
+</footer>
 </body>
 </html>

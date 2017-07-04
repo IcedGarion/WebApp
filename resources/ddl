@@ -36,7 +36,6 @@ create table Magazzino
 create table Prodotti
 (
 	codProdotto varchar not null primary key,
-	immagine bytea,
 	descrizione varchar not null,
 	nome varchar not null unique,
 	prezzo real not null,

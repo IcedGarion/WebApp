@@ -34,6 +34,8 @@
     <div id="banner">
         <h2>ricetta</h2>
     </div>
+
+    <div class ="forms">
         <form action="<%=request.getContextPath()%>/addRecipeToCart.do" method="post" name="form" onsubmit="return validatePrescriptionForm()">
             <h4>Dati Paziente: </h4>
             Codice fiscale paziente<br> <input type="text" name="cfPaz" id="cfPaz" required>
@@ -43,13 +45,14 @@
 
             <h4>Dati Ricetta:</h4>
             Codice regionale medico<br> <input type="text" name="codRegMed" id="codRegMed" required>
-
+            <br>
             <input type="submit" value="REGISTRA">
         </form>
-
-    <div id= "footer">
-        <h6>Creato da Garion Musetta _ Tutti i diritti sono riservati @2017</h6>
     </div>
+
+    <footer id= "footer">
+        <h6>Creato da Garion Musetta _ Tutti i diritti sono riservati @2017</h6>
+    </footer>
 </div>
 </body>
 </html>

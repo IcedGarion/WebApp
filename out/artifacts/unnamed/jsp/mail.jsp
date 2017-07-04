@@ -11,27 +11,30 @@
 
 </head>
 <body>
-<div id="container">
+<div class = "wrapper style1">
     <div id="header">
-        <h2>Mail</h2>
+        <div class="container">
+            <nav id="nav">
+                <jsp:include page="../util/bar.jsp"/>
+            </nav>
+        </div>
     </div> <!-- header -->
-    <div id="cont">
-        <div id="left" class="left">
-            <jsp:include page="../util/bar.jsp"/>
-        </div> <!-- left -->
 
-        <div id="body">
+    <div id="banner">
+        <h2>Mail</h2>
+    </div>
+
+        <div class="links">
             <h4><a href="<%=request.getContextPath()%>/jsp/newMail.jsp">Invia nuova Mail</a></h4>
             <h4><a href="<%=request.getContextPath()%>/jsp/inboxMail.jsp">Mail ricevute</a></h4>
             <h4><a href="<%=request.getContextPath()%>/jsp/sentMail.jsp">Mail inviate</a></h4>
         </div> <!-- body -->
-        <div class="clear"/>
-    </div>
 
-    <div id= "footer">
+
+    <footer id= "footer">
         <h6>Creato da Garion Musetta _ Tutti i diritti sono riservati @2017</h6>
-    </div> <!--footer-->
-</div> <!-- container-->
+    </footer> <!--footer-->
+</div> <!-- wrapper-->
 
 <%
     String msg = (String) request.getSession().getAttribute("msg");

@@ -87,6 +87,21 @@ public class RegisterPharmacy extends Action
                     + "'" + username + "', " + "'" + password + "')";
             reader.update(query);
 
+            //riempie il magazzino con i prodotti regionali disponibili
+            int i = 0;
+            query = "SELECT codProdotto FROM Prodotti";
+            resultSet = reader.getTable(query);
+
+            query = "INSERT INTO magazzino(idfarmacia, codprodotto, quantitadisponibile) VALUES ";
+            while(resultSet.next())
+            {
+                if(i != 0)
+                    query += ", ";
+                query += "(" + idFarmacia + ", '" + resultSet.getString("codProdotto") + "', 0)";
+                i++;
+            }
+            reader.update(query);
+
             request.setAttribute("exitCode", "REGISTRAZIONE AVVENUTA CON SUCCESSO");
             return mapping.findForward("REGISTER");
         }

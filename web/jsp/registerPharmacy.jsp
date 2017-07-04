@@ -35,6 +35,7 @@
         <h2>registra nuova farmacia</h2>
     </div>
 
+    <div class = "forms">
             <h4>Dati Titolare Farmacia: </h4>
             <form action="<%=request.getContextPath()%>/registerPharmacy.do" method="post" name="form" onsubmit="return validatePharmacyForm()">
                 Nome Titolare<br> <input type="text" name="nome" id="nome" required>
@@ -49,13 +50,14 @@
                 Nome Farmacia<br><input type="text" name="nomeF" id="nomeF" required>
                 Indirizzo<br><input type="text" name="indirizzo" id="indirizzo" required>
                 Numero di Telefono<br><input type="text" name="telefono" id="telefono" required>
-
+                <br>
                 <input type="submit" value="REGISTRA">
             </form>
+    </div>
 
-    <div id= "footer">
+    <footer id= "footer">
         <h6>Creato da Garion Musetta _ Tutti i diritti sono riservati @2017</h6>
-    </div> <!--footer-->
+    </footer> <!--footer-->
 </div> <!-- container-->
 </body>
 </html>

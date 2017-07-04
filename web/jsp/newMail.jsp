@@ -28,6 +28,7 @@
         <h2>Invia nuova mail</h2>
     </div>
 
+    <div class = "forms">
     <!-- form per l'invio -->
             <form action="<%=request.getContextPath()%>/mail.do" method="post" name="form" onsubmit="return validateMailForm()">
 
@@ -76,10 +77,11 @@
                 <textarea name="text" id="text" rows="20" cols="50" onfocus="clearArea(this);" required>Testo mail...</textarea><br>
                 <input type="submit" value="INVIA">
             </form>
-
-    <div id= "footer">
-        <h6>Creato da Garion Musetta _ Tutti i diritti sono riservati @2017</h6>
     </div>
+
+    <footer id= "footer">
+        <h6>Creato da Garion Musetta _ Tutti i diritti sono riservati @2017</h6>
+    </footer>
 </div>
 </body>
 </html>

@@ -19,9 +19,9 @@
 
 
 
-    <div id= "footer">
+    <footer id= "footer">
         <h6>Creato da Garion Musetta _ Tutti i diritti sono riservati @2017</h6>
-    </div>
+    </footer>
 </div>
 </body>
 </html>
