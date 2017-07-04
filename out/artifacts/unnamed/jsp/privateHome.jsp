@@ -9,7 +9,7 @@
     <% String role = (String) request.getSession().getAttribute("role"); %>
 </head>
 <body>
-<footer class="wrapper style1">
+<div class="wrapper style1">
     <div id="header">
         <div class="container">
             <nav id="nav">
@@ -65,11 +65,11 @@
         <% }
         %>
 
+        <div id = "push"></div>
     </div>
-
-    <footer id = "footer">
-        <h6>Creato da Garion Musetta _ Tutti i diritti sono riservati @2017</h6>
-    </footer>
+</div> <!-- wrapper -->
+<div id = "footer">
+    <h6>Creato da Garion Musetta _ Tutti i diritti sono riservati @2017</h6>
 </div>
 </body>
 </html>

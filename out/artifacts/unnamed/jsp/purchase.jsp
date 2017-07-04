@@ -120,21 +120,18 @@
             </table>
 
             <br>
-            <form action="<%=request.getContextPath()%>/checkout.do" method="post" name="form">
-                <input type ="submit" value="PROCEDI ALL'ACQUISTO">
-            </form>
+            <div class="links">
+                <form action="<%=request.getContextPath()%>/checkout.do" method="post" name="form">
+                    <input type ="submit" value="PROCEDI ALL'ACQUISTO">
+                </form>
+            </div>
 
-        </div> <!-- body -->
-        <div class="clear"/>
-    </div>
+    <div id = "push"></div>
+</div> <!-- wrapper -->
 
-
-
-    <footer id= "footer">
-        <h6>Creato da Garion Musetta _ Tutti i diritti sono riservati @2017</h6>
-    </footer> <!--footer-->
-</div> <!-- container -->
-
+<div id = "footer">
+    <h6>Creato da Garion Musetta _ Tutti i diritti sono riservati @2017</h6>
+</div>
 <%
 
     String msg = (String) request.getSession().getAttribute("msg");

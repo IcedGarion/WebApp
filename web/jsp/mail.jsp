@@ -25,17 +25,20 @@
     </div>
 
         <div class="links">
-            <h4><a href="<%=request.getContextPath()%>/jsp/newMail.jsp">Invia nuova Mail</a></h4>
-            <h4><a href="<%=request.getContextPath()%>/jsp/inboxMail.jsp">Mail ricevute</a></h4>
-            <h4><a href="<%=request.getContextPath()%>/jsp/sentMail.jsp">Mail inviate</a></h4>
+            <ul>
+                <li><h4><a href="<%=request.getContextPath()%>/jsp/newMail.jsp">Invia nuova Mail</a></h4></li>
+                <li><h4><a href="<%=request.getContextPath()%>/jsp/inboxMail.jsp">Mail ricevute</a></h4></li>
+                <li><h4><a href="<%=request.getContextPath()%>/jsp/sentMail.jsp">Mail inviate</a></h4></li>
+            </ul>
         </div> <!-- body -->
 
 
-    <footer id= "footer">
-        <h6>Creato da Garion Musetta _ Tutti i diritti sono riservati @2017</h6>
-    </footer> <!--footer-->
-</div> <!-- wrapper-->
 
+    <div id = "push"></div>
+</div> <!-- wrapper-->
+<div id = "footer">
+    <h6>Creato da Garion Musetta _ Tutti i diritti sono riservati @2017</h6>
+</div>
 <%
     String msg = (String) request.getSession().getAttribute("msg");
 

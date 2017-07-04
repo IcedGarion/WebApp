@@ -1,6 +1,11 @@
 @import url("font-awesome.min.css");
 @import url("http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800");
 
+    html, body
+    {
+        height: 100%;
+    }
+
 	body
 	{
 		background: #222222;
@@ -21,24 +26,16 @@
 
 	.links
 	{
-		position: absolute;
-		width: 300px;
-		height: 200px;
-		z-index: 15;
-		top: 75%;
-		left: 50%;
-		margin: -100px 0 0 -150px;
+        width:40%;
+        margin-left:39%;
+        margin-right:30%;
 	}
 
 	.forms
 	{
-		position: absolute;
-		width: 600px;
-		height: 500px;
-		z-index: 15;
-		top: 75%;
-		left: 50%;
-		margin: -100px 0 0 -150px;
+        width:48%;
+        margin-left:35%;
+        margin-right:30%;
 	}
 
 	#login
@@ -47,11 +44,6 @@
 		margin-left:39%;
 		margin-right:30%;
 	}
-
-    #footer
-    {
-        background: #000000;
-    }
 
 	textarea
 	{
@@ -180,8 +172,11 @@
 
 	.wrapper
 	{
-		padding: 6em 0em 4em 0em;
-	}
+        min-height: 100%;
+        height: auto !important;
+        height: 100%;
+        margin: 0 auto -100px;
+    }
 
 		.wrapper.style1
 		{
@@ -363,9 +358,16 @@
 
 /* Footer */
 
-	#footer {
-		padding: 6em 0 2em 0;
-		text-align: center;
+    #push
+    {
+        height: 200px;
+    }
+
+	#footer
+    {
+        padding: 6em;
+		background: #000000;
+        text-align: center;
 		color: white;
 	}
 

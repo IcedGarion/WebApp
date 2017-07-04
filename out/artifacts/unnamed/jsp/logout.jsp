@@ -7,7 +7,7 @@
     <jsp:include page="../util/checkLog.jsp"/>
 </head>
 <body>
-<div id="container">
+<div id="wrapper style1">
     Logout in corso...
 
     <%
@@ -16,6 +16,12 @@
     <script type="text/javascript">
         window.location.replace('<%=request.getContextPath()%>/index.jsp');
     </script>
-</div> <!-- container-->
+
+
+    <div id = "push"></div>
+</div> <!-- wrapper-->
+<div id = "footer">
+    <h6>Creato da Garion Musetta _ Tutti i diritti sono riservati @2017</h6>
+</div>
 </body>
 </html>
