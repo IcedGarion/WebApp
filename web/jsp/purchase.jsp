@@ -100,11 +100,9 @@
                         %>
                     </td>
 
-                    <!-- <td>table.getPicture("immagine").toUpperCase() %></td> -->
-
                     <form action="<%=request.getContextPath()%>/addToCart.do" method="post" name="form">
                         <td>
-                            <input class="qty" type = "text" name = "qty" id ="qty" required value="1"> pezzi<br>
+                            <input class="qty" type = "number" name = "qty" id ="qty" min="0" max="<%= table.getString("quantitaDisponibile") %>" required value="1"> pezzi<br>
                         </td>
                         <td>
                             <input type="text" name="productName" id="productName" value="<%= table.getString("codProdotto") %>"

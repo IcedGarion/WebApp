@@ -74,6 +74,11 @@ public class AddToCart extends Action
                 try
                 {
                     qty = Integer.parseInt(prodBean.getQty());
+                    if(qty <= 0)
+                    {
+                        request.getSession().setAttribute("msg", "QUANTITA' INSERITA NON CORRETTA");
+                        return mapping.findForward("ADD_OK");
+                    }
                 }
                 catch(Exception e)
                 {

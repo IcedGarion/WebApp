@@ -8,14 +8,20 @@ public class AnalysisMethod
     private TableReader reader;
     private String role;
     private int idFarmacia;
+    private String queryDate;
 
-    public AnalysisMethod(String username, String role) throws SQLException
+    public AnalysisMethod(String username, String role, String start, String end) throws SQLException
     {
         String query;
         ResultSet table;
 
         this.reader = new TableReader();
         this.role = role;
+
+        if(start != null && end != null)
+            this.queryDate = " AND acquisti.data > '" + start + "' AND acquisti.data < '" + end + "'";
+        else
+            this.queryDate = "";
 
         if (role.equals("tf"))
         {
@@ -38,6 +44,10 @@ public class AnalysisMethod
         queryForReg = "SELECT COUNT(*) FROM Acquisti JOIN Operatori on Acquisti.cfOperatore = Operatori.cf"
                     + " WHERE Acquisti.completato = true";
 
+
+        queryForTf += queryDate;
+        queryForReg += queryDate;
+
         return getTable(queryForTf, queryForReg);
     }
 
@@ -53,6 +63,9 @@ public class AnalysisMethod
         queryForReg = "SELECT SUM(Carrello.quantita) AS count FROM Acquisti JOIN Operatori on Acquisti.cfOperatore = Operatori.cf"
                     + " JOIN carrello on Acquisti.codAcquisto = Carrello.codAcquisto"
                     + " WHERE Acquisti.completato = true";
+
+        queryForTf += queryDate;
+        queryForReg += queryDate;
 
         return getTable(queryForTf, queryForReg);
     }
@@ -71,6 +84,9 @@ public class AnalysisMethod
                     + " JOIN carrello on Acquisti.codAcquisto = Carrello.codAcquisto JOIN Ricette on Carrello.id = Ricette.idCarrello"
                     + " WHERE Acquisti.completato = true";
 
+        queryForTf += queryDate;
+        queryForReg += queryDate;
+
         return getTable(queryForTf, queryForReg);
     }
 
@@ -87,6 +103,9 @@ public class AnalysisMethod
         queryForReg = "SELECT COUNT(*) AS count FROM Acquisti JOIN Operatori on Acquisti.cfOperatore = Operatori.cf"
                     + " JOIN carrello on Acquisti.codAcquisto = Carrello.codAcquisto JOIN Ricette on Carrello.id = Ricette.idCarrello"
                     + " WHERE Acquisti.completato = true";
+
+        queryForTf += queryDate;
+        queryForReg += queryDate;
 
         return getTable(queryForTf, queryForReg);
     }
@@ -105,6 +124,9 @@ public class AnalysisMethod
         queryForReg = "SELECT AVG(Carrello.quantita) AS count FROM Acquisti JOIN Operatori on Acquisti.cfOperatore = Operatori.cf"
                 + " JOIN carrello on Acquisti.codAcquisto = Carrello.codAcquisto JOIN Ricette on Carrello.id = Ricette.idCarrello"
                 + " WHERE Acquisti.completato = true";
+
+        queryForTf += queryDate;
+        queryForReg += queryDate;
 
         return getTable(queryForTf, queryForReg);
     }

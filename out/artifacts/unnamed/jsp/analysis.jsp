@@ -1,11 +1,12 @@
 <%@ page import="util.loginCheck" %>
 <%@ page import="Beans.LoginBean" %>
 <%@ page import="util.AnalysisMethod" %>
+<%@ page import="Beans.AnalysisDateBean" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <html>
 <head>
-    <script type="text/javascript" src="<%=request.getContextPath()%>/javascript/validationRegisters.js"></script>
+    <script type="text/javascript" src="<%=request.getContextPath()%>/javascript/validationAnalysis.js"></script>
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/common.css">
 
     <title>ANALISI</title>
@@ -70,11 +71,20 @@
                 {
                     LoginBean bean = ((LoginBean) session.getAttribute("RegisterBean"));
                     AnalysisMethod analysis = null;
+                    String start = null, end = null;
+                    AnalysisDateBean aBean = ((AnalysisDateBean) session.getAttribute("AnalysisData"));
+
+                    //cerca se c'e' data nel bean: se si, la aggiunge al parametro
+                    if(aBean != null)
+                    {
+                        start = aBean.getStart();
+                        end = aBean.getEnd();
+                    }
 
                     if(role.equals("tf"))
-                        analysis = new AnalysisMethod(bean.getUsername(), "tf");
+                        analysis = new AnalysisMethod(bean.getUsername(), "tf", start, end);
                     else if(role.equals("reg"))
-                        analysis = new AnalysisMethod(bean.getUsername(), "reg");
+                        analysis = new AnalysisMethod(bean.getUsername(), "reg", start, end);
              %>
                 <tr>
                     <td><%= analysis.getTotPurchases() %></td>
@@ -84,6 +94,7 @@
                     <td><%= analysis.getMeanOfPrescription() %></td>
                 </tr>
             <%
+
                 }
                 catch (Exception e)
                 {
@@ -91,6 +102,31 @@
                 }
             %>
             </table>
+
+            <div class="forms">
+                <div class="clear">
+                <!-- DIVS! -->
+
+                <form action="<%=request.getContextPath()%>/addAnalysisDate.do" method="post" name="form" onsubmit="return validateAnalysisForm()">
+                    <div class="clear">
+                        <span class="tleft">
+                            Data inizio periodo (gg-mm-aaaa)<br> <input type="text" name="start" id="start" size="10" required>
+                            Data fine periodo (gg-mm-aaaa)<br> <input type="text" name="end" id="end" size="10" required>
+                        </span>
+                        <span class="tleft">
+                            <input type="submit" value="FILTRA">
+                        </span>
+                    </div>
+                </form>
+
+                <form action="<%=request.getContextPath()%>/removeAnalysisDate.do" method="post" name="form">
+                    <span class="tright">
+                    <input type="submit" value="RESETTA">
+                    </span>
+                </form>
+                </div>
+            </div>
+    <br><br><br><br><br><br><br><br>
 
           <div id = "push"></div>
 </div> <!--wrapper -->
