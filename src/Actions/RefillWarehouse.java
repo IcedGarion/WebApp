@@ -59,7 +59,10 @@ public class RefillWarehouse extends Action
         result = reader.update(query);
 
         if(result)
+        {
+            request.getSession().setAttribute("msg", "Aggiunto al magazzino! ");
             return mapping.findForward("REFILL_OK");
+        }
         else
         {
             request.setAttribute("exitCode", "Errore nell'ordine");

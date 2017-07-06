@@ -95,7 +95,7 @@
                     <td>
                         <input type="submit" value="ORDINA PRODOTTO">
                         <input type="text" name="productName" id="productName" value="<%= table.getString("nome") %>"
-                               style="visibility:hidden">
+                               class = "hidden">
                     </td>
                 </form>
                 <% }
@@ -114,5 +114,21 @@
 <div id = "footer">
     <h6>Creato da Garion Musetta _ Tutti i diritti sono riservati @2017</h6>
 </div>
+
+<%
+    //scrive se c'e aggiunt al magazzino
+    String msg = (String) request.getSession().getAttribute("msg");
+
+    if(msg != null)
+    {
+%>
+<script>
+    alert("<%= msg %>");
+</script>
+<%
+        request.getSession().removeAttribute("msg");
+    }
+%>
+
 </body>
 </html>

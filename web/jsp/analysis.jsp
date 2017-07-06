@@ -109,20 +109,20 @@
 
                 <form action="<%=request.getContextPath()%>/addAnalysisDate.do" method="post" name="form" onsubmit="return validateAnalysisForm()">
                     <div class="clear">
-                        <span class="tleft">
-                            Data inizio periodo (gg-mm-aaaa)<br> <input type="text" name="start" id="start" size="10" required>
-                            Data fine periodo (gg-mm-aaaa)<br> <input type="text" name="end" id="end" size="10" required>
-                        </span>
-                        <span class="tleft">
-                            <input type="submit" value="FILTRA">
-                        </span>
+                        <div class="tleft">
+                            Data inizio (gg-mm-aaaa)<br> <input type="text" name="start" id="start" required>
+                            Data fine (gg-mm-aaaa)<br> <input type="text" name="end" id="end" required>
+                        </div>
+                        <div class="tright">
+                            <input type="submit" value="FILTRA PERIODO">
+                        </div>
                     </div>
                 </form>
 
                 <form action="<%=request.getContextPath()%>/removeAnalysisDate.do" method="post" name="form">
-                    <span class="tright">
+                    <div class="tright">
                     <input type="submit" value="RESETTA">
-                    </span>
+                    </div>
                 </form>
                 </div>
             </div>

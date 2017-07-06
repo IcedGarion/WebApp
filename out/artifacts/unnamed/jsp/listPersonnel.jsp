@@ -36,7 +36,7 @@
     <div id="banner">
         <h2>Lista personale</h2>
     </div>
-    <table style="width:100%">
+    <table class = "max">
             <tr>
                 <th>Nome</th>
                 <th>Cognome</th>

@@ -19,6 +19,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <script type="text/javascript" src="<%=request.getContextPath()%>/javascript/validationPurchase.js"></script>
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/common.css">
 
     <%
@@ -49,7 +50,7 @@
 
     <title>ACQUISTO</title>
 </head>
-<<body onunload="">
+<body onunload="">
 
 <div class="wrapper style1">
     <div id="header">
@@ -106,8 +107,9 @@
                         </td>
                         <td>
                             <input type="text" name="productName" id="productName" value="<%= table.getString("codProdotto") %>"
-                                   style="visibility:hidden">
-                            <input id="small" type="submit" value="AGGIUNGI AL CARRELLO">
+                                   class = "hidden">
+
+                            <input id="small" type="submit" value="AGGIUNGI AL CARRELLO" onsubmit="return validatePurchaseRole(<%= (String) session.getAttribute("role") %>)">
                         </td>
                     </form>
                 </tr>

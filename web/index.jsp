@@ -2,18 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link href="css/common.css" rel="stylesheet" type="text/css">
+    <link href="<%=request.getContextPath()%>/css/common.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/css/alertify.core.css" />
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/css/alertify.default.css" />
+
+    <script src="<%= request.getContextPath() %>/javascript/alertify.min.js"></script>
     <title>HOME</title>
 </head>
 <body>
 <div class="wrapper style1">
-	<div id="banner">
-    			<h2>Contabilita'</h2>
+	<div id="loginBanner">
+		<h2 id= "bannerh2">Contabilita'</h2>
 	</div>
 
         <div id="login">
 		<h1>Log in</h1>
-			<!-- <a href="" title="REGIONE : Username = codice regione &#13;PERSONALE FARMACIA : Username = il tuo username definito in fase di registrazione">?</a> -->
 
 		    <form action = "login.do" method = "post">
 				Username <br><input type = "text" name = "username" size = "13" required>
@@ -30,5 +33,10 @@
 <div id = "footer">
 	<h6>Creato da Garion Musetta _ Tutti i diritti sono riservati @2017</h6>
 </div>
+
+<script type ="text/javascript">
+    alertify.alert("Message");
+</script>
+
 </body>
 </html>
