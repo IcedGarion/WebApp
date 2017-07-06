@@ -8,13 +8,25 @@ INSERT INTO regione(username, pass)
     VALUES ('regPiemonte', 'asdf');
 
 INSERT INTO prodotti(codprodotto,  descrizione, nome, prezzo, conricetta)
-    VALUES ('1', 'aspirina generica', 'aspirina', 10, false);
+    VALUES ('1', 'aspirina generica', 'aspirina', 9.99, false);
 
 INSERT INTO prodotti(codprodotto, descrizione, nome, prezzo, conricetta)
     VALUES ('2', 'antidolorifico', 'oki', 12.5, true);
 
 INSERT INTO prodotti(codprodotto, descrizione, nome, prezzo, conricetta)
     VALUES ('3', 'Da bere caldo contro influenza', 'tachiflu', 7.99, false);
+
+INSERT INTO prodotti(codprodotto, descrizione, nome, prezzo, conricetta)
+	VALUES ('1b2a', 'Antisettico orofaringeo', 'neoBorocillina', 7.90, false);
+
+INSERT INTO prodotti(codprodotto, descrizione, nome, prezzo, conricetta)
+	VALUES ('1a2d', 'amoxicillina', 'zimox', 4.90, true);
+
+INSERT INTO prodotti(codprodotto, descrizione, nome, prezzo, conricetta)
+	 VALUES ('1b2d', 'betametasone', 'bentelan', 3.52, true);
+
+INSERT INTO prodotti(codprodotto, descrizione, nome, prezzo, conricetta)
+	VALUES ('1b34', 'pomata antinfiammatoria', 'gentalin', 5.50, false);
 
 INSERT INTO magazzino(idfarmacia, codprodotto, quantitadisponibile)
     VALUES (0, '1', 5);

@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <link href="<%=request.getContextPath()%>/css/common.css" rel="stylesheet" type="text/css">
 
-    <script src="<%= request.getContextPath() %>/javascript/alertify.min.js"></script>
     <title>HOME</title>
 </head>
 <body>
@@ -19,6 +18,7 @@
 		    <form action = "login.do" method = "post">
 				Username <br><input type = "text" name = "username" size = "13" required>
 				Password<br><input type = "password" name = "passwd" size = "13	" required>
+                <br>
 		        <input type = "radio" name = "role" value = "reg" checked = "checked">REGIONE<br>
 		        <input type = "radio" name = "role" value = "pers">OPERATORE<br>
                 <br>
@@ -30,7 +30,7 @@
 	<div id = "push"></div>
 </div>
 <div id = "footer">
-	<h6>Creato da Garion Musetta _ Tutti i diritti sono riservati @2017</h6>
+	<h6>Creato da Garion Musetta @2017</h6>
 </div>
 
 </body>

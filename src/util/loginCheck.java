@@ -61,6 +61,7 @@ public class loginCheck
             return "Query sql non valida";
         }
 
+        //setta ruolo
         if(loginOk)
         {
             if(roleCheck != null)

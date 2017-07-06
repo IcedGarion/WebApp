@@ -4,9 +4,8 @@
 <%@ page import="java.sql.ResultSet" %>
 
 <!-- Tanti form quante le righe di prodotti. come in magazzino, bottone aggiungi aggiunge il prodotto, con relativa qtà,
-    al "carrello" (un oggetto in session). Alla fine c'è un bottone "PROCEDI" (che non sta per forza in un form)
-    che chiama la action (senza neanche il bean), la quale legge dal carrello
-    ultima azione (checkout) elimina carrello da session-->
+    al "carrello". Alla fine c'è un bottone "PROCEDI"
+    che chiama la action (senza bean), la quale legge dal carrello -->
 
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -123,7 +122,7 @@
 </div> <!-- wrapper -->
 
 <div id = "footer">
-    <h6>Creato da Garion Musetta _ Tutti i diritti sono riservati @2017</h6>
+    <h6>Creato da Garion Musetta @2017</h6>
 </div>
 <%
 

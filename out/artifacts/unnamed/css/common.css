@@ -31,6 +31,11 @@
         margin-right:30%;
 	}
 
+    .links li
+    {
+        list-style-type: square;
+    }
+
 	.forms
 	{
         width:48%;

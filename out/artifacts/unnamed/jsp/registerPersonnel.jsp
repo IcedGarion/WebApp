@@ -57,7 +57,7 @@
     <div id = "push"></div>
 </div> <!-- wrapper-->
 <div id = "footer">
-    <h6>Creato da Garion Musetta _ Tutti i diritti sono riservati @2017</h6>
+    <h6>Creato da Garion Musetta @2017</h6>
 </div>
 </body>
 </html>
