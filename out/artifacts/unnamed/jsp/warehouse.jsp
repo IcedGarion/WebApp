@@ -6,8 +6,8 @@
 
 <html>
 <head>
-    <script type="text/javascript" src="<%=request.getContextPath()%>/javascript/validationRegisters.js"></script>
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/common.css">
+
 
     <%
         if(! (loginCheck.check((LoginBean) session.getAttribute("RegisterBean"), request, "pers").equals("LOGIN_OK")))
@@ -122,9 +122,9 @@
     if(msg != null)
     {
 %>
-<script>
-    alert("<%= msg %>");
-</script>
+    <script>
+        alert("<%= msg %>");
+    </script>
 <%
         request.getSession().removeAttribute("msg");
     }

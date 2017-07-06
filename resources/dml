@@ -7,11 +7,14 @@ INSERT INTO Operatori (cf, idFarmacia, ruolo, nome, cognome, dataNascita, userna
 INSERT INTO regione(username, pass)
     VALUES ('regPiemonte', 'asdf');
 
-INSERT INTO prodotti(codprodotto, immagine, descrizione, nome, prezzo, conricetta)
-    VALUES ('1', null, 'aspirina generica', 'aspirina', 10, false);
+INSERT INTO prodotti(codprodotto,  descrizione, nome, prezzo, conricetta)
+    VALUES ('1', 'aspirina generica', 'aspirina', 10, false);
 
-INSERT INTO prodotti(codprodotto, immagine, descrizione, nome, prezzo, conricetta)
-    VALUES ('2', null, 'antidolorifico', 'oki', 12.5, true);
+INSERT INTO prodotti(codprodotto, descrizione, nome, prezzo, conricetta)
+    VALUES ('2', 'antidolorifico', 'oki', 12.5, true);
+
+INSERT INTO prodotti(codprodotto, descrizione, nome, prezzo, conricetta)
+    VALUES ('3', 'Da bere caldo contro influenza', 'tachiflu', 7.99, false);
 
 INSERT INTO magazzino(idfarmacia, codprodotto, quantitadisponibile)
     VALUES (0, '1', 5);
@@ -24,4 +27,5 @@ INSERT INTO messaggi(dt_invio, fromreg, toreg, fromop, toop, oggetto, msg)
 
 INSERT INTO messaggi(dt_invio, fromreg, toreg, fromop, toop, oggetto, msg)
     VALUES ('2017-11-12 10:10', null, 'regPiemonte', 'marioRossi', null, 'salve', 'lel');
+
 

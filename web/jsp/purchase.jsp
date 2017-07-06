@@ -9,13 +9,6 @@
     ultima azione (checkout) elimina carrello da session-->
 
 
-<!-- Poi magari compatta tutto in categorie (antidolorifico, antinfiammatorio....)
-    che se le schiacci spawnano i prodotti che contiene -->
-
-<!-- Poi magari all'inizio c'è una casella di ricerca per nome -->
-
-<!-- VALIDAZIONE! -->
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -87,7 +80,7 @@
                 <tr>
                     <td><%= table.getString("nome") %></td>
                     <td><%= table.getString("descrizione") %></td>
-                    <td><%= table.getString("prezzo") %></td>
+                    <td><%= table.getFloat("prezzo") %></td>
                     <td><%= table.getString("quantitaDisponibile") %></td>
                     <td>
                         <% if(table.getBoolean("conRicetta"))
